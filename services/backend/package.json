@@ -1,0 +1,51 @@
+{
+    "name": "@hyperdemo/backend",
+    "description": "Service for clients requests",
+    "version": "0.0.0",
+    "author": "Alexander Smirnov",
+    "dependencies": {
+        "@fastify/static": "7.0.4",
+        "@hyperdemo/core": "0.0.1",
+        "@nestjs/common": "10.4.8",
+        "@nestjs/core": "10.4.8",
+        "@nestjs/platform-fastify": "10.4.8",
+        "@nestjs/swagger": "7.4.2",
+        "@nestjs/typeorm": "10.0.2",
+        "class-transformer": "0.5.1",
+        "class-validator": "0.14.1",
+        "csv-stringify": "6.5.2",
+        "fastify": "4.28.1",
+        "luxon": "3.6.1",
+        "nest-commander": "3.17.0",
+        "pg": "8.16.0",
+        "rxjs": "7.8.1",
+        "swagger": "0.7.5",
+        "typeorm": "0.3.24",
+        "uuid": "11.1.0"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "9.2.0",
+        "@nestjs/testing": "10.4.8",
+        "@quazex/eslint-config": "1.0.2",
+        "@types/luxon": "3.6.2",
+        "@types/pg": "8.15.4",
+        "rimraf": "6.0.1",
+        "ts-node": "10.9.2",
+        "typescript": "5.8.3"
+    },
+    "private": true,
+    "scripts": {
+        "bundle:clear": "rimraf build",
+        "bundle:compile": "npm run bundle:clear && tsc --project tsconfig.build.json",
+        "bundle:run": "node build/index.js",
+        "dev:check": "tsc --noEmit --project tsconfig.build.json",
+        "dev:debug": "nest start --watch --debug 0.0.0.0:9202",
+        "dev:format": "npm run dev:lint -- --fix",
+        "dev:lint": "eslint ./source --ext .ts",
+        "dev:live": "nest start --watch",
+        "dev:upgrade": "npm install $(npm outdated | cut -d' ' -f 1 | sed '1d' | xargs -I '$' echo '$@latest' | xargs echo)",
+        "dev:watch": "tsc --project tsconfig.json --watch --noEmit",
+        "migration:generate": "typeorm-ts-node-commonjs migration:generate ./source/database/migrations/migration -d orm-config.ts --pretty=true",
+        "migration:run": "typeorm-ts-node-commonjs migration:run -d orm-config.ts"
+    }
+}
