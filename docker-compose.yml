@@ -1,0 +1,224 @@
+networks:
+  hyperdev_network:
+
+volumes:
+  kafka_volume:
+  rabbitmq_volume:
+  clickhouse_volume:
+  opensearch_volume:
+  postgresql_volume:
+  redis_volume:
+  telegram_volume:
+
+services:
+  kafka-broker:
+    container_name: hyperdev_kafka_broker
+    hostname: hyperdev.kafka.broker
+    image: confluentinc/cp-kafka:7.6.1
+    environment:
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: "broker,controller"
+      KAFKA_LISTENERS: BROKER://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      KAFKA_ADVERTISED_LISTENERS: BROKER://hyperdev.kafka.broker:9092,EXTERNAL://localhost:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: BROKER:SASL_PLAINTEXT,CONTROLLER:SASL_PLAINTEXT,EXTERNAL:SASL_PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@localhost:9093"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_MAX_REQUEST_SIZE: 209715200
+      KAFKA_MESSAGE_MAX_BYTES: 209715200
+      KAFKA_MAX_PARTITION_FETCH_BYTES: 209715200
+      KAFKA_SASL_ENABLED_MECHANISMS: SCRAM-SHA-256,PLAIN
+      KAFKA_SASL_MECHANISM_CONTROLLER_PROTOCOL: PLAIN
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: SCRAM-SHA-256
+      KAFKA_LISTENER_NAME_BROKER_SCRAM-SHA-256_SASL_JAAS_CONFIG: org.apache.kafka.common.security.scram.ScramLoginModule required username="hyperdev" password="WgRej9DynYwWVjM6" user_hyperdev="WgRej9DynYwWVjM6";
+      KAFKA_LISTENER_NAME_BROKER_PLAIN_SASL_JAAS_CONFIG: org.apache.kafka.common.security.plain.PlainLoginModule required username="hyperdev" password="WgRej9DynYwWVjM6" user_hyperdev="WgRej9DynYwWVjM6";
+      KAFKA_LISTENER_NAME_CONTROLLER_PLAIN_SASL_JAAS_CONFIG: org.apache.kafka.common.security.plain.PlainLoginModule required username="hyperdev" password="WgRej9DynYwWVjM6" user_hyperdev="WgRej9DynYwWVjM6";
+      KAFKA_LISTENER_NAME_CONTROLLER_SCRAM-SHA-256_SASL_JAAS_CONFIG: org.apache.kafka.common.security.scram.ScramLoginModule required username="hyperdev" password="WgRej9DynYwWVjM6" user_hyperdev="WgRej9DynYwWVjM6";
+      KAFKA_LISTENER_NAME_EXTERNAL_SCRAM-SHA-256_SASL_JAAS_CONFIG: org.apache.kafka.common.security.scram.ScramLoginModule required username="hyperdev" password="WgRej9DynYwWVjM6" user_hyperdev="WgRej9DynYwWVjM6";
+      KAFKA_LISTENER_NAME_EXTERNAL_PLAIN_SASL_JAAS_CONFIG: org.apache.kafka.common.security.plain.PlainLoginModule required username="hyperdev" password="WgRej9DynYwWVjM6" user_hyperdev="WgRej9DynYwWVjM6";
+      KAFKA_OPTS: "-Djava.security.debug=gssloginconfig,configfile,configparser,logincontext"
+    volumes:
+      - kafka_volume:/var/lib/kafka/data
+    networks:
+      - hyperdev_network
+    ports:
+      - 9094:9094
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 9092 || exit 1"]
+      interval: 20s
+      timeout: 10s
+      retries: 2
+
+
+  kafka-console:
+    container_name: hyperdev_redpanda
+    image: redpandadata/console:v2.6.0
+    environment:
+      KAFKA_BROKERS: hyperdev.kafka.broker:9092
+      KAFKA_SASL_ENABLED: true
+      KAFKA_SASL_USERNAME: hyperdev
+      KAFKA_SASL_PASSWORD: WgRej9DynYwWVjM6
+      SERVER_LISTENPORT: 9080
+    networks:
+      - hyperdev_network
+    ports:
+      - 2780:9080
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 10m
+        max-file: 2
+
+
+  rabbit:
+    container_name: hyperdev_rabbit
+    hostname: hyperdev.rabbit
+    image: rabbitmq:3.9.29-management
+    volumes:
+      - ./.docker/configs/rabbitmq-definitions.json:/etc/rabbitmq/definitions.json
+      - ./.docker/configs/rabbitmq-config.conf:/etc/rabbitmq/rabbitmq.conf
+      - rabbitmq_volume:/var/lib/rabbitmq
+    networks:
+      - hyperdev_network
+    ports:
+      - 2756:5672
+      - 2715:15672
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 20s
+      timeout: 10s
+      retries: 2
+
+
+  clickhouse:
+    container_name: hyperdev_clickhouse
+    hostname: hyperdev.clickhouse
+    image: clickhouse/clickhouse-server:24.8.4
+    restart: unless-stopped
+    volumes:
+      - ./.docker/configs/clickhouse-config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./.docker/configs/clickhouse-users.xml:/etc/clickhouse-server/users.d/hyperdev.xml
+      - ./.docker/configs/clickhouse-keeper0.xml:/etc/clickhouse-server/config.d/keeper.xml
+      - clickhouse_volume:/var/lib/clickhouse
+    networks:
+      - hyperdev_network
+    ports:
+      - 27081:8123
+      - 27090:9000
+      - 27094:9004
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:8123 || exit 1
+      interval: 20s
+      timeout: 10s
+      retries: 2
+
+
+  opensearch:
+    image: opensearchproject/opensearch:2.16.0
+    container_name: hyperdev_opensearch
+    hostname: hyperdev.opensearch
+    environment:
+      discovery.type: single-node
+      bootstrap.memory_lock: true
+      OPENSEARCH_INITIAL_ADMIN_PASSWORD: Z9nCjTI99FkjPMaWmDpxfy
+      OPENSEARCH_JAVA_OPTS: -Xms1g -Xmx1g
+      DISABLE_SECURITY_PLUGIN: true
+    volumes:
+      - opensearch_volume:/usr/share/opensearch/data
+    networks:
+      - hyperdev_network
+    ports:
+      - 27092:9200 # REST API
+      - 27096:9600 # Performance Analyzer
+    healthcheck:
+      test: curl --silent --fail localhost:9200/_cluster/health || exit 1
+      interval: 20s
+      timeout: 10s
+      retries: 2
+
+
+  postgresql:
+    image: postgres:16.1
+    container_name: hyperdev_postgresql
+    hostname: hyperdev.postgresql
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: hyperdev
+      POSTGRES_PASSWORD: HMRgsGkEIZDu7PjLymnVX6k5NrSHS8ac
+      POSTGRES_DB: hyperdev
+    volumes:
+      - postgresql_volume:/var/lib/postgresql/data
+      - ./.docker/configs/postgresql-config.conf:/etc/postgresql/postgresql.conf
+    networks:
+      - hyperdev_network
+    ports:
+      - 27054:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hyperdev -t 10"]
+      interval: 2s
+      timeout: 10s
+      retries: 2
+
+
+  redis:
+    container_name: hyperdev_redis
+    hostname: hyperdev.redis
+    image: redis:7.0.11-alpine3.18
+    command: redis-server /etc/redis/redis.conf
+    restart: always
+    volumes:
+      - ./.docker/configs/redis-config.conf:/etc/redis/redis.conf
+      - redis_volume:/data
+    networks:
+      - hyperdev_network
+    ports:
+      - 2763:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 60s
+      timeout: 10s
+      retries: 2
+    logging:
+      driver: local
+      options:
+        max-size: 100m
+
+
+  telegram-bot:
+    container_name: hyperdev_telegram_bot
+    hostname: hyperdev.telegram.bot
+    image: aiogram/telegram-bot-api:7.6
+    environment:
+      TELEGRAM_API_ID: 16172267
+      TELEGRAM_API_HASH: 08792ff95fff1bd7a40eb7a2a003b060
+      TELEGRAM_LOCAL: 1
+    volumes:
+      - telegram_volume:/var/lib/telegram-bot-api
+    networks:
+      - hyperdev_network
+
+
+  telegram-nginx:
+    container_name: hyperdev_telegram_nginx
+    hostname: hyperdev.telegram.proxy
+    image: nginx:1.27.0
+    volumes:
+      - ./.docker/configs/telegram-nginx.conf:/etc/nginx/conf.d/telegram.conf
+      - telegram_volume:/etc/nginx/html
+    networks:
+      - hyperdev_network
+    ports:
+      - 2770:8070
+
+
+  fluentbit:
+    container_name: hyperdev_fluentbit
+    hostname: hyperdev.fluentbit
+    image: fluent/fluent-bit:3.1.7
+    volumes:
+      - ./.docker/configs/fluentbit-docker.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./.docker/configs/fluentbit-parsers.conf:/fluent-bit/etc/fluent-parsers.conf
+    ports:
+      - 2788:8888
