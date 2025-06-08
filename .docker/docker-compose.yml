@@ -15,7 +15,8 @@ services:
       POSTGRES_DB: quazex
     volumes:
       - hyperdemo_volume:/var/lib/postgresql/data
-      - ./postgres.init.sql:/docker-entrypoint-initdb.d/postgres.init.sql
+      - ./postgres.schema.sql:/docker-entrypoint-initdb.d/postgres.schema.sql
+      - ./postgres.seeds.sql:/docker-entrypoint-initdb.d/postgres.seeds.sql
     networks:
       - hyperdemo_network
     ports:

@@ -1,0 +1,39 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Between, Repository } from 'typeorm';
+import { CategoriesAnalyticsEntity } from '../../../../../database/entities/categories/analytics.entity';
+import { CategoriesAnalyticsFilters } from '../../types/filter.types';
+import { CategoriesAnalyticsSchema } from '../../types/schema.types';
+
+@Injectable()
+export class CategoriesAnalyticsRepository {
+    constructor(
+        @InjectRepository(CategoriesAnalyticsEntity) private readonly repository: Repository<CategoriesAnalyticsEntity>,
+    ) {}
+
+    public async getList(filters: CategoriesAnalyticsFilters): Promise<CategoriesAnalyticsSchema[]> {
+        const dateFrom = filters.date_from.toSQL({ includeOffset: false });
+        const dateTo = filters.date_to.toSQL({ includeOffset: false });
+
+        const rows = await this.repository.find({
+            select: [
+                'revenue',
+                'date',
+            ],
+            where: {
+                category_id: filters.category_id,
+                date: Between(dateFrom, dateTo),
+            },
+            order: {
+                date: 'ASC',
+            },
+        });
+
+        const schemas = rows.map<CategoriesAnalyticsSchema>((row) => ({
+            revenue: row.revenue,
+            date: row.date,
+        }));
+
+        return schemas;
+    }
+}

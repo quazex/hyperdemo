@@ -13,6 +13,13 @@ export class BrandsInfoRepository {
 
     public async getInfo(filters: BrandsInfoFilters) {
         const row = await this.repository.findOne({
+            select: [
+                'brand_id',
+                'name',
+                'products',
+                'categories',
+                'feedbacks',
+            ],
             where: {
                 brand_id: filters.brand_id,
             },

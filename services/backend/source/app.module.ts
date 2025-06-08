@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from './config/config.module';
 import { PostgresConfig } from './config/postgres.config';
 import { BrandsModule } from './modules/brands/brands.module';
+import { CategoriesModule } from './modules/categories/categories.module';
 
 @Module({
     imports: [
@@ -12,6 +13,7 @@ import { BrandsModule } from './modules/brands/brands.module';
             useExisting: PostgresConfig,
         }),
         BrandsModule,
+        CategoriesModule,
     ],
 })
 export class AppModule {}

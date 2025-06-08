@@ -2,15 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ViewConfig } from '../../../../../config/view.config';
-import { BrandsStatisticsEntity } from '../../../../../database/entities/brands/statistics.entity';
-import { BrandsListFilters } from '../../types/filter.types';
-import { BrandsListSchema } from '../../types/schema.types';
+import { CategoriesStatisticsEntity } from '../../../../../database/entities/categories/statistics.entity';
+import { CategoriesListFilters } from '../../types/filter.types';
+import { CategoriesListSchema } from '../../types/schema.types';
 
 @Injectable()
-export class BrandsListRepository {
+export class CategoriesListRepository {
     constructor(
-        @InjectRepository(BrandsStatisticsEntity)
-        private readonly repository: Repository<BrandsStatisticsEntity>,
+        @InjectRepository(CategoriesStatisticsEntity)
+        private readonly repository: Repository<CategoriesStatisticsEntity>,
         private readonly viewConfig: ViewConfig,
     ) {}
 
@@ -19,29 +19,29 @@ export class BrandsListRepository {
         return result;
     }
 
-    public async getList(filters: BrandsListFilters) {
+    public async getList(filters: CategoriesListFilters) {
         const rows = await this.repository.find({
             select: [
-                'brand_id',
+                'category_id',
                 'name',
+                'brands',
                 'products',
-                'categories',
                 'feedbacks',
             ],
             order: {
                 products: 'DESC',
                 feedbacks: 'DESC',
-                brand_id: 'ASC',
+                category_id: 'ASC',
             },
             take: this.viewConfig.itemsPerPage,
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<BrandsListSchema>((row) => ({
-            brand_id: row.brand_id,
+        const schemas = rows.map<CategoriesListSchema>((row) => ({
+            category_id: row.category_id,
             name: row.name,
             products: row.products,
-            categories: row.categories,
+            brands: row.brands,
             feedbacks: row.feedbacks,
         }));
 

@@ -39,7 +39,6 @@
         "bundle:compile": "npm run bundle:clear && tsc --project tsconfig.build.json",
         "bundle:run": "node build/index.js",
         "dev:check": "tsc --noEmit --project tsconfig.build.json",
-        "dev:debug": "nest start --watch --debug 0.0.0.0:9202",
         "dev:format": "npm run dev:lint -- --fix",
         "dev:lint": "eslint ./source --ext .ts",
         "dev:live": "nest start --watch",
