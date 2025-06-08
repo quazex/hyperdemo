@@ -31,7 +31,10 @@ export const IsDateTime = (options?: ApiPropertyOptions): PropertyDecorator => {
     }
     if (!options?.isArray) {
         decorators.push(
-            Transform((params) => DateTime.fromISO(params.value)),
+            Transform((params) => DateTime.fromISO(params.value, {
+                zone: process.env.APP_ZONE,
+                setZone: true,
+            })),
         );
     }
 

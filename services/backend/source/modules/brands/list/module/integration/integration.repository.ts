@@ -1,0 +1,43 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ViewConfig } from '../../../../../config/view.config';
+import { BrandsStatisticsEntity } from '../../../../../database/entities/brands/statistics.entity';
+import { BrandsListFilters } from '../../types/filter.types';
+import { BrandsListSchema } from '../../types/schema.types';
+
+@Injectable()
+export class BrandsListRepository {
+    constructor(
+        @InjectRepository(BrandsStatisticsEntity)
+        private readonly repository: Repository<BrandsStatisticsEntity>,
+        private readonly viewConfig: ViewConfig,
+    ) {}
+
+    public async count() {
+        const result = await this.repository.count();
+        return result;
+    }
+
+    public async getList(filters: BrandsListFilters) {
+        const rows = await this.repository.find({
+            order: {
+                products: 'DESC',
+                feedbacks: 'DESC',
+                brand_id: 'ASC',
+            },
+            take: this.viewConfig.itemsPerPage,
+            skip: this.viewConfig.itemsPerPage * (filters.page - 1),
+        });
+
+        const schemas = rows.map<BrandsListSchema>((row) => ({
+            brand_id: row.brand_id,
+            name: row.name,
+            products: row.products,
+            categories: row.categories,
+            feedbacks: row.feedbacks,
+        }));
+
+        return schemas;
+    }
+}

@@ -9,6 +9,7 @@
                 "introspectComments": true,
                 "dtoFileNameSuffix": [
                     ".body.ts",
+                    ".dto.ts",
                     ".query.ts",
                     ".params.ts",
                     ".request.ts"

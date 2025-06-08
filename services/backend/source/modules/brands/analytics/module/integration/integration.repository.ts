@@ -12,8 +12,8 @@ export class BrandsAnalyticsRepository {
     ) {}
 
     public async getList(filters: BrandsAnalyticsFilters): Promise<BrandsAnalyticsSchema[]> {
-        const dateFrom = filters.date_from.toSQL();
-        const dateTo = filters.date_to.toSQL();
+        const dateFrom = filters.date_from.toSQL({ includeOffset: false });
+        const dateTo = filters.date_to.toSQL({ includeOffset: false });
 
         const rows = await this.repository.find({
             select: [

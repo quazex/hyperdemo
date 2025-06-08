@@ -1,7 +1,15 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { ArrayNotEmpty, IsArray, IsNumber as IsNum, IsOptional, Min, ValidationOptions } from 'class-validator';
+import {
+    ArrayNotEmpty,
+    IsArray,
+    IsNumber as IsNum,
+    IsOptional,
+    Max,
+    Min,
+    ValidationOptions,
+} from 'class-validator';
 
 export const IsNumber = (options?: ApiPropertyOptions): PropertyDecorator => {
     const minValue = options?.minimum ?? 0;
@@ -13,7 +21,6 @@ export const IsNumber = (options?: ApiPropertyOptions): PropertyDecorator => {
     const decorators: PropertyDecorator[] = [
         ApiProperty(options),
         IsNum({ allowNaN: false, allowInfinity: false }, validationOptions),
-        Min(minValue, validationOptions),
     ];
     if (options?.required === false) {
         decorators.push(IsOptional());
@@ -27,6 +34,17 @@ export const IsNumber = (options?: ApiPropertyOptions): PropertyDecorator => {
     if (!options?.isArray) {
         decorators.push(
             Transform((params) => Number(params.value)),
+        );
+    }
+
+    if (typeof options?.minimum === 'number') {
+        decorators.push(
+            Min(minValue, validationOptions),
+        );
+    }
+    if (typeof options?.maximum === 'number') {
+        decorators.push(
+            Max(minValue, validationOptions),
         );
     }
 
