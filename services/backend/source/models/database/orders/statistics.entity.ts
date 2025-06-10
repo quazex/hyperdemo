@@ -17,8 +17,8 @@ import { OrdersDataEntity } from './data.entity';
         const nested = (qb: SelectQueryBuilder<ProductsOrdersEntity>) => qb
             .select([
                 'po.order_id AS order_id',
-                'COUNT(po.product_id)::INT AS products',
-                'SUM(po.quantity * po.price)::INT AS revenue',
+                'COUNT(po.product_id)::integer AS products',
+                'SUM(po.quantity * po.price)::numeric(10, 2) AS revenue',
             ])
             .from(ProductsOrdersEntity, 'po')
             .groupBy('order_id');

@@ -29,9 +29,9 @@ import { BrandsDataEntity } from './data.entity';
             .select([
                 'b.brand_id AS brand_id',
                 'b.name AS name',
-                'COALESCE(pa.products, 0)::INT AS products',
-                'COALESCE(pa.categories, 0)::INT AS categories',
-                'COALESCE(pa.feedbacks, 0)::INT AS feedbacks',
+                'COALESCE(pa.products, 0)::integer AS products',
+                'COALESCE(pa.categories, 0)::integer AS categories',
+                'COALESCE(pa.feedbacks, 0)::integer AS feedbacks',
                 'b.created_at AS created_at',
                 'b.updated_at AS updated_at',
             ])

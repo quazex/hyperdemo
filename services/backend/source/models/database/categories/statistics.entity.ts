@@ -17,9 +17,9 @@ import { CategoriesDataEntity } from './data.entity';
         const nested = (qb: SelectQueryBuilder<ProductsDataEntity>) => qb
             .select([
                 'p.category_id AS category_id',
-                'COUNT(p.product_id)::INT AS products',
-                'COUNT(DISTINCT p.brand_id)::INT AS brands',
-                'SUM(p.feedbacks)::INT AS feedbacks',
+                'COUNT(p.product_id)::integer AS products',
+                'COUNT(DISTINCT p.brand_id)::integer AS brands',
+                'SUM(p.feedbacks)::integer AS feedbacks',
             ])
             .from(ProductsDataEntity, 'p')
             .groupBy('category_id');

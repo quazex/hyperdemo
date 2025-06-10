@@ -15,7 +15,7 @@ import { ProductsOrdersEntity } from '../products/orders.entity';
         .createQueryBuilder()
         .select([
             'p.brand_id AS brand_id',
-            'COALESCE(SUM(po.quantity * po.price), 0)::INT AS revenue',
+            'COALESCE(SUM(po.quantity * po.price), 0)::numeric(10, 2) AS revenue',
             'po.created_at::DATE AS date',
         ])
         .from(ProductsDataEntity, 'p')
