@@ -1,3 +1,3 @@
-export interface BrandsInfoFilters {
+export interface TBrandsInfoFilters {
     brand_id: string;
 }

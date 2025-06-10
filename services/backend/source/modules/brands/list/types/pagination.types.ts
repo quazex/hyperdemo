@@ -1,4 +1,4 @@
-import { PaginationRes } from '../../../../shared/pagination';
-import { BrandsListSchema } from './schema.types';
+import { TBrandsDataSchema } from '../../../../models/schemas';
+import { TPaginationRes } from '../../../../shared/pagination';
 
-export type BrandsListPagination = PaginationRes<BrandsListSchema>;
+export type TBrandsListPagination = TPaginationRes<TBrandsDataSchema>;

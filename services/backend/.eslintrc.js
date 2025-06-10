@@ -15,5 +15,13 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': ['off'],
         '@typescript-eslint/no-unsafe-member-access': ['off'],
         '@typescript-eslint/no-unsafe-call': ['off'],
+        '@typescript-eslint/naming-convention': ['error', {
+            selector: ['interface', 'typeAlias'],
+            format: ['PascalCase'],
+            custom: {
+                regex: '^T[A-Z]',
+                match: true,
+            },
+        }],
     },
 }

@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
-import { CategoriesListSchema } from '../../../types/schema.types';
+import { TCategoriesDataSchema } from '../../../../../../models/schemas';
 
-export class CategoriesSchemaDto implements CategoriesListSchema {
+export class CategoriesSchemaDto implements TCategoriesDataSchema {
     @Expose()
     @ApiProperty({ description: 'UUID v4' })
     public category_id: string;

@@ -1,4 +1,4 @@
-import { PaginationRes } from '../../../../shared/pagination';
-import { CategoriesListSchema } from './schema.types';
+import { TCategoriesDataSchema } from '../../../../models/schemas';
+import { TPaginationRes } from '../../../../shared/pagination';
 
-export type CategoriesListPagination = PaginationRes<CategoriesListSchema>;
+export type TCategoriesListPagination = TPaginationRes<TCategoriesDataSchema>;

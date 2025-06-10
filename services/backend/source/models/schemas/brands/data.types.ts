@@ -1,4 +1,4 @@
-export interface BrandsInfoSchema {
+export interface TBrandsDataSchema {
     brand_id: string;
     name: string;
     products: number;

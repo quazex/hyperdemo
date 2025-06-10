@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ViewConfig } from '../../../../../config/view.config';
-import { CategoriesStatisticsEntity } from '../../../../../database/entities/categories/statistics.entity';
-import { CategoriesListFilters } from '../../types/filter.types';
-import { CategoriesListSchema } from '../../types/schema.types';
+import { CategoriesStatisticsEntity } from '../../../../../models/entities';
+import { TCategoriesDataSchema } from '../../../../../models/schemas';
+import { TCategoriesListFilters } from '../../types/filter.types';
 
 @Injectable()
 export class CategoriesListRepository {
@@ -19,7 +19,7 @@ export class CategoriesListRepository {
         return result;
     }
 
-    public async getList(filters: CategoriesListFilters) {
+    public async getList(filters: TCategoriesListFilters) {
         const rows = await this.repository.find({
             select: [
                 'category_id',
@@ -37,7 +37,7 @@ export class CategoriesListRepository {
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<CategoriesListSchema>((row) => ({
+        const schemas = rows.map<TCategoriesDataSchema>((row) => ({
             category_id: row.category_id,
             name: row.name,
             products: row.products,

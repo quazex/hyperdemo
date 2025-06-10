@@ -25,16 +25,22 @@ export class ProductsDataEntity {
     @Column({ type: 'text' })
     description: string;
 
-    @OneToMany(() => ProductsImagesEntity, (e) => e.product_id)
+    @OneToMany(() => ProductsImagesEntity, (e) => e.product)
     images: ProductsImagesEntity[];
 
-    @ManyToOne(() => BrandsDataEntity, (e) => e.brand_id, { nullable: true })
+    @ManyToOne(() => BrandsDataEntity, (e) => e.brand_id, { nullable: false })
     @JoinColumn({ name: 'brand_id' })
-    brands: BrandsDataEntity;
+    brand: BrandsDataEntity;
 
-    @ManyToOne(() => CategoriesDataEntity, (e) => e.category_id, { nullable: true })
+    @Column({ type: 'uuid', select: false })
+    brand_id: string;
+
+    @ManyToOne(() => CategoriesDataEntity, (e) => e.category_id, { nullable: false })
     @JoinColumn({ name: 'category_id' })
     category: CategoriesDataEntity;
+
+    @Column({ type: 'uuid', select: false })
+    category_id: string;
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     price: number;

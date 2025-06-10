@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance } from 'class-transformer';
-import { BrandsAnalyticsSchema } from '../../types/schema.types';
+import { TBrandsAnalyticsSchema } from '../../../../../models/schemas/brands/analytics.types';
 
-export class BrandsAnalyticsRes implements BrandsAnalyticsSchema {
+export class BrandsAnalyticsRes implements TBrandsAnalyticsSchema {
     @Expose()
     @ApiProperty({ minimum: 0, example: 200_000 })
     public revenue: number;
@@ -11,7 +11,7 @@ export class BrandsAnalyticsRes implements BrandsAnalyticsSchema {
     @ApiProperty({ example: '2024-01-01' })
     public date: string;
 
-    public static init(rows: BrandsAnalyticsSchema[]): BrandsAnalyticsRes[] {
+    public static init(rows: TBrandsAnalyticsSchema[]): BrandsAnalyticsRes[] {
         return plainToInstance(BrandsAnalyticsRes, rows);
     }
 }

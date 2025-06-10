@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BrandsStatisticsEntity } from '../../../../../database/entities/brands/statistics.entity';
-import { BrandsInfoFilters } from '../../types/filter.types';
+import { BrandsStatisticsEntity } from '../../../../../models/entities';
+import { TBrandsInfoFilters } from '../../types/filter.types';
 
 @Injectable()
 export class BrandsInfoRepository {
@@ -11,7 +11,7 @@ export class BrandsInfoRepository {
         private readonly repository: Repository<BrandsStatisticsEntity>,
     ) {}
 
-    public async getInfo(filters: BrandsInfoFilters) {
+    public async getInfo(filters: TBrandsInfoFilters) {
         const row = await this.repository.findOne({
             select: [
                 'brand_id',

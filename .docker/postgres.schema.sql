@@ -128,3 +128,20 @@ LEFT JOIN (
     FROM "products_data" "p"
     GROUP BY category_id
 ) "pa" ON pa.category_id = "b"."category_id";
+
+CREATE MATERIALIZED VIEW orders_statistics AS
+SELECT "od"."order_id" AS order_id,
+    "od"."user_id" AS user_id,
+    "od"."status" AS status,
+    COALESCE(pa.products, 0) AS products,
+    COALESCE(pa.revenue, 0) AS revenue,
+    "od"."created_at" AS created_at,
+    "od"."updated_at" AS updated_at
+FROM "orders_data" "od"
+LEFT JOIN (
+    SELECT "po"."order_id" AS order_id,
+        count("po"."product_id") AS products,
+        sum("po"."quantity" * "po"."price") AS revenue
+    FROM "products_orders" "po"
+    GROUP BY order_id
+) "pa" ON pa.order_id = "od"."order_id";

@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance } from 'class-transformer';
-import { CategoriesInfoSchema } from '../../types/schema.types';
+import { TCategoriesDataSchema } from '../../../../../models/schemas';
 
-export class CategoriesInfoRes implements CategoriesInfoSchema {
+export class CategoriesInfoRes implements TCategoriesDataSchema {
     @Expose()
     @ApiProperty()
     public category_id: string;
@@ -23,7 +23,7 @@ export class CategoriesInfoRes implements CategoriesInfoSchema {
     @ApiProperty({ minimum: 0 })
     public feedbacks: number;
 
-    public static init(doc: CategoriesInfoSchema): CategoriesInfoRes {
+    public static init(doc: TCategoriesDataSchema): CategoriesInfoRes {
         return plainToInstance(CategoriesInfoRes, doc);
     }
 }

@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance } from 'class-transformer';
-import { BrandsInfoSchema } from '../../types/schema.types';
+import { TBrandsDataSchema } from '../../../../../models/schemas';
 
-export class BrandsInfoRes implements BrandsInfoSchema {
+export class BrandsInfoRes implements TBrandsDataSchema {
     @Expose()
     @ApiProperty()
     public brand_id: string;
@@ -23,7 +23,7 @@ export class BrandsInfoRes implements BrandsInfoSchema {
     @ApiProperty({ minimum: 0 })
     public feedbacks: number;
 
-    public static init(doc: BrandsInfoSchema): BrandsInfoRes {
+    public static init(doc: TBrandsDataSchema): BrandsInfoRes {
         return plainToInstance(BrandsInfoRes, doc);
     }
 }

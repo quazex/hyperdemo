@@ -1,14 +1,14 @@
 import { Exception } from '@hyperdemo/core/modules/exception';
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { BrandsInfoFilters } from '../../types/filter.types';
-import { BrandsInfoSchema } from '../../types/schema.types';
+import { TBrandsDataSchema } from '../../../../../models/schemas';
+import { TBrandsInfoFilters } from '../../types/filter.types';
 import { BrandsInfoRepository } from '../integration/integration.repository';
 
 @Injectable()
 export class BrandsInfoService {
     constructor(private readonly brandsRepository: BrandsInfoRepository) {}
 
-    public async getInfo(filters: BrandsInfoFilters): Promise<BrandsInfoSchema> {
+    public async getInfo(filters: TBrandsInfoFilters): Promise<TBrandsDataSchema> {
         const doc = await this.brandsRepository.getInfo(filters);
         if (!doc) {
             throw new Exception({

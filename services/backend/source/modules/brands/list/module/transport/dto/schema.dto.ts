@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
-import { BrandsListSchema } from '../../../types/schema.types';
+import { TBrandsDataSchema } from '../../../../../../models/schemas';
 
-export class BrandsSchemaDto implements BrandsListSchema {
+export class BrandsSchemaDto implements TBrandsDataSchema {
     @Expose()
     @ApiProperty({ description: 'UUID v4' })
     public brand_id: string;

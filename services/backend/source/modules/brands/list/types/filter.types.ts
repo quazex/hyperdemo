@@ -1,3 +1,3 @@
-export interface BrandsListFilters {
+export interface TBrandsListFilters {
     page: number;
 }

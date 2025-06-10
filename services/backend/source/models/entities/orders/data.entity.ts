@@ -1,6 +1,5 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm';
-import { ProductsDataEntity } from './products/data.entity';
-import { ProductsOrdersEntity } from './products/orders.entity';
+import { ProductsOrdersEntity } from '../products/orders.entity';
 
 @Entity({
     name: 'orders_data',
@@ -16,7 +15,7 @@ export class OrdersDataEntity {
     status: string;
 
     @OneToMany(() => ProductsOrdersEntity, (e) => e.order_id)
-    products: ProductsDataEntity[];
+    products: ProductsOrdersEntity[];
 
     @CreateDateColumn({ type: 'timestamp' })
     created_at: Date;

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ViewConfig } from '../../../../../config/view.config';
-import { BrandsListFilters } from '../../types/filter.types';
-import { BrandsListPagination } from '../../types/pagination.types';
+import { TBrandsListFilters } from '../../types/filter.types';
+import { TBrandsListPagination } from '../../types/pagination.types';
 import { BrandsListRepository } from '../integration/integration.repository';
 
 @Injectable()
@@ -11,11 +11,11 @@ export class BrandsListService {
         private readonly brandsRepository: BrandsListRepository,
     ) {}
 
-    public async getList(filters: BrandsListFilters): Promise<BrandsListPagination> {
+    public async getList(filters: TBrandsListFilters): Promise<TBrandsListPagination> {
         const total = await this.brandsRepository.count();
         const pages = Math.ceil(total / this.viewConfig.itemsPerPage);
 
-        const result: BrandsListPagination = {
+        const result: TBrandsListPagination = {
             rows: [],
             total,
             pages,

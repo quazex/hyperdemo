@@ -1,3 +1,3 @@
-export interface CategoriesListFilters {
+export interface TCategoriesListFilters {
     page: number;
 }

@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, Index, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+import { ProductsDataEntity } from './data.entity';
 
 @Entity({
     name: 'products_images',
@@ -7,9 +8,10 @@ export class ProductsImagesEntity {
     @PrimaryColumn({ type: 'uuid' })
     image_id: string;
 
+    @ManyToOne(() => ProductsDataEntity, (e) => e.images)
     @Index('products_images_product_index')
-    @Column({ type: 'uuid' })
-    product_id: string;
+    @JoinColumn({ name: 'product_id' })
+    product: ProductsImagesEntity[];
 
     @Column({ type: 'text' })
     small: string;
@@ -20,6 +22,6 @@ export class ProductsImagesEntity {
     @Column({ type: 'text' })
     large: string;
 
-    @CreateDateColumn({ type: 'timestamp' })
+    @CreateDateColumn({ type: 'timestamp', select: false })
     created_at: Date;
 }

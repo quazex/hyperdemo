@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance, Type } from 'class-transformer';
-import { CategoriesListPagination } from '../../../types/pagination.types';
+import { TCategoriesListPagination } from '../../../types/pagination.types';
 import { CategoriesSchemaDto } from './schema.dto';
 
-export class CategoriesListResponse implements CategoriesListPagination {
+export class CategoriesListResponse implements TCategoriesListPagination {
     @Expose()
     @ApiProperty({ minimum: 0 })
     public total: number;
@@ -16,7 +16,7 @@ export class CategoriesListResponse implements CategoriesListPagination {
     @Type(() => CategoriesSchemaDto)
     public rows: CategoriesSchemaDto[];
 
-    public static init(data: CategoriesListPagination): CategoriesListResponse {
+    public static init(data: TCategoriesListPagination): CategoriesListResponse {
         return plainToInstance(CategoriesListResponse, data);
     }
 }

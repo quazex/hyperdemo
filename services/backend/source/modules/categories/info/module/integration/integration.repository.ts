@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CategoriesStatisticsEntity } from '../../../../../database/entities/categories/statistics.entity';
-import { CategoriesInfoFilters } from '../../types/filter.types';
-import { CategoriesInfoSchema } from '../../types/schema.types';
+import { CategoriesStatisticsEntity } from '../../../../../models/entities';
+import { TCategoriesDataSchema } from '../../../../../models/schemas';
+import { TCategoriesInfoFilters } from '../../types/filter.types';
 
 @Injectable()
 export class CategoriesInfoRepository {
@@ -12,7 +12,7 @@ export class CategoriesInfoRepository {
         private readonly repository: Repository<CategoriesStatisticsEntity>,
     ) {}
 
-    public async getInfo(filters: CategoriesInfoFilters): Promise<CategoriesInfoSchema | null> {
+    public async getInfo(filters: TCategoriesInfoFilters): Promise<TCategoriesDataSchema | null> {
         const row = await this.repository.findOne({
             select: [
                 'category_id',
