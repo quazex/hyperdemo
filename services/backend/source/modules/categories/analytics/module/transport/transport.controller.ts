@@ -8,7 +8,7 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CategoriesPrimaryParams } from '../../../shared/categories.params';
+import { CategoriesPrimaryParams } from '../../../shared/primary.params';
 import { CategoriesAnalyticsService } from '../business/business.handler';
 import { CategoriesAnalyticsQuery } from './transport.query';
 import { CategoriesAnalyticsRes } from './transport.response';

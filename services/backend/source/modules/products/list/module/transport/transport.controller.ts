@@ -9,7 +9,7 @@ import {
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PaginationReq } from '../../../../../shared/pagination';
 import { ProductsListService } from '../business/business.handler';
-import { ProductsListResponse } from './dto/response.dto';
+import { ProductsListResponse } from './transport.response';
 
 @ApiTags('Products')
 @Controller()

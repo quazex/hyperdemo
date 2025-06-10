@@ -4,7 +4,7 @@ import { ConfigModule } from './config/config.module';
 import { PostgresConfig } from './config/postgres.config';
 import { BrandsModule } from './modules/brands/brands.module';
 import { CategoriesModule } from './modules/categories/categories.module';
-import { ProductsListModule } from './modules/products/list/products.module';
+import { ProductsModule } from './modules/products/products.module';
 
 @Module({
     imports: [
@@ -15,7 +15,7 @@ import { ProductsListModule } from './modules/products/list/products.module';
         }),
         BrandsModule,
         CategoriesModule,
-        ProductsListModule,
+        ProductsModule,
     ],
 })
 export class AppModule {}

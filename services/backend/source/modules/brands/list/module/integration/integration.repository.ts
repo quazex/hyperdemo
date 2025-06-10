@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ViewConfig } from '../../../../../config/view.config';
-import { BrandsStatisticsEntity } from '../../../../../models/entities';
+import { BrandsStatisticsEntity } from '../../../../../models/database';
 import { TBrandsDataSchema } from '../../../../../models/schemas';
 import { TBrandsListFilters } from '../../types/filter.types';
 

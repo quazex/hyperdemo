@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CategoriesStatisticsEntity } from '../../../../../models/entities';
+import { CategoriesStatisticsEntity } from '../../../../../models/database';
 import { TCategoriesDataSchema } from '../../../../../models/schemas';
 import { TCategoriesInfoFilters } from '../../types/filter.types';
 

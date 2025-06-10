@@ -12,10 +12,11 @@ import {
     CategoriesStatisticsEntity,
     OrdersDataEntity,
     OrdersStatisticsEntity,
+    ProductsAnalyticsEntity,
     ProductsDataEntity,
     ProductsImagesEntity,
     ProductsOrdersEntity,
-} from '../models/entities';
+} from '../models/database';
 
 @Injectable()
 export class PostgresConfig implements TypeOrmOptionsFactory {
@@ -38,6 +39,7 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
                 CategoriesStatisticsEntity,
                 OrdersDataEntity,
                 OrdersStatisticsEntity,
+                ProductsAnalyticsEntity,
                 ProductsDataEntity,
                 ProductsImagesEntity,
                 ProductsOrdersEntity,

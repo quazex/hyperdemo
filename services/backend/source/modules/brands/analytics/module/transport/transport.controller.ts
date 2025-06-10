@@ -8,7 +8,7 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { BrandsPrimaryParams } from '../../../shared/brands.params';
+import { BrandsPrimaryParams } from '../../../shared/primary.params';
 import { BrandsAnalyticsService } from '../business/business.handler';
 import { BrandsAnalyticsQuery } from './transport.query';
 import { BrandsAnalyticsRes } from './transport.response';
