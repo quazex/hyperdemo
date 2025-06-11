@@ -1,3 +1,4 @@
+import { BrandsListRes, PaginationReq } from '@models/restapi';
 import {
     Controller,
     Get,
@@ -7,9 +8,7 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PaginationReq } from '../../../../../shared/pagination';
 import { BrandsListService } from '../business/business.handler';
-import { BrandsListResponse } from './dto/response.dto';
 
 @ApiTags('Brands')
 @Controller()
@@ -18,7 +17,7 @@ export class BrandsListController {
 
     @ApiResponse({
         status: HttpStatus.OK,
-        type: BrandsListResponse,
+        type: BrandsListRes,
         isArray: false,
     })
     @HttpCode(HttpStatus.OK)
@@ -26,10 +25,10 @@ export class BrandsListController {
     @Get('brands/list')
     public async getList(
         @Query() query: PaginationReq,
-    ): Promise<BrandsListResponse> {
+    ): Promise<BrandsListRes> {
         const entities = await this.brandsListService.getList({
             page: query.page,
         });
-        return BrandsListResponse.init(entities);
+        return BrandsListRes.init(entities);
     }
 }

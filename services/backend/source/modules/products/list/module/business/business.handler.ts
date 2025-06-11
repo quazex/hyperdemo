@@ -1,27 +1,28 @@
+import { ViewConfig } from '@config';
+import { TProductsPagination } from '@models/restapi';
 import { Injectable } from '@nestjs/common';
-import { ViewConfig } from '../../../../../config/view.config';
-import { TProductsListFilters, TProductsListHandler, TProductsListPagination } from '../../../../../models/types';
+import { TProductsListFilters } from '../../types/filters.types';
 import { ProductsListRepository } from '../integration/integration.repository';
 
 @Injectable()
-export class ProductsListService implements TProductsListHandler {
+export class ProductsListService {
     constructor(
         private readonly viewConfig: ViewConfig,
-        private readonly brandsRepository: ProductsListRepository,
+        private readonly repository: ProductsListRepository,
     ) {}
 
-    public async getList(filters: TProductsListFilters): Promise<TProductsListPagination> {
-        const total = await this.brandsRepository.count();
+    public async getList(filters: TProductsListFilters) {
+        const total = await this.repository.count();
         const pages = Math.ceil(total / this.viewConfig.itemsPerPage);
 
-        const result: TProductsListPagination = {
+        const result: TProductsPagination = {
             rows: [],
             total,
             pages,
         };
 
         if (filters.page <= pages) {
-            result.rows = await this.brandsRepository.getProducts(filters);
+            result.rows = await this.repository.getProducts(filters);
         }
 
         return result;

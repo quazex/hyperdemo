@@ -1,8 +1,8 @@
+import { ProductsAnalyticsEntity } from '@models/database';
+import { TProductsAnalyticsSchema } from '@models/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
-import { ProductsAnalyticsEntity } from '../../../../../models/database';
-import { TProductsAnalyticsSchema } from '../../../../../models/schemas';
 import { TProductsAnalyticsFilters } from '../../types/filter.types';
 
 @Injectable()

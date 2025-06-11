@@ -1,3 +1,4 @@
+import { CategoriesDataRes } from '@models/restapi';
 import {
     Controller,
     Get,
@@ -9,16 +10,15 @@ import {
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CategoriesPrimaryParams } from '../../../shared/primary.params';
 import { CategoriesInfoService } from '../business/business.handler';
-import { CategoriesInfoRes } from './transport.response';
 
 @ApiTags('Categories')
 @Controller()
 export class CategoriesInfoController {
-    constructor(private readonly categoriesInfoService: CategoriesInfoService) {}
+    constructor(private readonly service: CategoriesInfoService) {}
 
     @ApiResponse({
         status: HttpStatus.OK,
-        type: CategoriesInfoRes,
+        type: CategoriesDataRes,
         isArray: false,
     })
     @HttpCode(HttpStatus.OK)
@@ -26,10 +26,10 @@ export class CategoriesInfoController {
     @Get('categories/:category_id/info')
     public async getInfo(
         @Param() params: CategoriesPrimaryParams,
-    ): Promise<CategoriesInfoRes> {
-        const entity = await this.categoriesInfoService.getInfo({
+    ): Promise<CategoriesDataRes> {
+        const entity = await this.service.getInfo({
             category_id: params.category_id,
         });
-        return CategoriesInfoRes.init(entity);
+        return CategoriesDataRes.init(entity);
     }
 }

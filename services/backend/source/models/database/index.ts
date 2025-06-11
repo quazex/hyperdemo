@@ -12,4 +12,4 @@ export * from './orders/statistics.entity';
 export * from './products/analytics.entity';
 export * from './products/data.entity';
 export * from './products/images.entity';
-export * from './products/orders.entity';
+export * from './orders/orders.entity';

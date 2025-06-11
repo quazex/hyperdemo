@@ -1,3 +1,4 @@
+import { CategoriesAnalyticsReq, CategoriesAnalyticsRes } from '@models/restapi';
 import {
     Controller,
     Get,
@@ -10,13 +11,11 @@ import {
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CategoriesPrimaryParams } from '../../../shared/primary.params';
 import { CategoriesAnalyticsService } from '../business/business.handler';
-import { CategoriesAnalyticsQuery } from './transport.query';
-import { CategoriesAnalyticsRes } from './transport.response';
 
 @ApiTags('Categories')
 @Controller()
 export class CategoriesAnalyticsController {
-    constructor(private readonly categoriesAnalyticsService: CategoriesAnalyticsService) {}
+    constructor(private readonly service: CategoriesAnalyticsService) {}
 
     @ApiResponse({
         status: HttpStatus.OK,
@@ -28,9 +27,9 @@ export class CategoriesAnalyticsController {
     @Get('categories/:category_id/analytics')
     public async getList(
         @Param() params: CategoriesPrimaryParams,
-        @Query() query: CategoriesAnalyticsQuery,
+        @Query() query: CategoriesAnalyticsReq,
     ): Promise<CategoriesAnalyticsRes[]> {
-        const entities = await this.categoriesAnalyticsService.getList({
+        const entities = await this.service.getList({
             category_id: params.category_id,
             date_from: query.date_from,
             date_to: query.date_to,

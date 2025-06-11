@@ -1,5 +1,5 @@
+import { TProductsAnalyticsSchema } from '@models/schemas';
 import { Injectable } from '@nestjs/common';
-import { TProductsAnalyticsSchema } from '../../../../../models/schemas';
 import { TProductsAnalyticsFilters } from '../../types/filter.types';
 import { ProductsAnalyticsRepository } from '../integration/integration.repository';
 

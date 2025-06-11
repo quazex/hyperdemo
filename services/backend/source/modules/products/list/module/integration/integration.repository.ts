@@ -1,10 +1,10 @@
+import { ViewConfig } from '@config';
+import { ProductsDataEntity } from '@models/database';
+import { TProductsDataSchema, TProductsImageSchema } from '@models/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ViewConfig } from '../../../../../config/view.config';
-import { ProductsDataEntity } from '../../../../../models/database';
-import { TProductsDataSchema, TProductsImageSchema } from '../../../../../models/schemas';
-import { TProductsListFilters } from '../../../../../models/types';
+import { TProductsListFilters } from '../../types/filters.types';
 
 @Injectable()
 export class ProductsListRepository {

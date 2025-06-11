@@ -54,7 +54,7 @@ CREATE TABLE orders_data (
     CONSTRAINT "PK_5d2705bc67c1bf8936842abf87e" PRIMARY KEY ("order_id")
 );
 
-CREATE TABLE products_orders (
+CREATE TABLE orders_products (
     "order_id" uuid NOT NULL,
     "product_id" uuid NOT NULL,
     "quantity" integer NOT NULL,
@@ -69,18 +69,18 @@ ADD CONSTRAINT "FK_89ca2708ad1ac90f17e3c50cf37" FOREIGN KEY ("brand_id") REFEREN
 ALTER TABLE "products_data"
 ADD CONSTRAINT "FK_285f262ecfe4421993a8b5ef765" FOREIGN KEY ("category_id") REFERENCES "categories_data"("category_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE "products_orders"
+ALTER TABLE "orders_products"
 ADD CONSTRAINT "FK_30215ea8a4c709381a1a0877afe" FOREIGN KEY ("order_id") REFERENCES "orders_data"("order_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE "products_orders"
+ALTER TABLE "orders_products"
 ADD CONSTRAINT "FK_a9005ad241cb5716eef6ccb6fe9" FOREIGN KEY ("product_id") REFERENCES "products_data"("product_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 CREATE MATERIALIZED VIEW "brands_analytics" AS
 SELECT "p"."brand_id" AS brand_id,
-    COALESCE(SUM("po"."quantity" * "po"."price"), 0)::numeric(10, 2) AS revenue,
-    po.created_at::DATE AS date
+    COALESCE(SUM("op"."quantity" * "op"."price"), 0)::numeric(10, 2) AS revenue,
+    op.created_at::DATE AS date
 FROM "products_data" "p"
-LEFT JOIN "products_orders" "po" ON "po"."product_id" = "p"."product_id"
+LEFT JOIN "orders_products" "op" ON "op"."product_id" = "p"."product_id"
 GROUP BY brand_id,
     date;
 
@@ -104,10 +104,10 @@ LEFT JOIN (
 
 CREATE MATERIALIZED VIEW "categories_analytics" AS
 SELECT "p"."category_id" AS category_id,
-    COALESCE(SUM("po"."quantity" * "po"."price"), 0)::numeric(10, 2) AS revenue,
-    po.created_at::DATE AS date
+    COALESCE(SUM("op"."quantity" * "op"."price"), 0)::numeric(10, 2) AS revenue,
+    op.created_at::DATE AS date
 FROM "products_data" "p"
-LEFT JOIN "products_orders" "po" ON "po"."product_id" = "p"."product_id"
+LEFT JOIN "orders_products" "op" ON "op"."product_id" = "p"."product_id"
 GROUP BY category_id,
     date;
 
@@ -139,17 +139,17 @@ SELECT "od"."order_id" AS order_id,
     "od"."updated_at" AS updated_at
 FROM "orders_data" "od"
 LEFT JOIN (
-    SELECT "po"."order_id" AS order_id,
-        COUNT("po"."product_id") AS products,
-        SUM("po"."quantity" * "po"."price") AS revenue
-    FROM "products_orders" "po"
+    SELECT "op"."order_id" AS order_id,
+        COUNT("op"."product_id") AS products,
+        SUM("op"."quantity" * "op"."price") AS revenue
+    FROM "orders_products" "op"
     GROUP BY order_id
 ) "pa" ON pa.order_id = "od"."order_id";
 
 CREATE MATERIALIZED VIEW "products_analytics" AS
-SELECT "po"."product_id" AS product_id,
-    COALESCE(SUM("po"."quantity" * "po"."price"), 0)::numeric(10, 2) AS revenue,
-    po.created_at::DATE AS date
-FROM "products_orders" "po"
+SELECT "op"."product_id" AS product_id,
+    COALESCE(SUM("op"."quantity" * "op"."price"), 0)::numeric(10, 2) AS revenue,
+    op.created_at::DATE AS date
+FROM "orders_products" "op"
 GROUP BY product_id,
     date;

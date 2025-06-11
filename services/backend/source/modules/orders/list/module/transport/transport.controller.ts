@@ -1,0 +1,34 @@
+import { OrdersListRes, PaginationReq } from '@models/restapi';
+import {
+    Controller,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Query,
+    Version,
+} from '@nestjs/common';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { OrdersListService } from '../business/business.handler';
+
+@ApiTags('Orders')
+@Controller()
+export class OrdersListController {
+    constructor(private readonly service: OrdersListService) {}
+
+    @ApiResponse({
+        status: HttpStatus.OK,
+        type: OrdersListRes,
+        isArray: false,
+    })
+    @HttpCode(HttpStatus.OK)
+    @Version('1')
+    @Get('orders/list')
+    public async getOrders(
+        @Query() query: PaginationReq,
+    ): Promise<OrdersListRes> {
+        const entities = await this.service.getList({
+            page: query.page,
+        });
+        return OrdersListRes.init(entities);
+    }
+}

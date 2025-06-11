@@ -5,7 +5,7 @@ import {
     ViewEntity,
     UpdateDateColumn,
 } from 'typeorm';
-import { ProductsOrdersEntity } from './orders.entity';
+import { OrdersProductsEntity } from '../orders/orders.entity';
 
 @ViewEntity({
     name: 'products_analytics',
@@ -13,11 +13,11 @@ import { ProductsOrdersEntity } from './orders.entity';
     expression: (dataSource: DataSource) => dataSource
         .createQueryBuilder()
         .select([
-            'po.product_id AS product_id',
-            'COALESCE(SUM(po.quantity * po.price), 0)::numeric(10, 2) AS revenue',
-            'po.created_at::DATE AS date',
+            'op.product_id AS product_id',
+            'COALESCE(SUM(op.quantity * op.price), 0)::numeric(10, 2) AS revenue',
+            'op.created_at::DATE AS date',
         ])
-        .from(ProductsOrdersEntity, 'po')
+        .from(OrdersProductsEntity, 'op')
         .groupBy('product_id')
         .addGroupBy('date'),
 })

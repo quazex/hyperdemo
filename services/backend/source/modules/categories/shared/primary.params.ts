@@ -1,4 +1,4 @@
-import { IsUUID } from '../../../shared/requests/decorators/is-uuid.decorator';
+import { IsUUID } from '../../../shared/validators/is-uuid.decorator';
 
 export class CategoriesPrimaryParams {
     @IsUUID()

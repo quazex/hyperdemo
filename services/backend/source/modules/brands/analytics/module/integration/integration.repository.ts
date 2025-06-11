@@ -1,9 +1,9 @@
+import { BrandsAnalyticsEntity } from '@models/database';
+import { TBrandsAnalyticsSchema } from '@models/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
-import { BrandsAnalyticsEntity } from '../../../../../models/database';
-import { TBrandsAnalyticsSchema } from '../../../../../models/schemas';
-import { TBrandsAnalyticsFilters } from '../../types/filter.types';
+import { TBrandsAnalyticsFilters } from '../../types/filters.types';
 
 @Injectable()
 export class BrandsAnalyticsRepository {

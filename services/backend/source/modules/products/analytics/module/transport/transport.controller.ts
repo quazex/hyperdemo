@@ -1,3 +1,4 @@
+import { ProductsAnalyticsReq, ProductsAnalyticsRes, ProductsPrimaryReq } from '@models/restapi';
 import {
     Controller,
     Get,
@@ -8,10 +9,7 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ProductsPrimaryDto } from '../../../shared/primary.dto';
 import { ProductsAnalyticsService } from '../business/business.handler';
-import { ProductsAnalyticsQuery } from './transport.query';
-import { ProductsAnalyticsRes } from './transport.response';
 
 @ApiTags('Products')
 @Controller()
@@ -27,8 +25,8 @@ export class ProductsAnalyticsController {
     @Version('1')
     @Get('products/:product_id/analytics')
     public async getList(
-        @Param() params: ProductsPrimaryDto,
-        @Query() query: ProductsAnalyticsQuery,
+        @Param() params: ProductsPrimaryReq,
+        @Query() query: ProductsAnalyticsReq,
     ): Promise<ProductsAnalyticsRes[]> {
         const entities = await this.productsAnalyticsService.getList({
             product_id: params.product_id,

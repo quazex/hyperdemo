@@ -1,7 +1,14 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "build"
+        "outDir": "build",
+
+        "baseUrl": "./source",
+        "paths": {
+            "@config": ["config"],
+            "@models/*": ["models/*"],
+            "@validators": ["shared/validators"],
+        }
     },
     "exclude": [
         "node_modules",

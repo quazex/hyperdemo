@@ -1,7 +1,7 @@
+import { BrandsStatisticsEntity } from '@models/database';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BrandsStatisticsEntity } from '../../../../../models/database';
 import { TBrandsInfoFilters } from '../../types/filter.types';
 
 @Injectable()

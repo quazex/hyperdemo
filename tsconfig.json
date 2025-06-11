@@ -19,12 +19,12 @@
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
     },
     "exclude": [
         "**/node_modules",
         "packages/**/modules",
         "services/**/build",
-        "jest.config.js"
+        "**/*.js"
     ]
 }

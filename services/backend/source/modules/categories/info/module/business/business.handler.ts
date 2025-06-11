@@ -1,6 +1,6 @@
 import { Exception } from '@hyperdemo/core/modules/exception';
+import { TCategoriesDataSchema } from '@models/schemas';
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { TCategoriesDataSchema } from '../../../../../models/schemas';
 import { TCategoriesInfoFilters } from '../../types/filter.types';
 import { CategoriesInfoRepository } from '../integration/integration.repository';
 
@@ -12,7 +12,7 @@ export class CategoriesInfoService {
         const doc = await this.categoriesRepository.getInfo(filters);
         if (!doc) {
             throw new Exception({
-                message: 'Cannot find categorie',
+                message: 'Cannot find category',
                 status: HttpStatus.NOT_FOUND,
                 context: filters,
             });

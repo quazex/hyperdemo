@@ -1,3 +1,4 @@
+import { BrandsDataRes, BrandsPrimaryReq } from '@models/restapi';
 import {
     Controller,
     Get,
@@ -7,9 +8,7 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { BrandsPrimaryParams } from '../../../shared/primary.params';
 import { BrandsInfoService } from '../business/business.handler';
-import { BrandsInfoRes } from './transport.response';
 
 @ApiTags('Brands')
 @Controller()
@@ -18,18 +17,18 @@ export class BrandsInfoController {
 
     @ApiResponse({
         status: HttpStatus.OK,
-        type: BrandsInfoRes,
+        type: BrandsDataRes,
         isArray: false,
     })
     @HttpCode(HttpStatus.OK)
     @Version('1')
     @Get('brands/:brand_id/info')
     public async getInfo(
-        @Param() params: BrandsPrimaryParams,
-    ): Promise<BrandsInfoRes> {
+        @Param() params: BrandsPrimaryReq,
+    ): Promise<BrandsDataRes> {
         const entity = await this.brandsInfoService.getInfo({
             brand_id: params.brand_id,
         });
-        return BrandsInfoRes.init(entity);
+        return BrandsDataRes.init(entity);
     }
 }

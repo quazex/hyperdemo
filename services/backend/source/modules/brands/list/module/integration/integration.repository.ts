@@ -1,10 +1,10 @@
+import { ViewConfig } from '@config';
+import { BrandsStatisticsEntity } from '@models/database';
+import { TBrandsDataSchema } from '@models/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ViewConfig } from '../../../../../config/view.config';
-import { BrandsStatisticsEntity } from '../../../../../models/database';
-import { TBrandsDataSchema } from '../../../../../models/schemas';
-import { TBrandsListFilters } from '../../types/filter.types';
+import { TBrandsListFilters } from '../../types/filters.types';
 
 @Injectable()
 export class BrandsListRepository {

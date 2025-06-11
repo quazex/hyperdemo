@@ -7,20 +7,20 @@ import {
     UpdateDateColumn,
     ViewEntity,
 } from 'typeorm';
-import { ProductsOrdersEntity } from '../products/orders.entity';
 import { OrdersDataEntity } from './data.entity';
+import { OrdersProductsEntity } from './orders.entity';
 
 @ViewEntity({
     name: 'orders_statistics',
     materialized: true,
     expression: (dataSource: DataSource) => {
-        const nested = (qb: SelectQueryBuilder<ProductsOrdersEntity>) => qb
+        const nested = (qb: SelectQueryBuilder<OrdersProductsEntity>) => qb
             .select([
-                'po.order_id AS order_id',
-                'COUNT(po.product_id)::integer AS products',
-                'SUM(po.quantity * po.price)::numeric(10, 2) AS revenue',
+                'op.order_id AS order_id',
+                'COUNT(op.product_id)::integer AS products',
+                'SUM(op.quantity * op.price)::numeric(10, 2) AS revenue',
             ])
-            .from(ProductsOrdersEntity, 'po')
+            .from(OrdersProductsEntity, 'op')
             .groupBy('order_id');
 
         return dataSource

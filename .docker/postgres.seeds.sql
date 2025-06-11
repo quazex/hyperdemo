@@ -4279,7 +4279,7 @@ INSERT INTO "public"."products_images" ("image_id", "product_id", "small", "regu
 ('fece5b37-8686-425d-86c8-8f07d7eb5f57', '0db7a106-292c-4f72-8bb8-925dd7a0fdba', 'https://prd.place/120?id=12', 'https://prd.place/360?id=12', 'https://prd.place/640?id=12', '2024-08-03 03:26:48.179'),
 ('ffcaa2be-93ff-407f-8175-4d282d1cd7ed', '0c54ae0f-a728-4676-8750-ced9516423b5', 'https://prd.place/120?id=1', 'https://prd.place/360?id=1', 'https://prd.place/640?id=1', '2024-06-21 15:11:19.309');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('00024179-e572-4bec-b7c5-1dba1bf4f281', '203e8d2a-b522-41ef-88ad-c79aa7c90346', 4, 83.72, '2024-08-24 08:49:58.437'),
 ('00024179-e572-4bec-b7c5-1dba1bf4f281', '205093a0-f2ad-4966-ba10-114720e06052', 2, 56.41, '2024-06-16 11:06:25.085'),
 ('00024179-e572-4bec-b7c5-1dba1bf4f281', '22b425c8-8837-40b8-812d-bfb4fe4d6915', 4, 21.90, '2024-06-17 13:21:28.658'),
@@ -4781,7 +4781,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('05522ca7-3472-4155-b7a5-5c967d0aecf3', '62ccc354-00c0-4d72-998f-2f27238a09ba', 3, 43.58, '2024-08-08 13:38:34.02'),
 ('05522ca7-3472-4155-b7a5-5c967d0aecf3', '7f9e4654-b954-457d-bc3c-1febd2db461e', 1, 14.01, '2024-06-28 12:25:53.169');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('05522ca7-3472-4155-b7a5-5c967d0aecf3', 'b459c623-f8d7-4844-bb6f-0566cbe156ef', 2, 116.04, '2024-08-19 12:43:05.414'),
 ('05522ca7-3472-4155-b7a5-5c967d0aecf3', 'd59caa0f-25e8-4aa6-aa62-54a8b2777605', 2, 84.72, '2024-08-21 17:36:40.028'),
 ('05522ca7-3472-4155-b7a5-5c967d0aecf3', 'd97897ba-8836-4051-94db-1a301d14e30a', 3, 69.12, '2024-06-18 09:02:59.631'),
@@ -5283,7 +5283,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('0ae4ced4-5952-4875-a932-522b69c72dd2', '7a150678-97b9-45c0-8e2b-713ddfd54087', 3, 23.76, '2024-08-04 00:49:25.95'),
 ('0ae4ced4-5952-4875-a932-522b69c72dd2', 'bb384331-25a8-450a-9155-712f1d7b156a', 3, 30.27, '2024-08-16 14:29:12.178');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('0ae4ced4-5952-4875-a932-522b69c72dd2', 'e92b9895-807d-43a2-a9f7-21a6763e4c1b', 4, 17.08, '2024-08-27 05:48:19.104'),
 ('0b24cbad-ad41-45a1-858c-2095d05fbd8e', '66770d72-67e2-4d9e-b96a-d46310ed4b9b', 2, 60.46, '2024-07-02 00:07:03.695'),
 ('0b24cbad-ad41-45a1-858c-2095d05fbd8e', '790baacd-6d14-4145-9258-07c7ae1a75a8', 2, 69.12, '2024-07-27 22:52:16.345'),
@@ -5785,7 +5785,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('128948ea-6874-42f2-bf51-d94e792c20ab', '7cdefc05-9a14-4198-a2c0-2bd6e92ca791', 1, 27.47, '2024-08-18 08:40:07.724'),
 ('128948ea-6874-42f2-bf51-d94e792c20ab', '9ab41eca-0679-46f9-a846-812d3acdb889', 1, 93.96, '2024-06-05 16:29:58.987');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('128994df-74ba-4afb-af29-a1edc8217ebe', '304eea85-6bb6-42a4-900f-0b0145317c3d', 1, 51.15, '2024-06-18 15:48:29.804'),
 ('128994df-74ba-4afb-af29-a1edc8217ebe', '45c81ccd-8f01-413b-a4d9-0d7def552468', 2, 64.81, '2024-06-12 09:51:36.997'),
 ('128994df-74ba-4afb-af29-a1edc8217ebe', '773e4143-5672-4869-8886-2697e7b6029f', 4, 12.36, '2024-08-10 04:11:17.666'),
@@ -6287,7 +6287,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('18c0b355-873c-43e2-b2f8-5a8f6c14af06', 'e53329dc-782c-4668-a4a0-fed7f4059dc1', 2, 63.71, '2024-08-21 17:38:17.228'),
 ('18dad448-159e-496f-afee-e4489fe588d8', '6e5cf346-383d-4c23-8e6c-0980478437cb', 4, 116.22, '2024-07-07 14:23:54.655');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('18dad448-159e-496f-afee-e4489fe588d8', '73ca8018-486c-416d-8e5a-4cee8a5d0988', 2, 30.59, '2024-06-09 10:52:05.167'),
 ('18dad448-159e-496f-afee-e4489fe588d8', '7b6847b7-18fb-4539-a07c-003642a58e22', 3, 87.60, '2024-07-16 23:08:32.798'),
 ('18dad448-159e-496f-afee-e4489fe588d8', 'b3cb2408-d1c2-463a-b8e6-5935d057ca07', 3, 63.18, '2024-07-14 07:24:11.482'),
@@ -6789,7 +6789,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('1dbfa87b-5f48-4460-82a5-d74068fb3708', '7cdd6d0c-1ea6-42cd-8fe0-a8131b3d3f0a', 3, 60.59, '2024-07-19 13:22:16.735'),
 ('1dbfa87b-5f48-4460-82a5-d74068fb3708', 'a160a820-3377-4e2f-889e-f1a886951172', 2, 70.71, '2024-08-23 19:25:24.052');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('1dbfa87b-5f48-4460-82a5-d74068fb3708', 'a7ef1e58-15df-4892-8924-746c87723cb4', 2, 34.59, '2024-06-28 07:02:18.377'),
 ('1dbfa87b-5f48-4460-82a5-d74068fb3708', 'b2fc5390-ef2a-4806-8bf4-c2e255270ce2', 4, 46.18, '2024-08-03 02:33:56.577'),
 ('1dbfa87b-5f48-4460-82a5-d74068fb3708', 'e16e0fb0-90f1-4a24-a0de-61cd170ac36d', 4, 85.09, '2024-07-27 04:56:30.193'),
@@ -7291,7 +7291,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('234e90cf-b341-4149-ac59-a85132410947', 'fd09c528-14b3-44c1-9eb9-dac9f2ea6e5e', 2, 55.39, '2024-07-21 15:25:56.647'),
 ('235f9fad-6df5-46f6-bff0-169d5b2ada9e', '0c54ae0f-a728-4676-8750-ced9516423b5', 2, 99.88, '2024-08-14 03:15:50.905');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('235f9fad-6df5-46f6-bff0-169d5b2ada9e', '1290f56e-b15f-44fd-983d-e256b0644575', 2, 20.36, '2024-08-16 18:40:54.086'),
 ('235f9fad-6df5-46f6-bff0-169d5b2ada9e', '79c4ac02-d617-4d92-afd2-74e28cc3692b', 4, 80.24, '2024-08-07 06:25:45.279'),
 ('235f9fad-6df5-46f6-bff0-169d5b2ada9e', '8514946a-7c79-428c-a81a-a8e7172b7eab', 3, 62.93, '2024-07-26 06:45:11.002'),
@@ -7793,7 +7793,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('27f51c82-8027-4197-9a03-e4298a08d58e', '568f4c0b-0bbf-44ed-9a93-3ddd250d3ac1', 3, 40.24, '2024-08-20 19:01:34.749'),
 ('27f51c82-8027-4197-9a03-e4298a08d58e', '674f53c5-3db7-4401-821d-be2e2383c67f', 2, 76.88, '2024-07-16 21:54:56.472');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('27f51c82-8027-4197-9a03-e4298a08d58e', 'bfd8b66a-416c-4b26-a013-1314430b10a9', 1, 90.46, '2024-06-25 01:05:08.322'),
 ('27f51c82-8027-4197-9a03-e4298a08d58e', 'f4888c06-c7fa-470d-930f-97c449dd06e4', 2, 11.04, '2024-08-04 09:06:49.056'),
 ('28027183-2822-452b-8374-39bfa9b27ea7', '031b2c8e-4601-4f76-b088-e59d108b3aad', 1, 29.34, '2024-07-03 00:29:08.304'),
@@ -8295,7 +8295,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('2f0caa54-cd6c-4b81-8f9c-06273289daf7', '66770d72-67e2-4d9e-b96a-d46310ed4b9b', 1, 60.46, '2024-06-28 14:44:04.279'),
 ('2f0caa54-cd6c-4b81-8f9c-06273289daf7', '73cfcbf1-9718-430d-9f6f-e78d775ab2a9', 1, 52.54, '2024-07-29 02:30:32.296');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('2f0caa54-cd6c-4b81-8f9c-06273289daf7', '81620674-cb76-452f-85ca-67b197db2d91', 2, 23.60, '2024-06-20 02:50:41.653'),
 ('2f0caa54-cd6c-4b81-8f9c-06273289daf7', '8f13839d-aa28-4e8f-be00-2d1015a4199f', 4, 68.43, '2024-07-10 20:51:39.227'),
 ('2f0caa54-cd6c-4b81-8f9c-06273289daf7', '9daa01d4-efc5-4c65-b6ea-91e6f1deb874', 2, 10.55, '2024-08-18 12:15:17.178'),
@@ -8797,7 +8797,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('34a448d8-6a5b-4664-a1b8-22f7a962ef5c', '60aa8045-c4ce-49a6-a616-6d48d1d92eb4', 3, 110.64, '2024-07-14 00:10:38.632'),
 ('34a448d8-6a5b-4664-a1b8-22f7a962ef5c', '848f4479-5a11-4315-be07-c797d15f1433', 2, 47.24, '2024-06-27 15:12:56.116');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('34a448d8-6a5b-4664-a1b8-22f7a962ef5c', '9daa01d4-efc5-4c65-b6ea-91e6f1deb874', 4, 10.55, '2024-07-12 05:29:22.165'),
 ('34a448d8-6a5b-4664-a1b8-22f7a962ef5c', 'adffbd69-26f5-4cc2-8119-5cabdb35d77c', 3, 48.46, '2024-06-25 06:48:21.646'),
 ('34a448d8-6a5b-4664-a1b8-22f7a962ef5c', 'b459c623-f8d7-4844-bb6f-0566cbe156ef', 3, 116.04, '2024-08-05 12:26:35.774'),
@@ -9299,7 +9299,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('3a579d24-d514-4af0-bc91-574d771a218f', '81620674-cb76-452f-85ca-67b197db2d91', 3, 23.60, '2024-06-17 05:16:27.571'),
 ('3a579d24-d514-4af0-bc91-574d771a218f', '82cdbc79-e5a6-4790-9498-5012d981706e', 2, 90.38, '2024-06-18 19:45:17.82');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('3a579d24-d514-4af0-bc91-574d771a218f', '9ad58051-0ca6-4b84-ab2f-472424fc99fb', 1, 36.10, '2024-08-14 07:30:46.515'),
 ('3a579d24-d514-4af0-bc91-574d771a218f', 'e1f76dd9-f251-4eee-ba07-b996cc97b822', 4, 68.08, '2024-06-04 09:59:11.053'),
 ('3a579d24-d514-4af0-bc91-574d771a218f', 'fd962f5d-957d-483e-a01e-5192865c41fb', 4, 30.38, '2024-06-24 02:32:04.198'),
@@ -9801,7 +9801,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('4044d0dd-1c08-4dcf-9bcd-c8e53de97fdd', 'ce012bee-f5b0-4562-9632-fb75406707ac', 4, 24.04, '2024-08-10 08:58:18.768'),
 ('4044d0dd-1c08-4dcf-9bcd-c8e53de97fdd', 'e5955056-96d5-4dd2-8c54-38af9f926eaa', 1, 108.97, '2024-06-09 12:19:32.799');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('4044d0dd-1c08-4dcf-9bcd-c8e53de97fdd', 'f3d6cc33-7f9b-42ce-8de2-3a58849b5e79', 3, 40.00, '2024-08-29 02:53:26.047'),
 ('4055d0e5-5dc9-4618-b5a2-d61b5aac6258', '0e69ac3c-03c7-4f8e-84df-b0eb65fa60a3', 3, 102.94, '2024-07-17 16:42:06.641'),
 ('4055d0e5-5dc9-4618-b5a2-d61b5aac6258', '3d7d8ed6-dae6-4ba0-b79b-66689f5b013b', 4, 54.34, '2024-06-02 21:36:31.24'),
@@ -10303,7 +10303,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('468a5df8-7694-44c2-a40a-791d059e154c', '46c20a9d-7d9c-4c0c-bc06-bd34560999ec', 3, 10.89, '2024-07-17 14:53:35.859'),
 ('468a5df8-7694-44c2-a40a-791d059e154c', '524d5ac8-f091-4b28-b637-959108638958', 4, 25.32, '2024-08-23 20:11:53.265');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('468a5df8-7694-44c2-a40a-791d059e154c', '5347819c-51de-4394-883d-669c94065bf0', 2, 80.48, '2024-08-10 05:15:56.277'),
 ('468a5df8-7694-44c2-a40a-791d059e154c', '690b3afb-1d82-469e-bdec-255ecc3c4876', 1, 109.34, '2024-08-24 10:45:34.365'),
 ('468a5df8-7694-44c2-a40a-791d059e154c', '74173c2c-eef9-424e-8f39-76b3a833c09d', 1, 51.44, '2024-06-25 04:18:49.784'),
@@ -10805,7 +10805,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('4b435275-46f5-4f8d-97dd-af27c909504c', 'df6bce58-c492-4a2f-ba7f-7d0274fe872a', 1, 52.06, '2024-08-19 03:02:01.131'),
 ('4b435275-46f5-4f8d-97dd-af27c909504c', 'fb36d51e-96ce-4816-ac0f-114ab7ac2bda', 2, 31.39, '2024-08-09 21:21:50.51');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('4b435275-46f5-4f8d-97dd-af27c909504c', 'ff82579b-2382-4e21-ace4-680cf2e82134', 2, 107.47, '2024-08-19 18:28:24.898'),
 ('4b47eefa-0878-4b17-b499-4df6898de540', '04ec2307-f271-4c20-94f6-a52e7a453239', 4, 51.41, '2024-07-15 05:49:19.417'),
 ('4b47eefa-0878-4b17-b499-4df6898de540', '524d5ac8-f091-4b28-b637-959108638958', 2, 25.32, '2024-08-09 13:32:41.067'),
@@ -11307,7 +11307,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('51096010-3278-4b14-8933-de8f6d923bb5', 'af447f9f-8ece-4742-b1fa-17943b99baf3', 4, 93.31, '2024-06-12 17:51:29.874'),
 ('51096010-3278-4b14-8933-de8f6d923bb5', 'bfd8b66a-416c-4b26-a013-1314430b10a9', 2, 90.46, '2024-08-25 17:17:32.722');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('51202e53-8fd0-4f36-be42-02ec13fea30f', '0a5f82cb-54b1-4c30-b86d-5d867af0725c', 2, 64.51, '2024-06-16 05:06:10.485'),
 ('51202e53-8fd0-4f36-be42-02ec13fea30f', '0d3874d7-22b9-4cdd-985d-06e23ff335d7', 4, 100.92, '2024-07-16 10:54:04.12'),
 ('51202e53-8fd0-4f36-be42-02ec13fea30f', '17d9368a-2570-4abc-9684-65a8f0ed786b', 4, 38.69, '2024-07-05 22:13:48.379'),
@@ -11809,7 +11809,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('57ce680a-c3a1-4c89-807f-c930be47da3d', '38ff40b6-7e41-4a69-ba8b-75bd9ee07062', 2, 56.61, '2024-08-14 09:47:17.102'),
 ('57ce680a-c3a1-4c89-807f-c930be47da3d', '4d2bb4c1-7b15-4965-9c4b-ccdaf0567a00', 1, 115.12, '2024-08-13 08:11:55.172');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('57ce680a-c3a1-4c89-807f-c930be47da3d', '607e3615-7097-4773-9c58-38ef434de892', 4, 102.65, '2024-06-30 09:02:09.158'),
 ('57ce680a-c3a1-4c89-807f-c930be47da3d', 'cca6509d-9ce8-4e16-81f4-2ab14af885a2', 1, 92.97, '2024-08-21 18:09:59.773'),
 ('57ce680a-c3a1-4c89-807f-c930be47da3d', 'd36c28ba-e255-46f6-96d5-db47b0a1bd5c', 4, 95.08, '2024-07-03 03:10:52.324'),
@@ -12311,7 +12311,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('5d3a2338-7544-46d7-b8d0-544b7e16030a', 'a3515a25-127a-4750-b4a2-db01f1f40ff6', 4, 22.01, '2024-06-18 11:56:19.733'),
 ('5d3a2338-7544-46d7-b8d0-544b7e16030a', 'ab7bb7a7-3be7-4a33-8b5d-60d5f7a000bd', 4, 105.93, '2024-06-18 23:52:00.753');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('5d3a2338-7544-46d7-b8d0-544b7e16030a', 'adffbd69-26f5-4cc2-8119-5cabdb35d77c', 4, 48.46, '2024-08-19 09:16:49.541'),
 ('5d3a2338-7544-46d7-b8d0-544b7e16030a', 'c754aa48-cb69-4a19-901f-f7b9b17d6e59', 3, 90.35, '2024-06-06 12:50:50.387'),
 ('5d3a2338-7544-46d7-b8d0-544b7e16030a', 'e2ad3c2f-d4c8-4aff-8643-6797a8199147', 2, 33.82, '2024-08-15 09:53:21.635'),
@@ -12813,7 +12813,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('63616cd8-cb65-4c98-abbe-c1c6bbf7b76f', 'fd09c528-14b3-44c1-9eb9-dac9f2ea6e5e', 4, 55.39, '2024-07-19 05:31:13.003'),
 ('6366bd63-f659-4f99-b569-fffb2f58281d', '3f0bd7ba-97d9-4a4d-8d40-b9065ccb1d97', 3, 100.16, '2024-06-04 21:09:13.998');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('6366bd63-f659-4f99-b569-fffb2f58281d', '52817c5e-e15d-4e0f-a16b-f3d20c0f888b', 3, 67.01, '2024-08-24 01:26:01.757'),
 ('6366bd63-f659-4f99-b569-fffb2f58281d', '87a9499e-f31b-49f2-95ab-b2f941c3e77b', 3, 44.84, '2024-06-30 17:46:51.652'),
 ('6366bd63-f659-4f99-b569-fffb2f58281d', '91f5aaef-144b-45e7-a4ce-3275d8f6f6d6', 3, 36.48, '2024-08-04 21:00:00.779'),
@@ -13315,7 +13315,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('6b4e1b2c-ac98-49ca-a4a4-3ecbb9913187', '623018dd-19a7-4bb7-a0e8-3eb5115a9ffc', 3, 28.26, '2024-07-13 11:06:27.678'),
 ('6b4e1b2c-ac98-49ca-a4a4-3ecbb9913187', '6d5b46d8-96fe-4142-9c51-d9de16b1a0a8', 2, 96.56, '2024-06-10 00:12:50.704');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('6b4e1b2c-ac98-49ca-a4a4-3ecbb9913187', '7e54001a-0c79-4954-97f8-aa5a9463677a', 4, 61.28, '2024-06-20 10:16:46.335'),
 ('6b4e1b2c-ac98-49ca-a4a4-3ecbb9913187', 'a933824f-f57a-4419-b728-b31c408bfd15', 3, 93.07, '2024-06-19 15:01:27.421'),
 ('6b4e1b2c-ac98-49ca-a4a4-3ecbb9913187', 'df6bce58-c492-4a2f-ba7f-7d0274fe872a', 3, 52.06, '2024-07-12 17:41:37.842'),
@@ -13817,7 +13817,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('7116d5ac-da8e-440c-8df9-ab534e0a295e', '82cdbc79-e5a6-4790-9498-5012d981706e', 2, 90.38, '2024-08-12 13:07:03.66'),
 ('7116d5ac-da8e-440c-8df9-ab534e0a295e', 'b38ad9ea-4852-4dd9-95a3-10312b1fdd6e', 2, 42.85, '2024-06-25 08:33:00.333');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('7116d5ac-da8e-440c-8df9-ab534e0a295e', 'c2ae7ac6-1a20-4f08-8906-cfc0c13837e5', 3, 47.49, '2024-06-09 06:21:13.75'),
 ('7116d5ac-da8e-440c-8df9-ab534e0a295e', 'e70ff332-5c13-45c6-9633-72993bfb227c', 3, 45.89, '2024-07-24 06:21:31.665'),
 ('711a6c2f-a3bd-4742-96ba-18d645d6c1b8', '546a48e8-f2bc-4bd7-981a-71b5d4a77cd0', 4, 36.02, '2024-07-12 01:37:38.492'),
@@ -14319,7 +14319,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('77d8d56a-2f9c-4879-975a-619c62f963e0', 'e50f9a64-085a-4b05-aa18-44b4e787e476', 3, 90.37, '2024-07-11 10:35:10.235'),
 ('77d8d56a-2f9c-4879-975a-619c62f963e0', 'f3d6cc33-7f9b-42ce-8de2-3a58849b5e79', 1, 40.00, '2024-08-21 23:38:18.85');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('77d8d56a-2f9c-4879-975a-619c62f963e0', 'f8fbe357-6eb4-4f77-a24f-d485693026d3', 4, 96.69, '2024-08-21 21:15:41.583'),
 ('780b3ff5-03ec-483a-9904-4d64b2922fa0', '1290f56e-b15f-44fd-983d-e256b0644575', 1, 20.36, '2024-07-25 23:35:05.593'),
 ('780b3ff5-03ec-483a-9904-4d64b2922fa0', '1d2972e0-1196-48bd-b5ba-0ca3a15cc74b', 2, 66.10, '2024-08-02 13:06:41.047'),
@@ -14821,7 +14821,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('7d1e12ed-3bfd-4fd9-bc71-9250f7770d1b', 'd44ba518-84d9-47d2-b1ee-d3f6be6fa92b', 3, 22.69, '2024-06-17 20:05:41.18'),
 ('7d1e12ed-3bfd-4fd9-bc71-9250f7770d1b', 'da12d48f-44f0-4fa1-a5bb-c7f9271f5f19', 4, 108.43, '2024-06-03 11:02:03.986');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('7d398b06-5380-4bb0-a32f-da4eba0d701b', '00b3a68f-a5a8-4662-94d9-f4989d2d4358', 4, 36.54, '2024-07-10 02:08:22.553'),
 ('7d398b06-5380-4bb0-a32f-da4eba0d701b', '143cdb82-7d46-4e8c-aba3-d7998bfb4f69', 4, 55.96, '2024-06-21 09:39:33.616'),
 ('7d398b06-5380-4bb0-a32f-da4eba0d701b', '191a6476-3d84-4f77-9dcf-4ad819e0dbed', 1, 37.85, '2024-07-19 04:21:48.329'),
@@ -15323,7 +15323,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('83867e2f-0389-4535-88fb-ac7033480086', 'e51e6dff-3e44-4fd6-ae55-04b0aeef35d3', 4, 101.78, '2024-08-05 15:48:04.209'),
 ('83867e2f-0389-4535-88fb-ac7033480086', 'ef3ce836-ada8-4afb-afe8-ff23e48af41d', 4, 48.36, '2024-08-19 16:30:58.607');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('8393c747-d889-42c7-9d29-24fad20c9de1', '1290f56e-b15f-44fd-983d-e256b0644575', 1, 20.36, '2024-07-18 00:59:24.708'),
 ('8393c747-d889-42c7-9d29-24fad20c9de1', '33cd1b05-4aa0-441e-b2f1-0ed17291f2de', 1, 70.20, '2024-06-25 10:01:31.757'),
 ('8393c747-d889-42c7-9d29-24fad20c9de1', '4059fd54-676a-4478-9dd2-91490da6f068', 1, 42.84, '2024-07-29 21:49:57.74'),
@@ -15825,7 +15825,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('888ca52e-9795-485a-b81d-0fa4247743fc', '08dc23f9-09bd-4b51-911a-a4d597b8ebd6', 4, 47.13, '2024-08-22 03:18:14.518'),
 ('888ca52e-9795-485a-b81d-0fa4247743fc', '3fc19ad6-4280-4590-8c3f-49eabc0db336', 1, 101.81, '2024-06-06 17:32:58.709');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('888ca52e-9795-485a-b81d-0fa4247743fc', '7ed848b0-d838-4eb2-830f-8546f747baf8', 3, 23.21, '2024-06-06 15:37:02.554'),
 ('888ca52e-9795-485a-b81d-0fa4247743fc', '9524322d-3c2e-4795-92b3-40d4ecc2095f', 4, 48.72, '2024-08-10 23:01:39.667'),
 ('888ca52e-9795-485a-b81d-0fa4247743fc', '9738aba6-daad-416d-9c05-69ef4e4d7165', 2, 35.36, '2024-08-27 07:22:42.897'),
@@ -16327,7 +16327,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('8ebc464d-7ad1-4faf-a78d-351a0db74bf3', '30ca66fc-c9f2-47f8-a6cd-7079313bb249', 3, 23.29, '2024-08-01 22:35:01.484'),
 ('8ebc464d-7ad1-4faf-a78d-351a0db74bf3', '38ff40b6-7e41-4a69-ba8b-75bd9ee07062', 4, 56.61, '2024-08-19 23:27:13.571');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('8ebc464d-7ad1-4faf-a78d-351a0db74bf3', '663517e2-5f91-4851-9f89-2106d39193f9', 3, 108.24, '2024-08-23 19:48:13.738'),
 ('8ebc464d-7ad1-4faf-a78d-351a0db74bf3', '6f8f6b63-9138-424c-a76d-3d3d372f7613', 2, 92.80, '2024-08-16 12:50:46.07'),
 ('8ebc464d-7ad1-4faf-a78d-351a0db74bf3', '7b664cce-247e-4070-baf0-49d1bee079de', 4, 33.54, '2024-06-05 20:54:37.429'),
@@ -16829,7 +16829,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('93c3a80e-0f2f-449b-b48f-e1afdabcdc8c', '4f50d4a5-bc54-4e66-a799-2b081e75ea69', 4, 37.32, '2024-06-10 17:09:56.377'),
 ('93c3a80e-0f2f-449b-b48f-e1afdabcdc8c', '63ce2fa1-b4d4-44df-9ce1-05d0c5761668', 3, 79.80, '2024-08-03 18:16:51.746');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('93c3a80e-0f2f-449b-b48f-e1afdabcdc8c', '729085b6-4b75-40e4-b7c4-7e24247df07b', 1, 113.97, '2024-08-23 06:13:55.075'),
 ('93c3a80e-0f2f-449b-b48f-e1afdabcdc8c', '75d40793-4d24-422e-bbf6-22caf68adae3', 2, 98.40, '2024-08-06 15:35:21.037'),
 ('93c3a80e-0f2f-449b-b48f-e1afdabcdc8c', '7f27c380-a4ed-4fb4-99e5-feb8e2a5c4b3', 4, 97.13, '2024-08-10 12:50:43.327'),
@@ -17331,7 +17331,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('998b8b04-8f2d-4e7a-9d67-2882b6608752', 'd3506508-e540-4ccc-907e-03405c32a386', 2, 118.85, '2024-07-30 13:41:30.133'),
 ('998b8b04-8f2d-4e7a-9d67-2882b6608752', 'f8fbe357-6eb4-4f77-a24f-d485693026d3', 4, 96.69, '2024-06-08 01:43:41.637');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('9991b3a0-7f22-42be-801e-39839734cd24', '30f9ec5c-2ea3-4753-a68b-e873b1e13af7', 4, 31.72, '2024-06-26 14:16:05.222'),
 ('9991b3a0-7f22-42be-801e-39839734cd24', '53f74e73-e908-47fa-9e77-4911e4c48b09', 3, 83.44, '2024-07-07 04:13:54.342'),
 ('9991b3a0-7f22-42be-801e-39839734cd24', '6539f2d4-2e65-4fbd-b954-c7de18e4ac59', 1, 96.21, '2024-06-04 19:10:10.623'),
@@ -17833,7 +17833,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('a0cb2e47-a388-41eb-b37a-8660c6cee25f', '9f86e5f7-4648-49f1-87c5-c40043928ae1', 4, 69.72, '2024-06-26 20:42:33.193'),
 ('a0cb2e47-a388-41eb-b37a-8660c6cee25f', 'a3515a25-127a-4750-b4a2-db01f1f40ff6', 2, 22.01, '2024-06-03 15:29:21.68');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('a0cb2e47-a388-41eb-b37a-8660c6cee25f', 'c271c2cc-b4f8-4819-8d12-7fe0b9cc98da', 4, 15.59, '2024-08-30 08:58:51.599'),
 ('a0cb2e47-a388-41eb-b37a-8660c6cee25f', 'c5139846-ac7d-480c-883c-6493a2acf660', 2, 58.51, '2024-08-11 21:42:31.774'),
 ('a0cb2e47-a388-41eb-b37a-8660c6cee25f', 'ea24574e-cc4a-489c-8fa3-9f9866ffe229', 3, 83.68, '2024-06-25 22:07:58.547'),
@@ -18335,7 +18335,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('a6f7fb35-ce69-4b67-8c4c-45a966b65069', '7123b5f6-23dc-4af3-a2fc-085fb7b7a78d', 4, 25.80, '2024-08-29 11:19:49.05'),
 ('a6f7fb35-ce69-4b67-8c4c-45a966b65069', '743ad193-ffdc-426f-a91b-0c59906edd40', 2, 98.76, '2024-06-05 11:17:50.706');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('a6f7fb35-ce69-4b67-8c4c-45a966b65069', '77e1ae24-4d2a-4cef-b3fb-4bf8af06c214', 2, 91.92, '2024-06-21 23:59:22.693'),
 ('a6f7fb35-ce69-4b67-8c4c-45a966b65069', '7894d442-17bb-46ea-9302-cdd34e76e697', 1, 101.90, '2024-07-03 20:11:49.672'),
 ('a6f7fb35-ce69-4b67-8c4c-45a966b65069', 'a979b744-fb3c-4a5d-a22e-26a14ad4862f', 1, 43.85, '2024-06-04 01:26:36.271'),
@@ -18837,7 +18837,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('ae33d090-4bad-4dc4-a56e-b6759ce5d1f3', '538e9b79-9ebc-4bcd-9204-07c544d0ecc0', 2, 103.22, '2024-08-29 20:16:22.385'),
 ('ae33d090-4bad-4dc4-a56e-b6759ce5d1f3', '53f74e73-e908-47fa-9e77-4911e4c48b09', 3, 83.44, '2024-07-13 15:26:34.453');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('ae33d090-4bad-4dc4-a56e-b6759ce5d1f3', '67a0bd7e-efcd-4076-bc1f-1d8032fccf53', 4, 107.03, '2024-06-27 20:55:10.993'),
 ('ae33d090-4bad-4dc4-a56e-b6759ce5d1f3', '7018efc2-42f7-44ee-b97b-38bd70d5b729', 3, 17.35, '2024-07-05 21:14:45.996'),
 ('ae33d090-4bad-4dc4-a56e-b6759ce5d1f3', '74173c2c-eef9-424e-8f39-76b3a833c09d', 3, 51.44, '2024-07-10 16:06:37.591'),
@@ -19339,7 +19339,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('b3b47704-0b8c-41f8-892e-57c274aedc66', '347272be-84c9-49c8-ae13-66afec2f344f', 3, 25.22, '2024-08-23 21:39:08.2'),
 ('b3b47704-0b8c-41f8-892e-57c274aedc66', '477eae81-cc4d-4493-bd10-94e93163ebef', 1, 67.64, '2024-06-12 02:54:49.205');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('b3b47704-0b8c-41f8-892e-57c274aedc66', '5c33df1c-d7cc-4675-bee9-4c34221970f6', 1, 70.71, '2024-06-11 09:32:12.528'),
 ('b3b47704-0b8c-41f8-892e-57c274aedc66', 'b3cb2408-d1c2-463a-b8e6-5935d057ca07', 2, 63.18, '2024-06-24 04:34:01.827'),
 ('b3b47704-0b8c-41f8-892e-57c274aedc66', 'c27ea182-1936-4e28-9b7d-171c368d9f78', 3, 95.20, '2024-06-09 03:54:26.433'),
@@ -19841,7 +19841,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('ba2aeb63-18a4-4058-8415-c0c6706fdafe', '8967ba29-398d-446f-a39c-097611488bfe', 1, 105.57, '2024-06-21 23:39:31.708'),
 ('ba2aeb63-18a4-4058-8415-c0c6706fdafe', '9ab41eca-0679-46f9-a846-812d3acdb889', 2, 93.96, '2024-07-23 22:00:31.487');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('ba2aeb63-18a4-4058-8415-c0c6706fdafe', 'bd92ab5d-49b3-4476-8cd0-55e455864176', 1, 42.73, '2024-06-09 17:43:29.664'),
 ('ba2aeb63-18a4-4058-8415-c0c6706fdafe', 'cca391dd-0088-4adb-981c-94b3521d3bd1', 2, 38.31, '2024-06-19 09:51:21.931'),
 ('ba396c44-fa6d-4478-8159-bc66531094f2', '5695cf31-d796-4c2a-9e00-488ad33bcef8', 4, 15.87, '2024-08-01 02:15:05.101'),
@@ -20343,7 +20343,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('c140248d-6999-4ddb-a16e-04eb348a1850', '1f98615d-16f2-4191-9374-03710312be09', 2, 106.65, '2024-06-20 20:38:36.134'),
 ('c140248d-6999-4ddb-a16e-04eb348a1850', '3509a467-febf-436e-a40d-6504733bd961', 1, 97.27, '2024-06-09 03:06:40.089');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('c140248d-6999-4ddb-a16e-04eb348a1850', '3fc19ad6-4280-4590-8c3f-49eabc0db336', 3, 101.81, '2024-06-24 07:08:18.232'),
 ('c140248d-6999-4ddb-a16e-04eb348a1850', '502064c2-9e40-4d53-8457-da4d6795bf2d', 1, 99.93, '2024-08-23 12:06:57.891'),
 ('c140248d-6999-4ddb-a16e-04eb348a1850', '53636cab-e6c0-486c-93f3-0666b5a082de', 3, 11.93, '2024-06-23 17:54:10.905'),
@@ -20845,7 +20845,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('c784b329-2223-4853-885a-d0bbfa54b1e3', '0e29ee42-4361-44ee-a0a3-27bc46b74b59', 4, 53.46, '2024-06-19 07:12:50.195'),
 ('c784b329-2223-4853-885a-d0bbfa54b1e3', '0fb79d54-5f9b-4b31-928e-54f4ac613fc1', 1, 17.72, '2024-08-07 10:26:49.713');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('c784b329-2223-4853-885a-d0bbfa54b1e3', '64cf2ba7-3ef0-4467-bacb-e503d816b152', 1, 50.14, '2024-07-16 23:16:53.093'),
 ('c784b329-2223-4853-885a-d0bbfa54b1e3', '73cfcbf1-9718-430d-9f6f-e78d775ab2a9', 2, 52.54, '2024-08-14 07:40:27.657'),
 ('c784b329-2223-4853-885a-d0bbfa54b1e3', '87b60dad-daf2-47cb-b537-7552780fba47', 1, 13.30, '2024-08-06 16:03:22.561'),
@@ -21347,7 +21347,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('cd54cc25-e9f1-4ece-901b-2199309ac2b1', '1f98615d-16f2-4191-9374-03710312be09', 3, 106.65, '2024-07-10 21:17:23.979'),
 ('cd54cc25-e9f1-4ece-901b-2199309ac2b1', '304eaae2-311a-474b-87ae-1bfc42850d34', 3, 40.21, '2024-07-07 14:35:00.729');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('cd54cc25-e9f1-4ece-901b-2199309ac2b1', '62ccc354-00c0-4d72-998f-2f27238a09ba', 2, 43.58, '2024-07-09 11:25:51.31'),
 ('cd54cc25-e9f1-4ece-901b-2199309ac2b1', '66f55b10-1fd0-4950-87d8-42cd0cd8d40c', 2, 45.93, '2024-06-11 02:54:47.397'),
 ('cd54cc25-e9f1-4ece-901b-2199309ac2b1', 'a933824f-f57a-4419-b728-b31c408bfd15', 2, 93.07, '2024-08-05 07:42:01.003'),
@@ -21849,7 +21849,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('d4434934-560d-4ed9-9b25-3afc9f7165fa', 'dd31d40e-dba5-4ee0-94dc-142f9fc502fb', 3, 119.31, '2024-06-24 17:46:12.38'),
 ('d4434934-560d-4ed9-9b25-3afc9f7165fa', 'f16ce81a-21c8-4f08-aefd-67ce5f43e4d7', 1, 117.49, '2024-07-19 05:40:14.834');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('d45f9ade-a091-43cd-9bad-101d8e7e4380', '643ba192-3e43-445e-b8b3-8d0ebf06f5fc', 1, 107.37, '2024-08-15 19:47:26.282'),
 ('d45f9ade-a091-43cd-9bad-101d8e7e4380', '710130d0-fa90-4557-a0ba-efbe3f9950d8', 1, 50.40, '2024-07-16 12:27:09.203'),
 ('d45f9ade-a091-43cd-9bad-101d8e7e4380', 'baa7aaed-6433-4b3e-8212-13d7f0cce59c', 1, 77.98, '2024-08-23 19:26:29.169'),
@@ -22351,7 +22351,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('db4045cb-9a9c-4a79-88a0-fe2e20fbcb60', 'e53fc257-ea0d-428d-ad50-624babef543e', 4, 28.71, '2024-07-30 01:53:08.892'),
 ('db4045cb-9a9c-4a79-88a0-fe2e20fbcb60', 'f8fbe357-6eb4-4f77-a24f-d485693026d3', 1, 96.69, '2024-06-11 07:05:53.85');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('db4a935c-b7ea-4090-bbc8-2a0480b96134', '1c2b1be1-9f0f-447b-b9c4-cf2a25300d25', 4, 15.16, '2024-06-06 01:40:30.855'),
 ('db4a935c-b7ea-4090-bbc8-2a0480b96134', '213d5001-0e7e-442d-bc8a-81bc55b25b85', 4, 30.32, '2024-06-19 17:45:02.74'),
 ('db4a935c-b7ea-4090-bbc8-2a0480b96134', '2e8e73a2-ac75-4d77-a11f-105a19f45349', 4, 38.93, '2024-06-26 11:00:06.213'),
@@ -22853,7 +22853,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('e142eb31-c8ee-45c1-bbf2-a7b072fcf34a', '4d2a7ab7-e5e6-42ba-845d-fac1d370f8da', 3, 23.50, '2024-07-09 06:01:22'),
 ('e142eb31-c8ee-45c1-bbf2-a7b072fcf34a', '4f30b42b-ebdf-4795-b462-3b3c640c2c12', 1, 91.17, '2024-07-18 12:16:16.69');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('e142eb31-c8ee-45c1-bbf2-a7b072fcf34a', '716254fb-0005-43c6-a1d4-3f5dce80c3cc', 4, 11.51, '2024-06-26 00:56:15.612'),
 ('e142eb31-c8ee-45c1-bbf2-a7b072fcf34a', 'bb5fbd9b-46b6-40b6-abb7-2b902baeccb3', 4, 43.11, '2024-08-07 08:11:02.344'),
 ('e142eb31-c8ee-45c1-bbf2-a7b072fcf34a', 'd4e2502f-0118-47f6-afd5-9d0e77538ebb', 4, 23.39, '2024-08-26 01:29:26.961'),
@@ -23355,7 +23355,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('e7a92a29-d368-4aa0-b714-ebc5d6f9af23', '7e8dbdd6-578d-4ff0-b575-db238ca1370b', 2, 42.78, '2024-06-29 00:23:01.859'),
 ('e7a92a29-d368-4aa0-b714-ebc5d6f9af23', '91f5aaef-144b-45e7-a4ce-3275d8f6f6d6', 3, 36.48, '2024-07-04 03:29:39.323');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('e7a92a29-d368-4aa0-b714-ebc5d6f9af23', '952c43c5-fffc-4b86-8352-585178a53cf9', 1, 81.32, '2024-06-29 07:33:26.814'),
 ('e7a92a29-d368-4aa0-b714-ebc5d6f9af23', 'b2378596-bef9-4b12-b3d5-c3b414a35bcc', 4, 68.67, '2024-08-25 20:44:03.139'),
 ('e7a92a29-d368-4aa0-b714-ebc5d6f9af23', 'fb36d51e-96ce-4816-ac0f-114ab7ac2bda', 1, 31.39, '2024-08-07 01:14:58.829'),
@@ -23857,7 +23857,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('ed099203-f959-4217-9abc-175b924f4b36', 'fb36d51e-96ce-4816-ac0f-114ab7ac2bda', 1, 31.39, '2024-08-26 12:13:02.753'),
 ('ed21601e-a366-4b38-88a5-70988813ca83', '274be291-9757-4f02-8946-6ed5c586054a', 4, 81.26, '2024-07-13 03:04:25.498');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('ed21601e-a366-4b38-88a5-70988813ca83', '3509a467-febf-436e-a40d-6504733bd961', 4, 97.27, '2024-08-28 02:29:16.349'),
 ('ed21601e-a366-4b38-88a5-70988813ca83', '66f55b10-1fd0-4950-87d8-42cd0cd8d40c', 2, 45.93, '2024-08-13 11:53:08.466'),
 ('ed21601e-a366-4b38-88a5-70988813ca83', 'd8c420bd-832a-47e1-a0e6-63fbc206ea33', 1, 102.71, '2024-08-22 09:15:26.653'),
@@ -24359,7 +24359,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('f392599f-f29b-48a9-bd49-999cb9f17ccd', '5e6d2b8a-3e66-4b87-bdbd-5953458f09e3', 2, 64.94, '2024-06-23 03:59:34.427'),
 ('f392599f-f29b-48a9-bd49-999cb9f17ccd', '6ce6fe91-0fe6-4565-8af7-b45eee36ea19', 4, 15.03, '2024-07-07 19:10:56.408');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('f392599f-f29b-48a9-bd49-999cb9f17ccd', '87b60dad-daf2-47cb-b537-7552780fba47', 3, 13.30, '2024-06-25 18:59:37.763'),
 ('f392599f-f29b-48a9-bd49-999cb9f17ccd', '929939b5-e728-458c-b3aa-76c5cd43ffbc', 3, 91.76, '2024-08-29 09:19:10.555'),
 ('f392599f-f29b-48a9-bd49-999cb9f17ccd', 'b0d93fb7-e412-4561-9cd8-f06bfdf74814', 3, 93.28, '2024-08-26 09:22:38.426'),
@@ -24861,7 +24861,7 @@ INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "p
 ('fb30d705-c9c8-4774-b1c0-3b69f5f190c6', '19b69ec9-e294-48a1-96db-98123bcdaf49', 2, 64.69, '2024-08-22 16:17:46.822'),
 ('fb30d705-c9c8-4774-b1c0-3b69f5f190c6', '7894d442-17bb-46ea-9302-cdd34e76e697', 1, 101.90, '2024-06-19 16:41:22.425');
 
-INSERT INTO "public"."products_orders" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
+INSERT INTO "public"."orders_products" ("order_id", "product_id", "quantity", "price", "created_at") VALUES
 ('fb30d705-c9c8-4774-b1c0-3b69f5f190c6', '9298dc65-7ec6-4e07-879c-358952629a99', 2, 51.68, '2024-06-30 19:41:55.617'),
 ('fb30d705-c9c8-4774-b1c0-3b69f5f190c6', 'a3165ed8-8b36-4a3d-98b6-a5d90643eef7', 2, 10.17, '2024-06-08 12:24:53.118'),
 ('fb30d705-c9c8-4774-b1c0-3b69f5f190c6', 'caddc4e2-c034-49d6-bb87-ccc1a196cf42', 2, 118.21, '2024-08-17 07:40:21.664'),

@@ -5,8 +5,8 @@ import {
     ViewEntity,
     UpdateDateColumn,
 } from 'typeorm';
+import { OrdersProductsEntity } from '../orders/orders.entity';
 import { ProductsDataEntity } from '../products/data.entity';
-import { ProductsOrdersEntity } from '../products/orders.entity';
 
 @ViewEntity({
     name: 'brands_analytics',
@@ -15,11 +15,11 @@ import { ProductsOrdersEntity } from '../products/orders.entity';
         .createQueryBuilder()
         .select([
             'p.brand_id AS brand_id',
-            'COALESCE(SUM(po.quantity * po.price), 0)::numeric(10, 2) AS revenue',
-            'po.created_at::DATE AS date',
+            'COALESCE(SUM(op.quantity * op.price), 0)::numeric(10, 2) AS revenue',
+            'op.created_at::DATE AS date',
         ])
         .from(ProductsDataEntity, 'p')
-        .leftJoin(ProductsOrdersEntity, 'po', 'po.product_id = p.product_id')
+        .leftJoin(OrdersProductsEntity, 'op', 'op.product_id = p.product_id')
         .groupBy('brand_id')
         .addGroupBy('date'),
 })

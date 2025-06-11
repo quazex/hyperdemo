@@ -1,6 +1,6 @@
+import { CategoriesStatisticsEntity } from '@models/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CategoriesStatisticsEntity } from '../../../models/database';
 import { CategoriesListService } from './module/business/business.handler';
 import { CategoriesListRepository } from './module/integration/integration.repository';
 import { CategoriesListController } from './module/transport/transport.controller';

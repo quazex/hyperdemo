@@ -1,10 +1,10 @@
+import { ViewConfig } from '@config';
+import { CategoriesStatisticsEntity } from '@models/database';
+import { TCategoriesDataSchema } from '@models/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ViewConfig } from '../../../../../config/view.config';
-import { CategoriesStatisticsEntity } from '../../../../../models/database';
-import { TCategoriesDataSchema } from '../../../../../models/schemas';
-import { TCategoriesListFilters } from '../../types/filter.types';
+import { TCategoriesListFilters } from '../../types/filters.types';
 
 @Injectable()
 export class CategoriesListRepository {

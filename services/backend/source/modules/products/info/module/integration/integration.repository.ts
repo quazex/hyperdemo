@@ -1,8 +1,8 @@
+import { ProductsDataEntity } from '@models/database';
+import { TProductsDataSchema, TProductsImageSchema } from '@models/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProductsDataEntity } from '../../../../../models/database';
-import { TProductsImageSchema } from '../../../../../models/schemas';
 import { TProductsInfoFilters } from '../../types/filter.types';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class ProductsInfoRepository {
         private readonly repository: Repository<ProductsDataEntity>,
     ) {}
 
-    public async getInfo(filters: TProductsInfoFilters) {
+    public async getInfo(filters: TProductsInfoFilters): Promise<TProductsDataSchema | null> {
         const row = await this.repository.findOne({
             where: {
                 product_id: filters.product_id,
@@ -45,8 +45,6 @@ export class ProductsInfoRepository {
                 },
                 price: Number(row.price),
                 feedbacks: row.feedbacks,
-                created_at: row.created_at,
-                updated_at: row.updated_at,
             };
         }
 

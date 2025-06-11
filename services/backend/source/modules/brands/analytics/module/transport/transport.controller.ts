@@ -1,3 +1,4 @@
+import { BrandsAnalyticsReq, BrandsAnalyticsRes, BrandsPrimaryReq } from '@models/restapi';
 import {
     Controller,
     Get,
@@ -8,10 +9,7 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { BrandsPrimaryParams } from '../../../shared/primary.params';
 import { BrandsAnalyticsService } from '../business/business.handler';
-import { BrandsAnalyticsQuery } from './transport.query';
-import { BrandsAnalyticsRes } from './transport.response';
 
 @ApiTags('Brands')
 @Controller()
@@ -27,8 +25,8 @@ export class BrandsAnalyticsController {
     @Version('1')
     @Get('brands/:brand_id/analytics')
     public async getList(
-        @Param() params: BrandsPrimaryParams,
-        @Query() query: BrandsAnalyticsQuery,
+        @Param() params: BrandsPrimaryReq,
+        @Query() query: BrandsAnalyticsReq,
     ): Promise<BrandsAnalyticsRes[]> {
         const entities = await this.brandsAnalyticsService.getList({
             brand_id: params.brand_id,

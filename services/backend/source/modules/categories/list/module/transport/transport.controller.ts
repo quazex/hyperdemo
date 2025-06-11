@@ -1,3 +1,4 @@
+import { CategoriesListRes, PaginationReq } from '@models/restapi';
 import {
     Controller,
     Get,
@@ -7,9 +8,7 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PaginationReq } from '../../../../../shared/pagination';
 import { CategoriesListService } from '../business/business.handler';
-import { CategoriesListResponse } from './dto/response.dto';
 
 @ApiTags('Categories')
 @Controller()
@@ -18,7 +17,7 @@ export class CategoriesListController {
 
     @ApiResponse({
         status: HttpStatus.OK,
-        type: CategoriesListResponse,
+        type: CategoriesListRes,
         isArray: false,
     })
     @HttpCode(HttpStatus.OK)
@@ -26,10 +25,10 @@ export class CategoriesListController {
     @Get('categories/list')
     public async getList(
         @Query() query: PaginationReq,
-    ): Promise<CategoriesListResponse> {
+    ): Promise<CategoriesListRes> {
         const entities = await this.categoriesListService.getList({
             page: query.page,
         });
-        return CategoriesListResponse.init(entities);
+        return CategoriesListRes.init(entities);
     }
 }
