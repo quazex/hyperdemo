@@ -10,7 +10,7 @@ export class EnvironmentProcessor {
     public parse<TSchema extends Extensions>(props?: DotenvParams) {
         const files: string[] = [];
 
-        const env = structuredClone(process.env as never);
+        const env = { ...process.env } as never;
         const arg = process.argv.find((a) => a.startsWith('-e='));
         const val = arg?.split('=').at(1);
 

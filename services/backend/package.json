@@ -24,7 +24,8 @@
         "uuid": "11.1.0"
     },
     "devDependencies": {
-        "@faker-js/faker": "9.2.0",
+        "@faker-js/faker": "9.6.0",
+        "@jest/globals": "29.7.0",
         "@nestjs/testing": "10.4.8",
         "@quazex/eslint-config": "1.0.2",
         "@types/luxon": "3.6.2",
@@ -42,6 +43,7 @@
         "dev:format": "npm run dev:lint -- --fix",
         "dev:lint": "eslint ./source --ext .ts",
         "dev:live": "nest start --watch -p ./tsconfig.json",
+        "dev:test": "jest",
         "dev:upgrade": "npm install $(npm outdated | cut -d' ' -f 1 | sed '1d' | xargs -I '$' echo '$@latest' | xargs echo)",
         "dev:watch": "tsc --project tsconfig.json --watch --noEmit",
         "migration:generate": "typeorm-ts-node-commonjs migration:generate ./source/models/migrations/migration -d orm-config.ts --pretty=true",

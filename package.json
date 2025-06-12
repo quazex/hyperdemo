@@ -34,6 +34,7 @@
         "dev:compose:up": "docker compose -f .docker/docker-compose.yml up -d",
         "dev:format": "turbo dev:format",
         "dev:lint": "turbo dev:lint",
+        "dev:test": "turbo dev:test --filter @hyperdemo/core --filter @hyperdemo/backend",
         "dev:upgrade": "turbo dev:upgrade",
         "pack:format": "syncpack format",
         "pack:lint": "syncpack lint",

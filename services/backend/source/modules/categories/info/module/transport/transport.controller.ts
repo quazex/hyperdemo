@@ -1,4 +1,4 @@
-import { CategoriesDataRes } from '@domain/restapi';
+import { CategoriesDataRes, CategoriesPrimaryReq } from '@domain/restapi';
 import {
     Controller,
     Get,
@@ -8,7 +8,6 @@ import {
     Version,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CategoriesPrimaryParams } from '../../../shared/primary.params';
 import { CategoriesInfoService } from '../business/business.handler';
 
 @ApiTags('Categories')
@@ -25,7 +24,7 @@ export class CategoriesInfoController {
     @Version('1')
     @Get('categories/:category_id/info')
     public async getInfo(
-        @Param() params: CategoriesPrimaryParams,
+        @Param() params: CategoriesPrimaryReq,
     ): Promise<CategoriesDataRes> {
         const entity = await this.service.getInfo({
             category_id: params.category_id,
