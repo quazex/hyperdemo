@@ -1,5 +1,5 @@
+import { TBrandsDataSchema } from '@domain/schemas';
 import { Exception } from '@hyperdemo/core/modules/exception';
-import { TBrandsDataSchema } from '@models/schemas';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { TBrandsInfoFilters } from '../../types/filter.types';
 import { BrandsInfoRepository } from '../integration/integration.repository';

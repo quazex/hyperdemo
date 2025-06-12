@@ -1,4 +1,4 @@
-import { OrdersListRes, PaginationReq } from '@models/restapi';
+import { OrdersListRes, PaginationReq } from '@domain/restapi';
 import {
     Controller,
     Get,

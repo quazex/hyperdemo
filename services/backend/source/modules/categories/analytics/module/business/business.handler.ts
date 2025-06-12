@@ -1,4 +1,4 @@
-import { TCategoriesAnalyticsSchema } from '@models/schemas';
+import { TCategoriesAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { TCategoriesAnalyticsFilters } from '../../types/filter.types';
 import { CategoriesAnalyticsRepository } from '../integration/integration.repository';

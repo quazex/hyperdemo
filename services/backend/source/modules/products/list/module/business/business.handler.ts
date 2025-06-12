@@ -1,5 +1,5 @@
 import { ViewConfig } from '@config';
-import { TProductsPagination } from '@models/restapi';
+import { TProductsPagination } from '@domain/restapi';
 import { Injectable } from '@nestjs/common';
 import { TProductsListFilters } from '../../types/filters.types';
 import { ProductsListRepository } from '../integration/integration.repository';

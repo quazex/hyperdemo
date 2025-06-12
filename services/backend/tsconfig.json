@@ -6,7 +6,7 @@
         "baseUrl": "./source",
         "paths": {
             "@config": ["config"],
-            "@models/*": ["models/*"],
+            "@domain/*": ["domain/*"],
             "@validators": ["shared/validators"],
         }
     },

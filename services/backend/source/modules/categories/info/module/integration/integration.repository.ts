@@ -1,5 +1,5 @@
-import { CategoriesStatisticsEntity } from '@models/database';
-import { TCategoriesDataSchema } from '@models/schemas';
+import { CategoriesStatisticsEntity } from '@domain/database';
+import { CategoriesDataModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -12,7 +12,7 @@ export class CategoriesInfoRepository {
         private readonly repository: Repository<CategoriesStatisticsEntity>,
     ) {}
 
-    public async getInfo(filters: TCategoriesInfoFilters): Promise<TCategoriesDataSchema | null> {
+    public async getInfo(filters: TCategoriesInfoFilters) {
         const row = await this.repository.findOne({
             select: [
                 'category_id',
@@ -27,13 +27,8 @@ export class CategoriesInfoRepository {
         });
 
         if (row) {
-            return {
-                category_id: row.category_id,
-                name: row.name,
-                products: row.products,
-                brands: row.brands,
-                feedbacks: row.feedbacks,
-            };
+            const model = CategoriesDataModel.fromStatistic(row);
+            return model.toSchema();
         }
 
         return null;

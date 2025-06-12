@@ -1,6 +1,7 @@
 import { ViewConfig } from '@config';
-import { BrandsStatisticsEntity } from '@models/database';
-import { TBrandsDataSchema } from '@models/schemas';
+import { BrandsStatisticsEntity } from '@domain/database';
+import { BrandsDataModel } from '@domain/models';
+import { TBrandsDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -37,13 +38,10 @@ export class BrandsListRepository {
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<TBrandsDataSchema>((row) => ({
-            brand_id: row.brand_id,
-            name: row.name,
-            products: row.products,
-            categories: row.categories,
-            feedbacks: row.feedbacks,
-        }));
+        const schemas = rows.map<TBrandsDataSchema>((row) => {
+            const model = BrandsDataModel.fromStatistic(row);
+            return model.toSchema();
+        });
 
         return schemas;
     }

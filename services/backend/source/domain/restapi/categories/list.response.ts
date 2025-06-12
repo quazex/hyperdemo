@@ -1,5 +1,5 @@
-import { TPaginationRes } from '@models/restapi';
-import { TCategoriesDataSchema } from '@models/schemas';
+import { TPaginationRes } from '@domain/restapi';
+import { TCategoriesDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance, Type } from 'class-transformer';
 import { CategoriesDataRes } from './data.response';

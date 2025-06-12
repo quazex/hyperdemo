@@ -1,5 +1,6 @@
-import { ProductsDataEntity } from '@models/database';
-import { TProductsDataSchema, TProductsImageSchema } from '@models/schemas';
+import { ProductsDataEntity } from '@domain/database';
+import { ProductsDataModel } from '@domain/models';
+import { TProductsDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -14,6 +15,16 @@ export class ProductsInfoRepository {
 
     public async getInfo(filters: TProductsInfoFilters): Promise<TProductsDataSchema | null> {
         const row = await this.repository.findOne({
+            select: [
+                'product_id',
+                'name',
+                'description',
+                'images',
+                'brand',
+                'category',
+                'price',
+                'feedbacks',
+            ],
             where: {
                 product_id: filters.product_id,
             },
@@ -25,27 +36,8 @@ export class ProductsInfoRepository {
         });
 
         if (row) {
-            return {
-                product_id: row.product_id,
-                name: row.name,
-                description: row.description,
-                images: row.images.map<TProductsImageSchema>((img) => ({
-                    id: img.image_id,
-                    small: img.small,
-                    regular: img.regular,
-                    large: img.large,
-                })),
-                brand: {
-                    id: row.brand.brand_id,
-                    name: row.brand.name,
-                },
-                category: {
-                    id: row.category.category_id,
-                    name: row.category.name,
-                },
-                price: Number(row.price),
-                feedbacks: row.feedbacks,
-            };
+            const model = ProductsDataModel.fromEntity(row);
+            return model.toSchema();
         }
 
         return null;

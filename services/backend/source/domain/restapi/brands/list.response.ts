@@ -1,5 +1,5 @@
-import { TPaginationRes } from '@models/restapi';
-import { TBrandsDataSchema } from '@models/schemas';
+import { TPaginationRes } from '@domain/restapi';
+import { TBrandsDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance, Type } from 'class-transformer';
 import { BrandsDataRes } from './data.response';

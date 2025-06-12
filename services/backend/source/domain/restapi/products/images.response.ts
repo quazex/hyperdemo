@@ -1,4 +1,4 @@
-import { TProductsImageSchema } from '@models/schemas';
+import { TProductsImageSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 

@@ -1,4 +1,5 @@
-import { BrandsStatisticsEntity } from '@models/database';
+import { BrandsStatisticsEntity } from '@domain/database';
+import { BrandsDataModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -26,13 +27,8 @@ export class BrandsInfoRepository {
         });
 
         if (row) {
-            return {
-                brand_id: row.brand_id,
-                name: row.name,
-                products: row.products,
-                categories: row.categories,
-                feedbacks: row.feedbacks,
-            };
+            const model = BrandsDataModel.fromStatistic(row);
+            return model.toSchema();
         }
 
         return null;

@@ -1,11 +1,11 @@
-import { TBrandsDataSchema } from '@models/schemas';
+import { TCategoriesDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance } from 'class-transformer';
 
-export class BrandsDataRes implements TBrandsDataSchema {
+export class CategoriesDataRes implements TCategoriesDataSchema {
     @Expose()
     @ApiProperty()
-    public brand_id: string;
+    public category_id: string;
 
     @Expose()
     @ApiProperty()
@@ -17,13 +17,13 @@ export class BrandsDataRes implements TBrandsDataSchema {
 
     @Expose()
     @ApiProperty({ minimum: 0 })
-    public categories: number;
+    public brands: number;
 
     @Expose()
     @ApiProperty({ minimum: 0 })
     public feedbacks: number;
 
-    public static init(doc: TBrandsDataSchema): BrandsDataRes {
-        return plainToInstance(BrandsDataRes, doc);
+    public static init(doc: TCategoriesDataSchema): CategoriesDataRes {
+        return plainToInstance(CategoriesDataRes, doc);
     }
 }

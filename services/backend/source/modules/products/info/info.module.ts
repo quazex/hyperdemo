@@ -3,7 +3,7 @@ import {
     CategoriesDataEntity,
     ProductsDataEntity,
     ProductsImagesEntity,
-} from '@models/database';
+} from '@domain/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsInfoService } from './module/business/business.handler';

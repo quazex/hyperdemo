@@ -1,4 +1,4 @@
-import { CategoriesStatisticsEntity } from '@models/database';
+import { CategoriesStatisticsEntity } from '@domain/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoriesInfoService } from './module/business/business.handler';

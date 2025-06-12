@@ -1,4 +1,4 @@
-import { ProductsAnalyticsEntity } from '@models/database';
+import { ProductsAnalyticsEntity } from '@domain/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsAnalyticsService } from './module/business/business.handler';

@@ -1,4 +1,4 @@
-import { TCategoriesShortSchema } from '@models/schemas';
+import { TCategoriesShortSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 

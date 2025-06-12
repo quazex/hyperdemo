@@ -1,5 +1,5 @@
-import { OrdersStatisticsEntity } from '@models/database';
-import { TOrdersDataSchema } from '@models/schemas';
+import { OrdersStatisticsEntity } from '@domain/database';
+import { OrdersDataModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -17,8 +17,8 @@ export class OrdersInfoRepository {
         return result;
     }
 
-    public async getOne(filters: TOrdersInfoFilters): Promise<TOrdersDataSchema | null> {
-        const doc = await this.repository.findOne({
+    public async getOne(filters: TOrdersInfoFilters) {
+        const row = await this.repository.findOne({
             select: [
                 'order_id',
                 'user_id',
@@ -33,16 +33,9 @@ export class OrdersInfoRepository {
             },
         });
 
-        if (doc) {
-            return {
-                order_id: doc.order_id,
-                user_id: doc.user_id,
-                status: doc.status,
-                products: doc.products,
-                revenue: Number(doc.revenue),
-                created_at: doc.created_at.toISOString(),
-                updated_at: doc.updated_at.toISOString(),
-            };
+        if (row) {
+            const model = OrdersDataModel.fromStatistic(row);
+            return model.toSchema();
         }
 
         return null;

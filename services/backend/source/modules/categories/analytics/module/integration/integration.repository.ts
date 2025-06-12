@@ -1,5 +1,6 @@
-import { CategoriesAnalyticsEntity } from '@models/database';
-import { TCategoriesAnalyticsSchema } from '@models/schemas';
+import { CategoriesAnalyticsEntity } from '@domain/database';
+import { CategoriesAnalyticsModel } from '@domain/models';
+import { TCategoriesAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
@@ -8,10 +9,11 @@ import { TCategoriesAnalyticsFilters } from '../../types/filter.types';
 @Injectable()
 export class CategoriesAnalyticsRepository {
     constructor(
-        @InjectRepository(CategoriesAnalyticsEntity) private readonly repository: Repository<CategoriesAnalyticsEntity>,
+        @InjectRepository(CategoriesAnalyticsEntity)
+        private readonly repository: Repository<CategoriesAnalyticsEntity>,
     ) {}
 
-    public async getList(filters: TCategoriesAnalyticsFilters): Promise<TCategoriesAnalyticsSchema[]> {
+    public async getList(filters: TCategoriesAnalyticsFilters) {
         const dateFrom = filters.date_from.toSQL({ includeOffset: false });
         const dateTo = filters.date_to.toSQL({ includeOffset: false });
 
@@ -29,10 +31,10 @@ export class CategoriesAnalyticsRepository {
             },
         });
 
-        const schemas = rows.map<TCategoriesAnalyticsSchema>((row) => ({
-            revenue: row.revenue,
-            date: row.date,
-        }));
+        const schemas = rows.map<TCategoriesAnalyticsSchema>((row) => {
+            const model = CategoriesAnalyticsModel.fromEntity(row);
+            return model.toSchema();
+        });
 
         return schemas;
     }

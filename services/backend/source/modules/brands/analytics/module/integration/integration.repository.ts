@@ -1,5 +1,6 @@
-import { BrandsAnalyticsEntity } from '@models/database';
-import { TBrandsAnalyticsSchema } from '@models/schemas';
+import { BrandsAnalyticsEntity } from '@domain/database';
+import { BrandsAnalyticsModel } from '@domain/models';
+import { TBrandsAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
@@ -8,10 +9,11 @@ import { TBrandsAnalyticsFilters } from '../../types/filters.types';
 @Injectable()
 export class BrandsAnalyticsRepository {
     constructor(
-        @InjectRepository(BrandsAnalyticsEntity) private readonly repository: Repository<BrandsAnalyticsEntity>,
+        @InjectRepository(BrandsAnalyticsEntity)
+        private readonly repository: Repository<BrandsAnalyticsEntity>,
     ) {}
 
-    public async getList(filters: TBrandsAnalyticsFilters): Promise<TBrandsAnalyticsSchema[]> {
+    public async getList(filters: TBrandsAnalyticsFilters) {
         const dateFrom = filters.date_from.toSQL({ includeOffset: false });
         const dateTo = filters.date_to.toSQL({ includeOffset: false });
 
@@ -29,10 +31,10 @@ export class BrandsAnalyticsRepository {
             },
         });
 
-        const schemas = rows.map<TBrandsAnalyticsSchema>((row) => ({
-            revenue: row.revenue,
-            date: row.date,
-        }));
+        const schemas = rows.map<TBrandsAnalyticsSchema>((row) => {
+            const model = BrandsAnalyticsModel.fromEntity(row);
+            return model.toSchema();
+        });
 
         return schemas;
     }

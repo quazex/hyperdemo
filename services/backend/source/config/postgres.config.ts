@@ -1,8 +1,4 @@
 import { join } from 'path';
-import { EnvironmentModule, Dotenv, InjectDotenv } from '@hyperdemo/core/modules/environment';
-import { Injectable } from '@nestjs/common';
-import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import { DataSource, DataSourceOptions } from 'typeorm';
 import {
     BrandsAnalyticsEntity,
     BrandsDataEntity,
@@ -16,7 +12,11 @@ import {
     ProductsAnalyticsEntity,
     ProductsDataEntity,
     ProductsImagesEntity,
-} from '../models/database';
+} from '@domain/database';
+import { EnvironmentModule, Dotenv, InjectDotenv } from '@hyperdemo/core/modules/environment';
+import { Injectable } from '@nestjs/common';
+import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
 @Injectable()
 export class PostgresConfig implements TypeOrmOptionsFactory {

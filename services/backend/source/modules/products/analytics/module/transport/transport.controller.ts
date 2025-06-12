@@ -1,4 +1,4 @@
-import { ProductsAnalyticsReq, ProductsAnalyticsRes, ProductsPrimaryReq } from '@models/restapi';
+import { ProductsAnalyticsReq, ProductsAnalyticsRes, ProductsPrimaryReq } from '@domain/restapi';
 import {
     Controller,
     Get,

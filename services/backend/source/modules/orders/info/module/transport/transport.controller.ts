@@ -1,5 +1,5 @@
-import { OrdersDataRes } from '@models/restapi';
-import { OrdersPrimaryReq } from '@models/restapi/orders/primary.request';
+import { OrdersDataRes } from '@domain/restapi';
+import { OrdersPrimaryReq } from '@domain/restapi/orders/primary.request';
 import {
     Controller,
     Get,

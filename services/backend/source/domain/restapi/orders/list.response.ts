@@ -1,4 +1,4 @@
-import { TOrdersDataSchema } from '@models/schemas';
+import { TOrdersDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance, Type } from 'class-transformer';
 import { TPaginationRes } from '../pagination/pagination.response';

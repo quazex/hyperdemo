@@ -1,6 +1,7 @@
 import { ViewConfig } from '@config';
-import { CategoriesStatisticsEntity } from '@models/database';
-import { TCategoriesDataSchema } from '@models/schemas';
+import { CategoriesStatisticsEntity } from '@domain/database';
+import { CategoriesDataModel } from '@domain/models';
+import { TCategoriesDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -37,13 +38,10 @@ export class CategoriesListRepository {
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<TCategoriesDataSchema>((row) => ({
-            category_id: row.category_id,
-            name: row.name,
-            products: row.products,
-            brands: row.brands,
-            feedbacks: row.feedbacks,
-        }));
+        const schemas = rows.map<TCategoriesDataSchema>((row) => {
+            const model = CategoriesDataModel.fromStatistic(row);
+            return model.toSchema();
+        });
 
         return schemas;
     }

@@ -1,4 +1,4 @@
-import { ProductsDataRes, ProductsPrimaryReq } from '@models/restapi';
+import { ProductsDataRes, ProductsPrimaryReq } from '@domain/restapi';
 import {
     Controller,
     Get,

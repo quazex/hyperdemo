@@ -1,8 +1,8 @@
-import { TCategoriesAnalyticsSchema } from '@models/schemas';
+import { TProductsAnalyticsSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance } from 'class-transformer';
 
-export class CategoriesAnalyticsRes implements TCategoriesAnalyticsSchema {
+export class ProductsAnalyticsRes implements TProductsAnalyticsSchema {
     @Expose()
     @ApiProperty({ minimum: 0, example: 200_000 })
     public revenue: number;
@@ -11,7 +11,7 @@ export class CategoriesAnalyticsRes implements TCategoriesAnalyticsSchema {
     @ApiProperty({ example: '2024-01-01' })
     public date: string;
 
-    public static init(rows: TCategoriesAnalyticsSchema[]): CategoriesAnalyticsRes[] {
-        return plainToInstance(CategoriesAnalyticsRes, rows);
+    public static init(rows: TProductsAnalyticsSchema[]): ProductsAnalyticsRes[] {
+        return plainToInstance(ProductsAnalyticsRes, rows);
     }
 }

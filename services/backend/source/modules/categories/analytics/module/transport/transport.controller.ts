@@ -1,4 +1,4 @@
-import { CategoriesAnalyticsReq, CategoriesAnalyticsRes } from '@models/restapi';
+import { CategoriesAnalyticsReq, CategoriesAnalyticsRes } from '@domain/restapi';
 import {
     Controller,
     Get,

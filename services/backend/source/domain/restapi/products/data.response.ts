@@ -1,4 +1,4 @@
-import { TProductsDataSchema } from '@models/schemas';
+import { TProductsDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance, Type } from 'class-transformer';
 import { BrandsShortRes } from '../brands/short.response';

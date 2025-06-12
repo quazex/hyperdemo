@@ -1,4 +1,4 @@
-import { TBrandsAnalyticsSchema } from '@models/schemas';
+import { TBrandsAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { TBrandsAnalyticsFilters } from '../../types/filters.types';
 import { BrandsAnalyticsRepository } from '../integration/integration.repository';

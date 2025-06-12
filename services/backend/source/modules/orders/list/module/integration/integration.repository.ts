@@ -1,6 +1,7 @@
 import { ViewConfig } from '@config';
-import { OrdersStatisticsEntity } from '@models/database';
-import { TOrdersDataSchema } from '@models/schemas';
+import { OrdersStatisticsEntity } from '@domain/database';
+import { OrdersDataModel } from '@domain/models';
+import { TOrdersDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -37,15 +38,10 @@ export class OrdersListRepository {
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<TOrdersDataSchema>((row) => ({
-            order_id: row.order_id,
-            user_id: row.user_id,
-            status: row.status,
-            products: row.products,
-            revenue: Number(row.revenue),
-            created_at: row.created_at.toISOString(),
-            updated_at: row.updated_at.toISOString(),
-        }));
+        const schemas = rows.map<TOrdersDataSchema>((row) => {
+            const model = OrdersDataModel.fromStatistic(row);
+            return model.toSchema();
+        });
 
         return schemas;
     }

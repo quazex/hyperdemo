@@ -1,5 +1,5 @@
 import { ViewConfig } from '@config';
-import { TOrdersPagination } from '@models/restapi';
+import { TOrdersPagination } from '@domain/restapi';
 import { Injectable } from '@nestjs/common';
 import { TOrdersListFilters } from '../../types/filters.types';
 import { OrdersListRepository } from '../integration/integration.repository';

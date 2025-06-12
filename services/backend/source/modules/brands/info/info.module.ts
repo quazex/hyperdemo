@@ -1,4 +1,4 @@
-import { BrandsStatisticsEntity } from '@models/database';
+import { BrandsStatisticsEntity } from '@domain/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BrandsInfoService } from './module/business/business.handler';

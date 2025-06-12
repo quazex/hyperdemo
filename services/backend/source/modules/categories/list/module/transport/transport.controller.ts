@@ -1,4 +1,4 @@
-import { CategoriesListRes, PaginationReq } from '@models/restapi';
+import { CategoriesListRes, PaginationReq } from '@domain/restapi';
 import {
     Controller,
     Get,

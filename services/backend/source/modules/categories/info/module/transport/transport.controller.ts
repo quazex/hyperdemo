@@ -1,4 +1,4 @@
-import { CategoriesDataRes } from '@models/restapi';
+import { CategoriesDataRes } from '@domain/restapi';
 import {
     Controller,
     Get,

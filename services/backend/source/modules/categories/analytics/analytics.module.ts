@@ -1,4 +1,4 @@
-import { CategoriesAnalyticsEntity } from '@models/database';
+import { CategoriesAnalyticsEntity } from '@domain/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoriesAnalyticsService } from './module/business/business.handler';

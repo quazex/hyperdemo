@@ -1,6 +1,7 @@
 import { ViewConfig } from '@config';
-import { ProductsDataEntity } from '@models/database';
-import { TProductsDataSchema, TProductsImageSchema } from '@models/schemas';
+import { ProductsDataEntity } from '@domain/database';
+import { ProductsDataModel } from '@domain/models';
+import { TProductsDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -21,6 +22,16 @@ export class ProductsListRepository {
 
     public async getProducts(filters: TProductsListFilters): Promise<TProductsDataSchema[]> {
         const rows = await this.repository.find({
+            select: [
+                'product_id',
+                'name',
+                'description',
+                'images',
+                'brand',
+                'category',
+                'price',
+                'feedbacks',
+            ],
             where: {
                 brand_id: filters.brand_id,
                 category_id: filters.category_id,
@@ -38,29 +49,10 @@ export class ProductsListRepository {
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<TProductsDataSchema>((row) => ({
-            product_id: row.product_id,
-            name: row.name,
-            description: row.description,
-            images: row.images.map<TProductsImageSchema>((img) => ({
-                id: img.image_id,
-                small: img.small,
-                regular: img.regular,
-                large: img.large,
-            })),
-            brand: {
-                id: row.brand.brand_id,
-                name: row.brand.name,
-            },
-            category: {
-                id: row.category.category_id,
-                name: row.category.name,
-            },
-            price: Number(row.price),
-            feedbacks: row.feedbacks,
-            created_at: row.created_at,
-            updated_at: row.updated_at,
-        }));
+        const schemas = rows.map<TProductsDataSchema>((row) => {
+            const model = ProductsDataModel.fromEntity(row);
+            return model.toSchema();
+        });
 
         return schemas;
     }
