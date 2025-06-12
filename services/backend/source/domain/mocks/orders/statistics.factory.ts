@@ -18,7 +18,7 @@ export class OrdersStatisticsFactory {
     public static getMany(count = 1): OrdersStatisticsEntity[] {
         const list: OrdersStatisticsEntity[] = [];
 
-        const length = count ?? faker.number.int({ min: 50, max: 100 });
+        const length = count ?? faker.number.int({ min: 10, max: 40 });
         for (let index = 0; index < length; index += 1) {
             list[index] = this.getOne();
         }

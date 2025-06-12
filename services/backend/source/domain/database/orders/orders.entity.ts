@@ -8,7 +8,7 @@ export class OrdersProductsEntity {
     @PrimaryColumn({ type: 'uuid' })
     order_id: string;
 
-    @PrimaryColumn({ type: 'uuid' })
+    @PrimaryColumn({ type: 'uuid', select: false })
     product_id: string;
 
     @Column({ type: 'int4' })

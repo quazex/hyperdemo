@@ -23,7 +23,7 @@ export class OrdersProductsController {
     })
     @HttpCode(HttpStatus.OK)
     @Version('1')
-    @Get('products/:order_id/products')
+    @Get('orders/:order_id/products')
     public async getProducts(
         @Param() param: OrdersPrimaryReq,
         @Query() query: PaginationReq,
