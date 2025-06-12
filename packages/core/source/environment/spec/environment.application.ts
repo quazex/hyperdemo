@@ -8,10 +8,14 @@ export class TestingApplication {
     private _testing: TestingModule;
 
     public async init(): Promise<void> {
+        const path = join(__dirname, './environment.example');
+
         const tModule = Test.createTestingModule({
             imports: [
                 EnvironmentModule.forDotenv({
-                    path: join(__dirname, './environment.example'),
+                    files: [
+                        path,
+                    ],
                 }),
             ],
         });

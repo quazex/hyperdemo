@@ -15,14 +15,14 @@ import {
 } from '@domain/database';
 import { EnvironmentModule, Dotenv, InjectDotenv } from '@hyperdemo/core/modules/environment';
 import { Injectable } from '@nestjs/common';
-import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 @Injectable()
 export class PostgresConfig implements TypeOrmOptionsFactory {
     constructor(@InjectDotenv() private readonly env: Dotenv) {}
 
-    public createTypeOrmOptions(): DataSourceOptions {
+    public createTypeOrmOptions(): TypeOrmModuleOptions {
         return {
             type: 'postgres',
             host: this.env.get('POSTGRES_HOST').required().asString(),
@@ -48,13 +48,15 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
             migrationsRun: false,
             synchronize: false,
             cache: false,
+            retryAttempts: 2,
+            verboseRetryLog: false,
         };
     }
 
     public static init(): DataSource {
         const environment = EnvironmentModule.parse();
         const factory = new PostgresConfig(environment);
-        const options = factory.createTypeOrmOptions();
+        const options = factory.createTypeOrmOptions() as DataSourceOptions;
 
         const root = process.cwd();
         const migrations = join(root, 'source/database/migrations/*-migration.ts');

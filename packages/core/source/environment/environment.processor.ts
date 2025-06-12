@@ -8,17 +8,31 @@ import { DotenvParams } from './environment.types';
 @Injectable()
 export class EnvironmentProcessor {
     public parse<TSchema extends Extensions>(props?: DotenvParams) {
-        const env = process.env as never;
+        const files: string[] = [];
 
-        const root = process.cwd();
-        const path = props?.path ?? resolve(root, '.env');
+        const env = structuredClone(process.env as never);
+        const arg = process.argv.find((a) => a.startsWith('-e='));
+        const val = arg?.split('=').at(1);
 
-        const isExists = existsSync(path);
-        if (isExists) {
-            const raw = readFileSync(path, 'utf8');
-            const dotenv = parse(raw);
+        if (typeof val === 'string') {
+            files.push(val);
+        }
+        else if (Array.isArray(props?.files)) {
+            files.push(...props.files);
+        }
 
-            Object.assign(env, dotenv);
+
+        for (const filename of files) {
+            const root = process.cwd();
+            const path = resolve(root, filename);
+
+            const isExists = existsSync(path);
+            if (isExists) {
+                const raw = readFileSync(path, 'utf8');
+                const dotenv = parse(raw);
+
+                Object.assign(env, dotenv);
+            }
         }
 
         return from<TSchema, Extensions>(env);

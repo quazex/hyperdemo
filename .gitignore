@@ -19,6 +19,9 @@ services/**/migration*
 # Migrations
 .migrations
 
+# Environment (ignore only specific files)
+.env.*
+
 # Logs
 *.log
 npm-debug.log*
