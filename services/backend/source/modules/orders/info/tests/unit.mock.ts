@@ -1,35 +1,32 @@
-import { ViewConfig } from '@config';
 import { OrdersStatisticsEntity } from '@domain/database';
 import { OrdersStatisticsFactory } from '@domain/mocks';
 import { jest } from '@jest/globals';
 import { ValueProvider } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { TestingApplication } from '@testing';
-import { OrdersListService } from '../module/business/business.handler';
-import { OrdersListRepository } from '../module/integration/integration.repository';
-import { OrdersListController } from '../module/transport/transport.controller';
+import { OrdersInfoService } from '../module/business/business.handler';
+import { OrdersInfoRepository } from '../module/integration/integration.repository';
+import { OrdersInfoController } from '../module/transport/transport.controller';
 
 export class TestingUnitMock extends TestingApplication {
-    public readonly entities = OrdersStatisticsFactory.getMany();
+    public readonly entity = OrdersStatisticsFactory.getOne();
 
-    public override async init(): Promise<void> {
+    public override async init() {
         const tRepository: ValueProvider = {
             provide: getRepositoryToken(OrdersStatisticsEntity),
             useValue: {
-                count: jest.fn().mockReturnValue(this.entities.length),
-                find: jest.fn().mockReturnValue(this.entities),
+                findOne: jest.fn().mockReturnValue(this.entity),
             },
         };
 
         await super.init({
             providers: [
-                ViewConfig,
                 tRepository,
-                OrdersListRepository,
-                OrdersListService,
+                OrdersInfoRepository,
+                OrdersInfoService,
             ],
             controllers: [
-                OrdersListController,
+                OrdersInfoController,
             ],
         });
     }

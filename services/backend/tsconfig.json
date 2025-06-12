@@ -8,6 +8,7 @@
             "@config": ["config"],
             "@domain/*": ["domain/*"],
             "@validators": ["shared/validators"],
+            "@testing": ["shared/testing"],
         }
     },
     "exclude": [

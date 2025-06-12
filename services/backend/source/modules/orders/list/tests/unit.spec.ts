@@ -1,8 +1,9 @@
+import { TOrdersPagination } from '@domain/restapi';
 import { afterAll, beforeAll, describe, expect, test } from '@jest/globals';
 import { HttpStatus } from '@nestjs/common';
 import { TestingUnitMock } from './unit.mock';
 
-describe('Orders Products Unit', () => {
+describe('Orders List Unit', () => {
     const testingApp = new TestingUnitMock();
 
     beforeAll(testingApp.init.bind(testingApp));
@@ -25,7 +26,9 @@ describe('Orders Products Unit', () => {
                 page: '1',
             },
         });
+        const body = response.json() as TOrdersPagination;
 
         expect(response.statusCode).toBe(HttpStatus.OK);
+        expect(body.total).toBe(testingApp.entities.length);
     });
 });

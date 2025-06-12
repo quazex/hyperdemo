@@ -12,11 +12,6 @@ export class OrdersInfoRepository {
         private readonly repository: Repository<OrdersStatisticsEntity>,
     ) {}
 
-    public async count() {
-        const result = await this.repository.count();
-        return result;
-    }
-
     public async getOne(filters: TOrdersInfoFilters) {
         const row = await this.repository.findOne({
             select: [
