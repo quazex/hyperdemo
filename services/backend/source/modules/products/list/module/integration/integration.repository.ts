@@ -32,10 +32,6 @@ export class ProductsListRepository {
                 'price',
                 'feedbacks',
             ],
-            where: {
-                brand_id: filters.brand_id,
-                category_id: filters.category_id,
-            },
             order: {
                 feedbacks: 'DESC',
                 product_id: 'ASC',

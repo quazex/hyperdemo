@@ -1,4 +1,5 @@
 import { HttpException, HttpExceptionBody, HttpStatus } from '@nestjs/common';
+import { QueryFailedError } from 'typeorm';
 import { ExceptionParams } from './types.exception';
 
 export class Exception extends HttpException {
@@ -42,6 +43,17 @@ export class Exception extends HttpException {
     public static init(error: unknown, context?: unknown): Exception {
         if (error instanceof Exception) {
             return error;
+        }
+
+        if (error instanceof QueryFailedError) {
+            return new Exception({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'Something goes wrong',
+                context: {
+                    message: error.message,
+                    query: error.query,
+                },
+            });
         }
 
         if (error instanceof HttpException) {

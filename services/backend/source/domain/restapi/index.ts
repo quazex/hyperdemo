@@ -14,6 +14,8 @@ export * from './categories/short.response';
 
 export * from './orders/data.response';
 export * from './orders/list.response';
+export * from './orders/primary.request';
+export * from './orders/products.response';
 
 export * from './pagination/pagination.request';
 export * from './pagination/pagination.response';

@@ -32,15 +32,9 @@ export class ProductsDataEntity {
     @JoinColumn({ name: 'brand_id' })
     brand: BrandsDataEntity;
 
-    @Column({ type: 'uuid', select: false })
-    brand_id: string;
-
     @ManyToOne(() => CategoriesDataEntity, (e) => e.category_id, { nullable: false })
     @JoinColumn({ name: 'category_id' })
     category: CategoriesDataEntity;
-
-    @Column({ type: 'uuid', select: false })
-    category_id: string;
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     price: number;
