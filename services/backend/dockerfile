@@ -11,7 +11,7 @@ FROM base AS pruner
 WORKDIR /app
 COPY . .
 
-RUN turbo prune gateway --docker
+RUN turbo prune @hyperdemo/backend --docker
 
 
 # INSTALLER
@@ -37,12 +37,12 @@ COPY --from=installer /app/ .
 ENV TURBO_TELEMETRY_DISABLED=1
 ENV DO_NOT_TRACK=1
 
-RUN turbo bundle:compile --filter gateway
+RUN turbo bundle:compile --filter @hyperdemo/backend
 
 
 # RUNNER
 FROM builder AS runner
-WORKDIR /app/services/gateway
+WORKDIR /app/services/backend
 
 EXPOSE 5770/tcp
 CMD node build/index.js
