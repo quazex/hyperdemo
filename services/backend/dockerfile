@@ -44,5 +44,5 @@ RUN turbo bundle:compile --filter @hyperdemo/backend
 FROM builder AS runner
 WORKDIR /app/services/backend
 
-EXPOSE 5770/tcp
+EXPOSE 10000/tcp
 CMD node build/main.js
