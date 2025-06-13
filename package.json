@@ -12,7 +12,7 @@
         "axios": "1.7.7"
     },
     "devDependencies": {
-        "@nestjs/cli": "10.4.8",
+        "@nestjs/cli": "11.0.7",
         "commitizen": "4.3.1",
         "cz-conventional-changelog": "3.3.0",
         "husky": "9.1.7",

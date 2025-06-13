@@ -15,8 +15,8 @@ export const IsDateTime = (options?: ApiPropertyOptions): PropertyDecorator => {
 
     const decorators: PropertyDecorator[] = [
         ApiProperty({
-            ...options,
             type: 'string',
+            ...options,
         }),
         IsLuxonDate(validationOptions),
     ];
