@@ -1,15 +1,16 @@
 import { ArgumentsHost, Catch, ExceptionFilter, Logger } from '@nestjs/common';
-import { FastifyRequest } from 'fastify';
-import { Observable } from 'rxjs';
+import { FastifyReply, FastifyRequest } from 'fastify';
 import { Exception } from './app.exception';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
     private readonly logger = new Logger(HttpExceptionFilter.name);
 
-    public catch(error: unknown, host: ArgumentsHost): Observable<unknown> {
+    public catch(error: unknown, host: ArgumentsHost): unknown {
         const context = host.switchToHttp();
+
         const request = context.getRequest<FastifyRequest>();
+        const response = context.getResponse<FastifyReply>();
 
         const exception = Exception.init(error, {
             url: request.url,
@@ -20,6 +21,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
         });
 
         this.logger.error(exception.message, exception.meta);
-        throw exception;
+
+        const status = exception.getStatus();
+        const payload = exception.getResponse();
+
+        return response.status(status).send(payload);
     }
 }

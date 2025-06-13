@@ -1,3 +1,4 @@
+import { AuthGuard } from '@auth';
 import { CategoriesListRes, PaginationReq } from '@domain/restapi';
 import {
     Controller,
@@ -5,12 +6,15 @@ import {
     HttpCode,
     HttpStatus,
     Query,
+    UseGuards,
     Version,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CategoriesListService } from '../business/business.handler';
 
 @ApiTags('Categories')
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller()
 export class CategoriesListController {
     constructor(private readonly categoriesListService: CategoriesListService) {}

@@ -1,3 +1,4 @@
+import { AuthGuard } from '@auth';
 import { PaginationReq, OrdersProductsList, OrdersPrimaryReq } from '@domain/restapi';
 import {
     Controller,
@@ -6,12 +7,15 @@ import {
     HttpStatus,
     Param,
     Query,
+    UseGuards,
     Version,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { OrdersProductsService } from '../business/business.handler';
 
 @ApiTags('Orders')
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller()
 export class OrdersProductsController {
     constructor(private readonly brandsProductsService: OrdersProductsService) {}

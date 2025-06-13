@@ -7,7 +7,7 @@ export class Exception extends HttpException {
     #context: unknown;
 
     constructor(params: ExceptionParams) {
-        super(params.message, params.status, {
+        super({ message: params.message }, params.status, {
             cause: params.context,
         });
         this.#scope = params.scope;

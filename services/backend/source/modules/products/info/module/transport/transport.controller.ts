@@ -1,3 +1,4 @@
+import { AuthGuard } from '@auth';
 import { ProductsDataRes, ProductsPrimaryReq } from '@domain/restapi';
 import {
     Controller,
@@ -5,12 +6,15 @@ import {
     HttpCode,
     HttpStatus,
     Param,
+    UseGuards,
     Version,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductsInfoService } from '../business/business.handler';
 
 @ApiTags('Products')
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller()
 export class ProductsInfoController {
     constructor(private readonly productsInfoService: ProductsInfoService) {}

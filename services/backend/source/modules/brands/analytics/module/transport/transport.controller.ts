@@ -1,3 +1,4 @@
+import { AuthGuard } from '@auth';
 import { BrandsAnalyticsReq, BrandsAnalyticsRes, BrandsPrimaryReq } from '@domain/restapi';
 import {
     Controller,
@@ -6,12 +7,15 @@ import {
     HttpStatus,
     Param,
     Query,
+    UseGuards,
     Version,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BrandsAnalyticsService } from '../business/business.handler';
 
 @ApiTags('Brands')
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller()
 export class BrandsAnalyticsController {
     constructor(private readonly brandsAnalyticsService: BrandsAnalyticsService) {}

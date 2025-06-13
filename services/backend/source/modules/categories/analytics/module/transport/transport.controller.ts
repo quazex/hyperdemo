@@ -1,3 +1,4 @@
+import { AuthGuard } from '@auth';
 import { CategoriesAnalyticsReq, CategoriesAnalyticsRes, CategoriesPrimaryReq } from '@domain/restapi';
 import {
     Controller,
@@ -6,12 +7,15 @@ import {
     HttpStatus,
     Param,
     Query,
+    UseGuards,
     Version,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CategoriesAnalyticsService } from '../business/business.handler';
 
 @ApiTags('Categories')
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller()
 export class CategoriesAnalyticsController {
     constructor(private readonly service: CategoriesAnalyticsService) {}

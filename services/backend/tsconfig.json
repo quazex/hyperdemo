@@ -7,6 +7,7 @@
         "paths": {
             "@config": ["config"],
             "@domain/*": ["domain/*"],
+            "@auth": ["shared/auth"],
             "@validators": ["shared/validators"],
             "@testing": ["shared/testing"],
         }

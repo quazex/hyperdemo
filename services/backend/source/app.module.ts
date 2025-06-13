@@ -1,7 +1,7 @@
+import { AuthModule } from '@auth';
+import { ConfigModule, AuthConfig, PostgresConfig } from '@config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from './config/config.module';
-import { PostgresConfig } from './config/postgres.config';
 import { BrandsModule } from './modules/brands/brands.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { OrdersModule } from './modules/orders/orders.module';
@@ -13,6 +13,10 @@ import { ProductsModule } from './modules/products/products.module';
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             useExisting: PostgresConfig,
+        }),
+        AuthModule.forRootAsync({
+            imports: [ConfigModule],
+            useExisting: AuthConfig,
         }),
         BrandsModule,
         CategoriesModule,

@@ -1,3 +1,5 @@
+import { AuthGuard } from '@auth';
+import { jest } from '@jest/globals';
 import { ModuleMetadata, ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { Test } from '@nestjs/testing';
@@ -15,9 +17,13 @@ export class TestingApplication {
             forbidNonWhitelisted: true,
         });
 
-        const tBuilder = Test.createTestingModule(metadata);
-        const tModule = await tBuilder.compile();
+        const tBuilder = Test
+            .createTestingModule(metadata)
+            .overrideGuard(AuthGuard).useValue({
+                canActivate: jest.fn<never>().mockResolvedValue(true),
+            });
 
+        const tModule = await tBuilder.compile();
         this.application = tModule.createNestApplication(fastifyAdapter);
 
         this.application.useGlobalPipes(globalPipe);

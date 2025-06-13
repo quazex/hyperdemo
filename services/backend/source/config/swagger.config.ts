@@ -7,6 +7,7 @@ export class SwaggerConfig {
         return new DocumentBuilder()
             .setTitle('HyperDemo')
             .setDescription('Demo shop analytics')
+            .addBearerAuth()
             .build();
     }
 }
