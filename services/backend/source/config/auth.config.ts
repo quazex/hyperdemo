@@ -5,11 +5,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AuthConfig implements TAuthOptionsFactory {
-    public readonly isEnabled: boolean;
-
-    constructor(@InjectDotenv() private readonly env: Dotenv) {
-        this.isEnabled = env.get('DOCS_IS_ENABLED').default('false').asBoolStrict();
-    }
+    constructor(@InjectDotenv() private readonly env: Dotenv) {}
 
     public get publishableKey(): string {
         return this.env.get('CLERK_PUBLISHABLE_KEY').required().asString();
