@@ -8,11 +8,11 @@ import { BrandsListRepository } from '../integration/integration.repository';
 export class BrandsListService {
     constructor(
         private readonly viewConfig: ViewConfig,
-        private readonly brandsRepository: BrandsListRepository,
+        private readonly repository: BrandsListRepository,
     ) {}
 
     public async getList(filters: TBrandsListFilters): Promise<TBrandsPagination> {
-        const total = await this.brandsRepository.count();
+        const total = await this.repository.count();
         const pages = Math.ceil(total / this.viewConfig.itemsPerPage);
 
         const result: TBrandsPagination = {
@@ -22,7 +22,7 @@ export class BrandsListService {
         };
 
         if (filters.page <= pages) {
-            result.rows = await this.brandsRepository.getList(filters);
+            result.rows = await this.repository.getList(filters);
         }
 
         return result;

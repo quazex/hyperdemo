@@ -8,11 +8,11 @@ import { CategoriesListRepository } from '../integration/integration.repository'
 export class CategoriesListService {
     constructor(
         private readonly viewConfig: ViewConfig,
-        private readonly categoriesRepository: CategoriesListRepository,
+        private readonly repository: CategoriesListRepository,
     ) {}
 
     public async getList(filters: TCategoriesListFilters) {
-        const total = await this.categoriesRepository.count();
+        const total = await this.repository.count();
         const pages = Math.ceil(total / this.viewConfig.itemsPerPage);
 
         const result: TCategoriesPagination = {
@@ -22,7 +22,7 @@ export class CategoriesListService {
         };
 
         if (filters.page <= pages) {
-            result.rows = await this.categoriesRepository.getList(filters);
+            result.rows = await this.repository.getList(filters);
         }
 
         return result;

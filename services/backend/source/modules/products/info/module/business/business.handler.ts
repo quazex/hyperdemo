@@ -6,10 +6,10 @@ import { ProductsInfoRepository } from '../integration/integration.repository';
 
 @Injectable()
 export class ProductsInfoService {
-    constructor(private readonly productsRepository: ProductsInfoRepository) {}
+    constructor(private readonly repository: ProductsInfoRepository) {}
 
     public async getInfo(filters: TProductsInfoFilters): Promise<TProductsDataSchema> {
-        const doc = await this.productsRepository.getInfo(filters);
+        const doc = await this.repository.getInfo(filters);
         if (!doc) {
             throw new Exception({
                 message: 'Cannot find product',

@@ -6,10 +6,10 @@ import { CategoriesInfoRepository } from '../integration/integration.repository'
 
 @Injectable()
 export class CategoriesInfoService {
-    constructor(private readonly categoriesRepository: CategoriesInfoRepository) {}
+    constructor(private readonly repository: CategoriesInfoRepository) {}
 
     public async getInfo(filters: TCategoriesInfoFilters): Promise<TCategoriesDataSchema> {
-        const doc = await this.categoriesRepository.getInfo(filters);
+        const doc = await this.repository.getInfo(filters);
         if (!doc) {
             throw new Exception({
                 message: 'Cannot find category',

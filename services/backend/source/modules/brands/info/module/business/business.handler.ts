@@ -6,10 +6,10 @@ import { BrandsInfoRepository } from '../integration/integration.repository';
 
 @Injectable()
 export class BrandsInfoService {
-    constructor(private readonly brandsRepository: BrandsInfoRepository) {}
+    constructor(private readonly repository: BrandsInfoRepository) {}
 
     public async getInfo(filters: TBrandsInfoFilters): Promise<TBrandsDataSchema> {
-        const doc = await this.brandsRepository.getInfo(filters);
+        const doc = await this.repository.getInfo(filters);
         if (!doc) {
             throw new Exception({
                 message: 'Cannot find brand',

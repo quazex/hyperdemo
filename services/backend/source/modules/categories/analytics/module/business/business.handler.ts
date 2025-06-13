@@ -5,10 +5,10 @@ import { CategoriesAnalyticsRepository } from '../integration/integration.reposi
 
 @Injectable()
 export class CategoriesAnalyticsService {
-    constructor(private readonly categoriesRepository: CategoriesAnalyticsRepository) {}
+    constructor(private readonly repository: CategoriesAnalyticsRepository) {}
 
     public async getList(filters: TCategoriesAnalyticsFilters): Promise<TCategoriesAnalyticsSchema[]> {
-        const rows = await this.categoriesRepository.getList({
+        const rows = await this.repository.getList({
             category_id: filters.category_id,
             date_from: filters.date_from.startOf('day'),
             date_to: filters.date_to.endOf('day'),
