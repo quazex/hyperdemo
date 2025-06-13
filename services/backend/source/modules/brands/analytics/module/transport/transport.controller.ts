@@ -18,7 +18,7 @@ import { BrandsAnalyticsService } from '../business/business.handler';
 @UseGuards(AuthGuard)
 @Controller()
 export class BrandsAnalyticsController {
-    constructor(private readonly brandsAnalyticsService: BrandsAnalyticsService) {}
+    constructor(private readonly service: BrandsAnalyticsService) {}
 
     @ApiResponse({
         status: HttpStatus.OK,
@@ -32,7 +32,7 @@ export class BrandsAnalyticsController {
         @Param() params: BrandsPrimaryReq,
         @Query() query: BrandsAnalyticsReq,
     ): Promise<BrandsAnalyticsRes[]> {
-        const entities = await this.brandsAnalyticsService.getList({
+        const entities = await this.service.getList({
             brand_id: params.brand_id,
             date_from: query.date_from,
             date_to: query.date_to,

@@ -17,7 +17,7 @@ import { CategoriesListService } from '../business/business.handler';
 @UseGuards(AuthGuard)
 @Controller()
 export class CategoriesListController {
-    constructor(private readonly categoriesListService: CategoriesListService) {}
+    constructor(private readonly service: CategoriesListService) {}
 
     @ApiResponse({
         status: HttpStatus.OK,
@@ -30,7 +30,7 @@ export class CategoriesListController {
     public async getList(
         @Query() query: PaginationReq,
     ): Promise<CategoriesListRes> {
-        const entities = await this.categoriesListService.getList({
+        const entities = await this.service.getList({
             page: query.page,
         });
         return CategoriesListRes.init(entities);

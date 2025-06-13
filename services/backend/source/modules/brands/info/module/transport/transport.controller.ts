@@ -17,7 +17,7 @@ import { BrandsInfoService } from '../business/business.handler';
 @UseGuards(AuthGuard)
 @Controller()
 export class BrandsInfoController {
-    constructor(private readonly brandsInfoService: BrandsInfoService) {}
+    constructor(private readonly service: BrandsInfoService) {}
 
     @ApiResponse({
         status: HttpStatus.OK,
@@ -30,7 +30,7 @@ export class BrandsInfoController {
     public async getInfo(
         @Param() params: BrandsPrimaryReq,
     ): Promise<BrandsDataRes> {
-        const entity = await this.brandsInfoService.getInfo({
+        const entity = await this.service.getInfo({
             brand_id: params.brand_id,
         });
         return BrandsDataRes.init(entity);

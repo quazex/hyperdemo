@@ -18,7 +18,7 @@ import { ProductsAnalyticsService } from '../business/business.handler';
 @UseGuards(AuthGuard)
 @Controller()
 export class ProductsAnalyticsController {
-    constructor(private readonly productsAnalyticsService: ProductsAnalyticsService) {}
+    constructor(private readonly service: ProductsAnalyticsService) {}
 
     @ApiResponse({
         status: HttpStatus.OK,
@@ -32,7 +32,7 @@ export class ProductsAnalyticsController {
         @Param() params: ProductsPrimaryReq,
         @Query() query: ProductsAnalyticsReq,
     ): Promise<ProductsAnalyticsRes[]> {
-        const entities = await this.productsAnalyticsService.getList({
+        const entities = await this.service.getList({
             product_id: params.product_id,
             date_from: query.date_from,
             date_to: query.date_to,
