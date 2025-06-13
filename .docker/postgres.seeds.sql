@@ -25292,3 +25292,5 @@ REFRESH MATERIALIZED VIEW brands_analytics;
 REFRESH MATERIALIZED VIEW brands_statistics;
 REFRESH MATERIALIZED VIEW categories_analytics;
 REFRESH MATERIALIZED VIEW categories_statistics;
+REFRESH MATERIALIZED VIEW orders_statistics;
+REFRESH MATERIALIZED VIEW products_analytics;

@@ -40,7 +40,7 @@
     "private": true,
     "scripts": {
         "bundle:clear": "rimraf build",
-        "bundle:compile": "npm run bundle:clear && tsc --project tsconfig.build.json",
+        "bundle:compile": "npm run bundle:clear && nest build -p tsconfig.build.json",
         "bundle:run": "node build/index.js",
         "dev:check": "tsc --noEmit --project tsconfig.build.json",
         "dev:format": "npm run dev:lint -- --fix",

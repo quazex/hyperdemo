@@ -30,6 +30,7 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
             username: this.env.get('POSTGRES_USERNAME').required().asString(),
             password: this.env.get('POSTGRES_PASSWORD').required().asString(),
             database: this.env.get('POSTGRES_DATABASE').required().asString(),
+            ssl: this.env.get('POSTGRES_SECURE').default('false').asBoolStrict(),
             entities: [
                 BrandsAnalyticsEntity,
                 BrandsDataEntity,

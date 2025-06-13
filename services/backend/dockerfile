@@ -45,4 +45,4 @@ FROM builder AS runner
 WORKDIR /app/services/backend
 
 EXPOSE 5770/tcp
-CMD node build/index.js
+CMD node build/main.js
