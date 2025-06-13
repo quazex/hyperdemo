@@ -53,6 +53,7 @@ jobs:
           push: true
           file: services/${{ matrix.service }}/dockerfile
           context: .
+          platforms: linux/amd64
           tags: |
             ${{ env.IMAGE_REGISTRY }}/${{ github.repository }}/${{ matrix.service }}:${{ github.sha }}
             ${{ env.IMAGE_REGISTRY }}/${{ github.repository }}/${{ matrix.service }}:latest
