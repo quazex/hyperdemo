@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+        "name": "Jest Backend",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceRoot}/node_modules/.bin/jest",
+        "args": ["--i", "--config", "${workspaceRoot}/services/backend/jest.config.json"],
+        "cwd": "${workspaceRoot}/services/backend"
+    }]
+}

@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev:watch",
+			"path": "services/worker",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: dev:watch - services/worker",
+			"detail": "tsc --project tsconfig.json --watch --noEmit"
+		}
+	]
+}

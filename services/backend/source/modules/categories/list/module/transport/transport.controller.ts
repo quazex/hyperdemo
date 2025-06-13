@@ -1,0 +1,38 @@
+import { AuthGuard } from '@auth';
+import { CategoriesListRes, PaginationReq } from '@domain/restapi';
+import {
+    Controller,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Query,
+    UseGuards,
+    Version,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CategoriesListService } from '../business/business.handler';
+
+@ApiTags('Categories')
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
+@Controller()
+export class CategoriesListController {
+    constructor(private readonly service: CategoriesListService) {}
+
+    @ApiResponse({
+        status: HttpStatus.OK,
+        type: CategoriesListRes,
+        isArray: false,
+    })
+    @HttpCode(HttpStatus.OK)
+    @Version('1')
+    @Get('categories/list')
+    public async getList(
+        @Query() query: PaginationReq,
+    ): Promise<CategoriesListRes> {
+        const entities = await this.service.getList({
+            page: query.page,
+        });
+        return CategoriesListRes.init(entities);
+    }
+}

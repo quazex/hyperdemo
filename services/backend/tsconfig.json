@@ -1,0 +1,19 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "build",
+
+        "baseUrl": "./source",
+        "paths": {
+            "@config": ["config"],
+            "@domain/*": ["domain/*"],
+            "@auth": ["shared/auth"],
+            "@validators": ["shared/validators"],
+            "@testing": ["shared/testing"],
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "build"
+    ]
+}

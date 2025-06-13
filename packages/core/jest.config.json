@@ -1,0 +1,14 @@
+{
+    "maxWorkers": 1,
+    "testTimeout": 60000,
+    "moduleFileExtensions": ["ts", "js"],
+    "testMatch": [
+        "<rootDir>/**/*.spec.ts"
+    ],
+    "transform": {
+        "^.+\\.ts$": "ts-jest"
+    },
+    "roots": [
+        "source"
+    ]
+}
