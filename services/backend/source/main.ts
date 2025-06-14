@@ -1,5 +1,12 @@
 import { HttpExceptionFilter } from '@hyperdemo/nestjs/modules/exception';
-import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
+import { LogsRequestsInterceptor } from '@logs';
+import {
+    ClassSerializerInterceptor,
+    ConsoleLogger,
+    NestApplicationOptions,
+    ValidationPipe,
+    VersioningType,
+} from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { SwaggerModule } from '@nestjs/swagger';
@@ -13,9 +20,14 @@ import { SwaggerConfig } from './config/swagger.config';
 const bootstrap = async(): Promise<void> => {
     const fastifyAdapter = new FastifyAdapter(FastifyConfig);
 
+    const options: NestApplicationOptions = {
+        bufferLogs: true,
+    };
+
     const app = await NestFactory.create<NestFastifyApplication>(
         AppModule,
         fastifyAdapter,
+        options,
     );
 
     const appModule = app.select(AppModule);
@@ -25,17 +37,29 @@ const bootstrap = async(): Promise<void> => {
     const swagger = app.get(SwaggerConfig);
 
 
-    const globalFilter = new HttpExceptionFilter();
     const globalPipe = new ValidationPipe({
         transform: true,
         whitelist: true,
         forbidNonWhitelisted: true,
     });
+
+    const globalFilter = new HttpExceptionFilter();
+
     const globalSerializer = new ClassSerializerInterceptor(appReflector, {
         strategy: 'exposeAll',
     });
 
+    const logsInterceptor = new LogsRequestsInterceptor();
 
+    const logger = new ConsoleLogger({
+        compact: true,
+        json: appConfig.production,
+        depth: 2,
+    });
+
+
+    app.useLogger(logger);
+    app.useGlobalInterceptors(logsInterceptor);
     app.useGlobalInterceptors(globalSerializer);
     app.useGlobalFilters(globalFilter);
     app.useGlobalPipes(globalPipe);

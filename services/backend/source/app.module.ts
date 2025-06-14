@@ -11,6 +11,10 @@ import { ProductsModule } from './modules/products/products.module';
 @Module({
     imports: [
         ConfigModule,
+        // LogsModule.forRootAsync({
+        //     imports: [ConfigModule],
+        //     useExisting: LogsConfig,
+        // }),
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             useExisting: PostgresConfig,
