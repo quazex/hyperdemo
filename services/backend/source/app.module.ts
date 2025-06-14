@@ -4,12 +4,17 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BrandsModule } from './modules/brands/brands.module';
 import { CategoriesModule } from './modules/categories/categories.module';
+import { HealthModule } from './modules/health/health.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { ProductsModule } from './modules/products/products.module';
 
 @Module({
     imports: [
         ConfigModule,
+        // LogsModule.forRootAsync({
+        //     imports: [ConfigModule],
+        //     useExisting: LogsConfig,
+        // }),
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             useExisting: PostgresConfig,
@@ -18,6 +23,7 @@ import { ProductsModule } from './modules/products/products.module';
             imports: [ConfigModule],
             useExisting: AuthConfig,
         }),
+        HealthModule,
         BrandsModule,
         CategoriesModule,
         OrdersModule,

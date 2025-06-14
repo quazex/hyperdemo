@@ -1,17 +1,16 @@
-import { User, verifyToken, ClerkClient } from '@clerk/backend';
-import { AuthConfig } from '@config';
-import { Exception } from '@hyperdemo/core/modules/exception';
+import { User, verifyToken, ClerkClient, ClerkOptions } from '@clerk/backend';
+import { Exception } from '@hyperdemo/nestjs/modules/exception';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { FastifyRequest } from 'fastify';
 import { Strategy } from 'passport-custom';
-import { InjectAuth } from './auth.decorators';
+import { InjectAuthClient, InjectAuthOptions } from './auth.decorators';
 
 @Injectable()
 export class AuthStrategy extends PassportStrategy(Strategy, 'clerk') {
     constructor(
-        @InjectAuth() private readonly clerkClient: ClerkClient,
-        private readonly authConfig: AuthConfig,
+        @InjectAuthClient() private readonly clerkClient: ClerkClient,
+        @InjectAuthOptions() private readonly clerkOptions: ClerkOptions,
     ) {
         super();
     }
@@ -31,7 +30,7 @@ export class AuthStrategy extends PassportStrategy(Strategy, 'clerk') {
 
         try {
             const tokenPayload = await verifyToken(token, {
-                secretKey: this.authConfig.secretKey,
+                secretKey: this.clerkOptions.secretKey,
             });
 
             const user = await this.clerkClient.users.getUser(tokenPayload.sub);

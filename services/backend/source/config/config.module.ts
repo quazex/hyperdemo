@@ -1,4 +1,4 @@
-import { EnvironmentModule } from '@hyperdemo/core/modules/environment';
+import { EnvironmentModule } from '@hyperdemo/nestjs/modules/environment';
 import { Global, Module } from '@nestjs/common';
 import { AppConfig } from './app.config';
 import { AuthConfig } from './auth.config';

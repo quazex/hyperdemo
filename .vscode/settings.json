@@ -3,8 +3,10 @@
         "hyperdemo",
         "luxon",
         "quazex",
+        "radash",
         "restapi",
-        "Smirnov",
+        "smirnov",
+        "streamable",
         "syncpack",
         "timestamptz"
     ]
