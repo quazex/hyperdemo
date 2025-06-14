@@ -1,4 +1,4 @@
-import { HttpExceptionFilter } from '@hyperdemo/core/modules/exception';
+import { HttpExceptionFilter } from '@hyperdemo/nestjs/modules/exception';
 import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';

@@ -6,7 +6,7 @@
     "dependencies": {
         "@clerk/backend": "2.0.0",
         "@fastify/static": "8.2.0",
-        "@hyperdemo/core": "0.0.1",
+        "@hyperdemo/nestjs": "0.0.1",
         "@nestjs/common": "11.1.3",
         "@nestjs/core": "11.1.3",
         "@nestjs/passport": "11.0.5",

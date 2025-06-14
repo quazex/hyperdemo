@@ -1,5 +1,5 @@
 {
-    "name": "@hyperdemo/core",
+    "name": "@hyperdemo/nestjs",
     "description": "Shared modules for hyperdemo",
     "version": "0.0.1",
     "author": "Alexander Smirnov",
@@ -15,6 +15,7 @@
         "@nestjs/testing": "11.1.3",
         "@quazex/eslint-config": "1.0.2",
         "fastify": "5.3.3",
+        "radash": "12.1.0",
         "rxjs": "7.8.1",
         "ts-jest": "29.2.5",
         "ts-node": "10.9.2",

@@ -1,5 +1,5 @@
 import { TCategoriesDataSchema } from '@domain/schemas';
-import { Exception } from '@hyperdemo/core/modules/exception';
+import { Exception } from '@hyperdemo/nestjs/modules/exception';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { TCategoriesInfoFilters } from '../../types/filter.types';
 import { CategoriesInfoRepository } from '../integration/integration.repository';

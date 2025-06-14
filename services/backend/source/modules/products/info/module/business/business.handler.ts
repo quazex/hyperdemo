@@ -1,5 +1,5 @@
 import { TProductsDataSchema } from '@domain/schemas';
-import { Exception } from '@hyperdemo/core/modules/exception';
+import { Exception } from '@hyperdemo/nestjs/modules/exception';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { TProductsInfoFilters } from '../../types/filter.types';
 import { ProductsInfoRepository } from '../integration/integration.repository';

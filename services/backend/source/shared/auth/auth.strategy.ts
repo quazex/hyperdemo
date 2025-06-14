@@ -1,5 +1,5 @@
 import { User, verifyToken, ClerkClient, ClerkOptions } from '@clerk/backend';
-import { Exception } from '@hyperdemo/core/modules/exception';
+import { Exception } from '@hyperdemo/nestjs/modules/exception';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { FastifyRequest } from 'fastify';

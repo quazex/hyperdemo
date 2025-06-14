@@ -1,4 +1,4 @@
-import { Exception } from '@hyperdemo/core/modules/exception';
+import { Exception } from '@hyperdemo/nestjs/modules/exception';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { TOrdersInfoFilters } from '../../types/filters.types';
 import { OrdersInfoRepository } from '../integration/integration.repository';

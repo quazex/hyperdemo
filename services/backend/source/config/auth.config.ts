@@ -1,6 +1,6 @@
 import { TAuthOptionsFactory } from '@auth';
 import { ClerkOptions } from '@clerk/backend';
-import { Dotenv, InjectDotenv } from '@hyperdemo/core/modules/environment';
+import { Dotenv, InjectDotenv } from '@hyperdemo/nestjs/modules/environment';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
