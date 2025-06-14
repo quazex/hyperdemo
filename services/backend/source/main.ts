@@ -32,7 +32,7 @@ const bootstrap = async(): Promise<void> => {
         forbidNonWhitelisted: true,
     });
     const globalSerializer = new ClassSerializerInterceptor(appReflector, {
-        strategy: 'excludeAll',
+        strategy: 'exposeAll',
     });
 
 

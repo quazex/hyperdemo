@@ -7,18 +7,10 @@ import { Injectable } from '@nestjs/common';
 export class AuthConfig implements TAuthOptionsFactory {
     constructor(@InjectDotenv() private readonly env: Dotenv) {}
 
-    public get publishableKey(): string {
-        return this.env.get('CLERK_PUBLISHABLE_KEY').required().asString();
-    }
-
-    public get secretKey(): string {
-        return this.env.get('CLERK_SECRET_KEY').required().asString();
-    }
-
     public createAuthOptions(): ClerkOptions {
         return {
-            publishableKey: this.publishableKey,
-            secretKey: this.secretKey,
+            publishableKey: this.env.get('CLERK_PUBLISHABLE_KEY').required().asString(),
+            secretKey: this.env.get('CLERK_SECRET_KEY').required().asString(),
         };
     }
 }
