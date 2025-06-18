@@ -4,13 +4,13 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { FastifyRequest } from 'fastify';
 import { Strategy } from 'passport-custom';
-import { InjectAuthClient, InjectAuthOptions } from './auth.decorators';
+import { InjectClerkClient, InjectClerkOptions } from './clerk.decorators';
 
 @Injectable()
-export class AuthStrategy extends PassportStrategy(Strategy, 'clerk') {
+export class ClerkStrategy extends PassportStrategy(Strategy, 'clerk') {
     constructor(
-        @InjectAuthClient() private readonly clerkClient: ClerkClient,
-        @InjectAuthOptions() private readonly clerkOptions: ClerkOptions,
+        @InjectClerkClient() private readonly clerkClient: ClerkClient,
+        @InjectClerkOptions() private readonly clerkOptions: ClerkOptions,
     ) {
         super();
     }

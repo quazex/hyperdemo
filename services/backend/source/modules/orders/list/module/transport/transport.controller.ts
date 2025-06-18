@@ -1,4 +1,4 @@
-import { AuthGuard } from '@auth';
+import { ClerkGuard } from '@access/clerk';
 import { OrdersListRes, PaginationReq } from '@domain/restapi';
 import {
     Controller,
@@ -14,7 +14,7 @@ import { OrdersListService } from '../business/business.handler';
 
 @ApiTags('Orders')
 @ApiBearerAuth()
-@UseGuards(AuthGuard)
+@UseGuards(ClerkGuard)
 @Controller()
 export class OrdersListController {
     constructor(private readonly service: OrdersListService) {}

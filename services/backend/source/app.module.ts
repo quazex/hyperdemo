@@ -1,5 +1,5 @@
-import { AuthModule } from '@auth';
-import { ConfigModule, AuthConfig, PostgresConfig } from '@config';
+import { ClerkModule } from '@access/clerk';
+import { ConfigModule, ClerkConfig, PostgresConfig } from '@config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BrandsModule } from './modules/brands/brands.module';
@@ -11,17 +11,13 @@ import { ProductsModule } from './modules/products/products.module';
 @Module({
     imports: [
         ConfigModule,
-        // LogsModule.forRootAsync({
-        //     imports: [ConfigModule],
-        //     useExisting: LogsConfig,
-        // }),
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             useExisting: PostgresConfig,
         }),
-        AuthModule.forRootAsync({
+        ClerkModule.forRootAsync({
             imports: [ConfigModule],
-            useExisting: AuthConfig,
+            useExisting: ClerkConfig,
         }),
         HealthModule,
         BrandsModule,

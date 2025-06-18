@@ -1,56 +1,56 @@
 import { ClerkOptions } from '@clerk/backend';
 import { DynamicModule } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
-import { AuthGuard } from './auth.guard';
-import { TAuthAsyncOptions } from './auth.interfaces';
-import { AuthProviders } from './auth.providers';
-import { AuthStrategy } from './auth.strategy';
+import { ClerkGuard } from './clerk.guard';
+import { TClerkAsyncOptions } from './clerk.interfaces';
+import { ClerkProviders } from './clerk.providers';
+import { ClerkStrategy } from './clerk.strategy';
 
-export class AuthModule {
+export class ClerkModule {
     public static forRoot(config: ClerkOptions): DynamicModule {
-        const optionsProvider = AuthProviders.getOptions(config);
-        const clientProvider = AuthProviders.getClient();
+        const optionsProvider = ClerkProviders.getOptions(config);
+        const clientProvider = ClerkProviders.getClient();
 
         const dynamicModule: DynamicModule = {
             global: true,
-            module: AuthModule,
+            module: ClerkModule,
             imports: [
                 PassportModule.register({}),
             ],
             providers: [
                 optionsProvider,
                 clientProvider,
-                AuthStrategy,
-                AuthGuard,
+                ClerkStrategy,
+                ClerkGuard,
             ],
             exports: [
-                AuthStrategy,
-                AuthGuard,
+                ClerkStrategy,
+                ClerkGuard,
             ],
         };
         return dynamicModule;
     }
 
 
-    public static forRootAsync(asyncOptions: TAuthAsyncOptions): DynamicModule {
-        const optionsProvider = AuthProviders.getAsyncOptions(asyncOptions);
-        const clientProvider = AuthProviders.getClient();
+    public static forRootAsync(asyncOptions: TClerkAsyncOptions): DynamicModule {
+        const optionsProvider = ClerkProviders.getAsyncOptions(asyncOptions);
+        const clientProvider = ClerkProviders.getClient();
 
         const dynamicModule: DynamicModule = {
             global: true,
-            module: AuthModule,
+            module: ClerkModule,
             imports: [
                 PassportModule.register({}),
             ],
             providers: [
                 optionsProvider,
                 clientProvider,
-                AuthStrategy,
-                AuthGuard,
+                ClerkStrategy,
+                ClerkGuard,
             ],
             exports: [
-                AuthStrategy,
-                AuthGuard,
+                ClerkStrategy,
+                ClerkGuard,
             ],
         };
 

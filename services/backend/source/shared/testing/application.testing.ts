@@ -1,4 +1,4 @@
-import { AuthGuard } from '@auth';
+import { ClerkGuard } from '@access/clerk';
 import { jest } from '@jest/globals';
 import { ModuleMetadata, ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
@@ -19,7 +19,7 @@ export class TestingApplication {
 
         const tBuilder = Test
             .createTestingModule(metadata)
-            .overrideGuard(AuthGuard).useValue({
+            .overrideGuard(ClerkGuard).useValue({
                 canActivate: jest.fn<never>().mockResolvedValue(true),
             });
 
