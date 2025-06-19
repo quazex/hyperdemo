@@ -25,3 +25,5 @@ export * from './products/analytics.response';
 export * from './products/data.response';
 export * from './products/list.response';
 export * from './products/primary.request';
+
+export * from './users/data.response';

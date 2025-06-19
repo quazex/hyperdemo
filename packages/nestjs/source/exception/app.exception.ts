@@ -86,6 +86,15 @@ export class Exception extends HttpException {
             }
         }
 
+        if (error instanceof AggregateError) {
+            return new Exception({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: error.errors.join('; '),
+                context,
+                stack: error.stack,
+            });
+        }
+
         if (error instanceof Error) {
             return new Exception({
                 status: HttpStatus.INTERNAL_SERVER_ERROR,

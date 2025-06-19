@@ -23,6 +23,7 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
     constructor(@InjectDotenv() private readonly env: Dotenv) {}
 
     public createTypeOrmOptions(): TypeOrmModuleOptions {
+        const connectTimeout = this.env.get('POSTGRES_TIMEOUT').default('10000').asIntPositive();
         return {
             type: 'postgres',
             host: this.env.get('POSTGRES_HOST').required().asString(),
@@ -31,6 +32,7 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
             password: this.env.get('POSTGRES_PASSWORD').required().asString(),
             database: this.env.get('POSTGRES_DATABASE').required().asString(),
             ssl: this.env.get('POSTGRES_SECURE').default('false').asBoolStrict(),
+            connectTimeoutMS: connectTimeout,
             entities: [
                 BrandsAnalyticsEntity,
                 BrandsDataEntity,
@@ -49,7 +51,7 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
             migrationsRun: false,
             synchronize: false,
             cache: false,
-            retryAttempts: 2,
+            retryDelay: connectTimeout,
             verboseRetryLog: false,
         };
     }

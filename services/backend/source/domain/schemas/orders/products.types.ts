@@ -1,6 +1,6 @@
 import { TBrandsShortSchema } from '../brands/short.types';
 import { TCategoriesShortSchema } from '../categories/short.types';
-import { TProductsImageSchema } from '../products/images.schema';
+import { TProductsImageSchema } from '../products/images.types';
 
 export interface TOrdersProductsSchema {
     product_id: string;

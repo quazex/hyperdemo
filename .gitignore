@@ -22,6 +22,10 @@ services/**/migration*
 # Environment (ignore only specific files)
 .env.*
 
+# Keys
+*.key
+*.pem
+
 # Logs
 *.log
 npm-debug.log*
