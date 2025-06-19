@@ -8,7 +8,7 @@ import {
     ViewEntity,
 } from 'typeorm';
 import { OrdersDataEntity } from './data.entity';
-import { OrdersProductsEntity } from './orders.entity';
+import { OrdersProductsEntity } from './products.entity';
 
 @ViewEntity({
     name: 'orders_statistics',

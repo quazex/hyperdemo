@@ -7,9 +7,12 @@ export * from './categories/data.entity';
 export * from './categories/statistics.entity';
 
 export * from './orders/data.entity';
+export * from './orders/products.entity';
 export * from './orders/statistics.entity';
 
 export * from './products/analytics.entity';
 export * from './products/data.entity';
 export * from './products/images.entity';
-export * from './orders/orders.entity';
+
+export * from './users/data.entity';
+export * from './users/sessions.entity';

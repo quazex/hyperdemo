@@ -1,6 +1,7 @@
 import { ClerkModule } from '@access/clerk';
 import { ConfigModule, ClerkConfig, PostgresConfig } from '@config';
 import { Module } from '@nestjs/common';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BrandsModule } from './modules/brands/brands.module';
 import { CategoriesModule } from './modules/categories/categories.module';
@@ -14,6 +15,9 @@ import { ProductsModule } from './modules/products/products.module';
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             useExisting: PostgresConfig,
+        }),
+        EventEmitterModule.forRoot({
+            global: true,
         }),
         ClerkModule.forRootAsync({
             imports: [ConfigModule],

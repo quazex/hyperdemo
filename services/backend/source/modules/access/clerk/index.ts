@@ -3,6 +3,6 @@ export * from './clerk.guard';
 export * from './clerk.interfaces';
 export * from './clerk.module';
 export * from './clerk.providers';
-export * from './clerk.session';
 export * from './clerk.strategy';
 export * from './clerk.tokens';
+export * from './clerk.user';

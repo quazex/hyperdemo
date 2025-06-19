@@ -5,7 +5,7 @@ import {
     ViewEntity,
     UpdateDateColumn,
 } from 'typeorm';
-import { OrdersProductsEntity } from '../orders/orders.entity';
+import { OrdersProductsEntity } from '../orders/products.entity';
 import { ProductsDataEntity } from '../products/data.entity';
 
 @ViewEntity({
