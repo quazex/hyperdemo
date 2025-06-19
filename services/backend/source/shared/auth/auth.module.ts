@@ -24,6 +24,7 @@ export class AuthModule {
                 AuthGuard,
             ],
             exports: [
+                clientProvider,
                 AuthStrategy,
                 AuthGuard,
             ],
@@ -49,6 +50,7 @@ export class AuthModule {
                 AuthGuard,
             ],
             exports: [
+                clientProvider,
                 AuthStrategy,
                 AuthGuard,
             ],

@@ -2,6 +2,7 @@ import { AuthModule } from '@auth';
 import { ConfigModule, AuthConfig, PostgresConfig } from '@config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from 'modules/users/users.module';
 import { BrandsModule } from './modules/brands/brands.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { HealthModule } from './modules/health/health.module';
@@ -11,10 +12,6 @@ import { ProductsModule } from './modules/products/products.module';
 @Module({
     imports: [
         ConfigModule,
-        // LogsModule.forRootAsync({
-        //     imports: [ConfigModule],
-        //     useExisting: LogsConfig,
-        // }),
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             useExisting: PostgresConfig,
@@ -24,6 +21,7 @@ import { ProductsModule } from './modules/products/products.module';
             useExisting: AuthConfig,
         }),
         HealthModule,
+        UsersModule,
         BrandsModule,
         CategoriesModule,
         OrdersModule,

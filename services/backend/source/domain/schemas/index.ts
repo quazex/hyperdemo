@@ -10,5 +10,7 @@ export * from './orders/data.types';
 export * from './orders/products.types';
 
 export * from './products/analytics.types';
-export * from './products/data.schema';
-export * from './products/images.schema';
+export * from './products/data.types';
+export * from './products/images.types';
+
+export * from './users/data.types';

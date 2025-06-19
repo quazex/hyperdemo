@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { User } from '@clerk/backend';
+import { JwtPayload } from '@clerk/types';
 
 declare module 'fastify' {
     export interface FastifyRequest {
-        user: User;
+        user: NonNullable<JwtPayload>;
     }
 }
