@@ -1,19 +1,19 @@
 import { createClerkClient, ClerkClient, ClerkOptions } from '@clerk/backend';
 import { FactoryProvider, Provider, ValueProvider } from '@nestjs/common';
-import { TAuthAsyncOptions, TAuthOptionsFactory } from './auth.interfaces';
-import { AuthTokens } from './auth.tokens';
+import { TClerkAsyncOptions, TClerkOptionsFactory } from './clerk.interfaces';
+import { ClerkTokens } from './clerk.tokens';
 
-export class AuthProviders {
+export class ClerkProviders {
     public static getOptions(options: ClerkOptions): ValueProvider<ClerkOptions> {
-        const optionsToken = AuthTokens.getOptions();
+        const optionsToken = ClerkTokens.getOptions();
         return {
             provide: optionsToken,
             useValue: options,
         };
     }
 
-    public static getAsyncOptions(options: TAuthAsyncOptions): Provider<ClerkOptions> {
-        const optionsToken = AuthTokens.getOptions();
+    public static getAsyncOptions(options: TClerkAsyncOptions): Provider<ClerkOptions> {
+        const optionsToken = ClerkTokens.getOptions();
         if (options.useFactory) {
             return {
                 provide: optionsToken,
@@ -24,8 +24,8 @@ export class AuthProviders {
         if (options.useExisting) {
             return {
                 provide: optionsToken,
-                useFactory: async(factory: TAuthOptionsFactory): Promise<ClerkOptions> => {
-                    const client = await factory.createAuthOptions();
+                useFactory: async(factory: TClerkOptionsFactory): Promise<ClerkOptions> => {
+                    const client = await factory.createClerkOptions();
                     return client;
                 },
                 inject: [options.useExisting],
@@ -35,8 +35,8 @@ export class AuthProviders {
     }
 
     public static getClient(): FactoryProvider<ClerkClient> {
-        const optionsToken = AuthTokens.getOptions();
-        const clientToken = AuthTokens.getClient();
+        const optionsToken = ClerkTokens.getOptions();
+        const clientToken = ClerkTokens.getClient();
         return {
             provide: clientToken,
             useFactory: (config: ClerkOptions) => {

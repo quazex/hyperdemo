@@ -1,3 +1,4 @@
+import fastifyCookie from '@fastify/cookie';
 import { HttpExceptionFilter } from '@hyperdemo/nestjs/modules/exception';
 import { LogsRequestsInterceptor } from '@logs';
 import {
@@ -57,6 +58,9 @@ const bootstrap = async(): Promise<void> => {
         depth: 2,
     });
 
+    await app.register(fastifyCookie, {
+        secret: 'my-secret', // for cookies signature
+    });
 
     app.useLogger(logger);
     app.useGlobalInterceptors(logsInterceptor);

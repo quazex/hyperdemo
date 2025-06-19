@@ -5,15 +5,19 @@
     "author": "Alexander Smirnov",
     "dependencies": {
         "@clerk/backend": "2.0.0",
+        "@fastify/cookie": "11.0.2",
         "@fastify/static": "8.2.0",
         "@hyperdemo/nestjs": "0.0.1",
         "@nestjs/common": "11.1.3",
         "@nestjs/core": "11.1.3",
+        "@nestjs/event-emitter": "3.0.1",
+        "@nestjs/jwt": "11.0.0",
         "@nestjs/passport": "11.0.5",
         "@nestjs/platform-fastify": "11.1.3",
         "@nestjs/swagger": "11.2.0",
         "@nestjs/terminus": "11.0.0",
         "@nestjs/typeorm": "11.0.0",
+        "axios": "1.10.0",
         "bytes": "3.1.2",
         "class-transformer": "0.5.1",
         "class-validator": "0.14.1",
@@ -25,7 +29,8 @@
         "pg": "8.16.0",
         "rxjs": "7.8.1",
         "swagger": "0.7.5",
-        "typeorm": "0.3.24"
+        "typeorm": "0.3.24",
+        "uuid": "11.1.0"
     },
     "devDependencies": {
         "@faker-js/faker": "9.6.0",

@@ -1,4 +1,4 @@
-import { AuthGuard } from '@auth';
+import { ClerkGuard } from '@access/clerk';
 import { BrandsAnalyticsReq, BrandsAnalyticsRes, BrandsPrimaryReq } from '@domain/restapi';
 import {
     Controller,
@@ -15,7 +15,7 @@ import { BrandsAnalyticsService } from '../business/business.handler';
 
 @ApiTags('Brands')
 @ApiBearerAuth()
-@UseGuards(AuthGuard)
+@UseGuards(ClerkGuard)
 @Controller()
 export class BrandsAnalyticsController {
     constructor(private readonly service: BrandsAnalyticsService) {}
@@ -32,11 +32,11 @@ export class BrandsAnalyticsController {
         @Param() params: BrandsPrimaryReq,
         @Query() query: BrandsAnalyticsReq,
     ): Promise<BrandsAnalyticsRes[]> {
-        const entities = await this.service.getList({
+        const models = await this.service.getList({
             brand_id: params.brand_id,
             date_from: query.date_from,
             date_to: query.date_to,
         });
-        return BrandsAnalyticsRes.init(entities);
+        return BrandsAnalyticsRes.init(models);
     }
 }

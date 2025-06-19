@@ -1,6 +1,5 @@
 import { BrandsAnalyticsEntity } from '@domain/database';
 import { BrandsAnalyticsModel } from '@domain/models';
-import { TBrandsAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
@@ -31,11 +30,7 @@ export class BrandsAnalyticsRepository {
             },
         });
 
-        const schemas = rows.map<TBrandsAnalyticsSchema>((row) => {
-            const model = BrandsAnalyticsModel.fromEntity(row);
-            return model.toSchema();
-        });
-
+        const schemas = rows.map((row) => BrandsAnalyticsModel.fromEntity(row));
         return schemas;
     }
 }

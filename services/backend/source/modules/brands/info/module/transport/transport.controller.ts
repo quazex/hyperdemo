@@ -1,4 +1,4 @@
-import { AuthGuard } from '@auth';
+import { ClerkGuard } from '@access/clerk';
 import { BrandsDataRes, BrandsPrimaryReq } from '@domain/restapi';
 import {
     Controller,
@@ -14,7 +14,7 @@ import { BrandsInfoService } from '../business/business.handler';
 
 @ApiTags('Brands')
 @ApiBearerAuth()
-@UseGuards(AuthGuard)
+@UseGuards(ClerkGuard)
 @Controller()
 export class BrandsInfoController {
     constructor(private readonly service: BrandsInfoService) {}
