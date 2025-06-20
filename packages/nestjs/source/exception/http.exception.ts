@@ -12,15 +12,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const request = context.getRequest<FastifyRequest>();
         const response = context.getResponse<FastifyReply>();
 
-        const exception = Exception.init(error, {
+        const exception = Exception.init(error);
+
+        this.logger.error(exception.message, exception.meta, {
             url: request.url,
             method: request.method,
             body: request.body ?? null,
             query: request.query ?? null,
             params: request.params ?? null,
         });
-
-        this.logger.error(exception.message, exception.meta);
 
         const status = exception.getStatus();
         const payload = exception.getResponse();

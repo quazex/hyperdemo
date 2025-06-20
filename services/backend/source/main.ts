@@ -1,5 +1,4 @@
 import { HttpExceptionFilter } from '@hyperdemo/nestjs/modules/exception';
-import { LogsRequestsInterceptor } from '@logs';
 import {
     ClassSerializerInterceptor,
     ConsoleLogger,
@@ -49,8 +48,6 @@ const bootstrap = async(): Promise<void> => {
         strategy: 'exposeAll',
     });
 
-    const logsInterceptor = new LogsRequestsInterceptor();
-
     const logger = new ConsoleLogger({
         compact: true,
         json: appConfig.production,
@@ -59,7 +56,6 @@ const bootstrap = async(): Promise<void> => {
 
 
     app.useLogger(logger);
-    app.useGlobalInterceptors(logsInterceptor);
     app.useGlobalInterceptors(globalSerializer);
     app.useGlobalFilters(globalFilter);
     app.useGlobalPipes(globalPipe);

@@ -1,3 +1,7 @@
+export interface TLogsMetadata {
+    skip?: boolean;
+}
+
 export interface TLogsMessage {
     url: string;
     method: string;

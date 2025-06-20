@@ -40,7 +40,7 @@ export class Exception extends HttpException {
         };
     }
 
-    public static init(error: unknown, context?: unknown): Exception {
+    public static init(error: unknown): Exception {
         if (error instanceof Exception) {
             return error;
         }
@@ -64,7 +64,7 @@ export class Exception extends HttpException {
                 return new Exception({
                     status,
                     message: response.message.join('; '),
-                    context,
+                    context: error.message,
                     stack: error.stack,
                 });
             }
@@ -72,7 +72,7 @@ export class Exception extends HttpException {
                 return new Exception({
                     status,
                     message: response.message,
-                    context,
+                    context: error.message,
                     stack: error.stack,
                 });
             }
@@ -80,7 +80,7 @@ export class Exception extends HttpException {
                 return new Exception({
                     status,
                     message: response,
-                    context,
+                    context: error.message,
                     stack: error.stack,
                 });
             }
@@ -89,8 +89,8 @@ export class Exception extends HttpException {
         if (error instanceof AggregateError) {
             return new Exception({
                 status: HttpStatus.INTERNAL_SERVER_ERROR,
-                message: error.errors.join('; '),
-                context,
+                message: 'Something goes wrong',
+                context: error.errors.join('; '),
                 stack: error.stack,
             });
         }
@@ -98,8 +98,8 @@ export class Exception extends HttpException {
         if (error instanceof Error) {
             return new Exception({
                 status: HttpStatus.INTERNAL_SERVER_ERROR,
-                message: error.message,
-                context,
+                message: 'Something goes wrong',
+                context: error.message,
                 stack: error.stack,
             });
         }
@@ -107,15 +107,15 @@ export class Exception extends HttpException {
         if (typeof error === 'string') {
             return new Exception({
                 status: HttpStatus.INTERNAL_SERVER_ERROR,
-                context,
-                message: error,
+                message: 'Something goes wrong',
+                context: error,
             });
         }
 
         return new Exception({
             status: HttpStatus.INTERNAL_SERVER_ERROR,
-            context,
-            message: 'Unknown error',
+            message: 'Something goes wrong',
+            context: error,
         });
     }
 }
