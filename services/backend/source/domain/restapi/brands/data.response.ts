@@ -1,3 +1,4 @@
+import { BrandsDataModel } from '@domain/models';
 import { TBrandsDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
@@ -18,7 +19,8 @@ export class BrandsDataRes implements TBrandsDataSchema {
     @ApiProperty({ minimum: 0 })
     public feedbacks: number;
 
-    public static init(doc: TBrandsDataSchema): BrandsDataRes {
-        return plainToInstance(BrandsDataRes, doc);
+    public static init(model: BrandsDataModel): BrandsDataRes {
+        const schema = model.toSchema();
+        return plainToInstance(BrandsDataRes, schema);
     }
 }

@@ -1,5 +1,5 @@
 import { ViewConfig } from '@config';
-import { TOrdersProductsPagination } from '@domain/restapi';
+import { OrdersProductsListModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
 import { TOrdersProductsFilters } from '../../types/filters.types';
 import { OrdersProductsRepository } from '../integration/integration.repository';
@@ -11,20 +11,19 @@ export class OrdersProductsService {
         private readonly repository: OrdersProductsRepository,
     ) {}
 
-    public async getList(filters: TOrdersProductsFilters) {
-        const total = await this.repository.count(filters);
-        const pages = Math.ceil(total / this.viewConfig.itemsPerPage);
+    public async getList(filters: TOrdersProductsFilters): Promise<OrdersProductsListModel> {
+        const model = OrdersProductsListModel.init();
 
-        const result: TOrdersProductsPagination = {
-            rows: [],
-            total,
-            pages,
-        };
+        const total = await this.repository.count(filters.order_id);
+        const pages = Math.ceil(model.total / this.viewConfig.itemsPerPage);
 
-        if (filters.page <= pages) {
-            result.rows = await this.repository.getProducts(filters);
+        model.total = total;
+        model.pages = pages;
+
+        if (filters.page <= model.pages) {
+            model.list = await this.repository.getList(filters);
         }
 
-        return result;
+        return model;
     }
 }

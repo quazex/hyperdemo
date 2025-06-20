@@ -32,11 +32,11 @@ export class ProductsAnalyticsController {
         @Param() params: ProductsPrimaryReq,
         @Query() query: ProductsAnalyticsReq,
     ): Promise<ProductsAnalyticsRes[]> {
-        const entities = await this.service.getList({
+        const models = await this.service.getList({
             product_id: params.product_id,
             date_from: query.date_from,
             date_to: query.date_to,
         });
-        return ProductsAnalyticsRes.init(entities);
+        return ProductsAnalyticsRes.init(models);
     }
 }

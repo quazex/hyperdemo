@@ -1,7 +1,6 @@
 import { ViewConfig } from '@config';
 import { OrdersStatisticsEntity } from '@domain/database';
 import { OrdersDataModel } from '@domain/models';
-import { TOrdersDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -20,7 +19,7 @@ export class OrdersListRepository {
         return result;
     }
 
-    public async getOrders(filters: TOrdersListFilters): Promise<TOrdersDataSchema[]> {
+    public async getList(filters: TOrdersListFilters): Promise<OrdersDataModel[]> {
         const rows = await this.repository.find({
             select: [
                 'order_id',
@@ -38,11 +37,7 @@ export class OrdersListRepository {
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<TOrdersDataSchema>((row) => {
-            const model = OrdersDataModel.fromStatistic(row);
-            return model.toSchema();
-        });
-
-        return schemas;
+        const models = rows.map((row) => OrdersDataModel.fromStatistic(row));
+        return models;
     }
 }

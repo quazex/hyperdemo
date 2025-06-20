@@ -29,8 +29,7 @@ export class OrdersInfoRepository {
         });
 
         if (row) {
-            const model = OrdersDataModel.fromStatistic(row);
-            return model.toSchema();
+            return OrdersDataModel.fromStatistic(row);
         }
 
         return null;

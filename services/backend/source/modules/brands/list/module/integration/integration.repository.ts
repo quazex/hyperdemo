@@ -1,7 +1,6 @@
 import { ViewConfig } from '@config';
 import { BrandsStatisticsEntity } from '@domain/database';
 import { BrandsDataModel } from '@domain/models';
-import { TBrandsDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -20,7 +19,7 @@ export class BrandsListRepository {
         return result;
     }
 
-    public async getList(filters: TBrandsListFilters) {
+    public async getList(filters: TBrandsListFilters): Promise<BrandsDataModel[]> {
         const rows = await this.repository.find({
             select: [
                 'brand_id',
@@ -38,11 +37,7 @@ export class BrandsListRepository {
             skip: this.viewConfig.itemsPerPage * (filters.page - 1),
         });
 
-        const schemas = rows.map<TBrandsDataSchema>((row) => {
-            const model = BrandsDataModel.fromStatistic(row);
-            return model.toSchema();
-        });
-
+        const schemas = rows.map((row) => BrandsDataModel.fromStatistic(row));
         return schemas;
     }
 }

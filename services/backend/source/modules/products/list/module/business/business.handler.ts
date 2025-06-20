@@ -1,5 +1,5 @@
 import { ViewConfig } from '@config';
-import { TProductsPagination } from '@domain/restapi';
+import { ProductsListModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
 import { TProductsListFilters } from '../../types/filters.types';
 import { ProductsListRepository } from '../integration/integration.repository';
@@ -12,19 +12,18 @@ export class ProductsListService {
     ) {}
 
     public async getList(filters: TProductsListFilters) {
+        const model = ProductsListModel.init();
+
         const total = await this.repository.count();
-        const pages = Math.ceil(total / this.viewConfig.itemsPerPage);
+        const pages = Math.ceil(model.total / this.viewConfig.itemsPerPage);
 
-        const result: TProductsPagination = {
-            rows: [],
-            total,
-            pages,
-        };
+        model.total = total;
+        model.pages = pages;
 
-        if (filters.page <= pages) {
-            result.rows = await this.repository.getProducts(filters);
+        if (filters.page <= model.pages) {
+            model.list = await this.repository.getList(filters);
         }
 
-        return result;
+        return model;
     }
 }

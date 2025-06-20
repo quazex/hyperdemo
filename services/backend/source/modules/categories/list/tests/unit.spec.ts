@@ -1,4 +1,4 @@
-import { TCategoriesPagination } from '@domain/restapi';
+import { TCategoriesListSchema } from '@domain/schemas';
 import { afterAll, beforeAll, describe, expect, test } from '@jest/globals';
 import { HttpStatus } from '@nestjs/common';
 import { TestingUnitMock } from './unit.mock';
@@ -26,7 +26,7 @@ describe('Categories List Unit', () => {
                 page: '1',
             },
         });
-        const body = response.json() as TCategoriesPagination;
+        const body = response.json() as TCategoriesListSchema;
 
         expect(response.statusCode).toBe(HttpStatus.OK);
         expect(body.total).toBe(testingApp.entities.length);

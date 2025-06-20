@@ -1,12 +1,10 @@
-import { TPaginationRes } from '@domain/restapi';
-import { TCategoriesDataSchema } from '@domain/schemas';
+import { CategoriesListModel } from '@domain/models';
+import { TCategoriesListSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance, Type } from 'class-transformer';
 import { CategoriesDataRes } from './data.response';
 
-export type TCategoriesPagination = TPaginationRes<TCategoriesDataSchema>;
-
-export class CategoriesListRes implements TCategoriesPagination {
+export class CategoriesListRes implements TCategoriesListSchema {
     @ApiProperty({ minimum: 0 })
     public total: number;
 
@@ -16,7 +14,8 @@ export class CategoriesListRes implements TCategoriesPagination {
     @Type(() => CategoriesDataRes)
     public rows: CategoriesDataRes[];
 
-    public static init(data: TCategoriesPagination): CategoriesListRes {
-        return plainToInstance(CategoriesListRes, data);
+    public static init(model: CategoriesListModel): CategoriesListRes {
+        const schema = model.toSchema();
+        return plainToInstance(CategoriesListRes, schema);
     }
 }

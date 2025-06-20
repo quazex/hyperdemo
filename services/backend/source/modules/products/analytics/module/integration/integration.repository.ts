@@ -1,6 +1,5 @@
 import { ProductsAnalyticsEntity } from '@domain/database';
 import { ProductsAnalyticsModel } from '@domain/models';
-import { TProductsAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
@@ -31,11 +30,7 @@ export class ProductsAnalyticsRepository {
             },
         });
 
-        const schemas = rows.map<TProductsAnalyticsSchema>((row) => {
-            const model = ProductsAnalyticsModel.fromEntity(row);
-            return model.toSchema();
-        });
-
+        const schemas = rows.map((row) => ProductsAnalyticsModel.fromEntity(row));
         return schemas;
     }
 }

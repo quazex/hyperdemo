@@ -27,8 +27,7 @@ export class BrandsInfoRepository {
         });
 
         if (row) {
-            const model = BrandsDataModel.fromStatistic(row);
-            return model.toSchema();
+            return BrandsDataModel.fromStatistic(row);
         }
 
         return null;

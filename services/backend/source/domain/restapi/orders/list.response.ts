@@ -1,12 +1,10 @@
-import { TOrdersDataSchema } from '@domain/schemas';
+import { OrdersListModel } from '@domain/models';
+import { TOrdersListSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance, Type } from 'class-transformer';
-import { TPaginationRes } from '../pagination/pagination.response';
 import { OrdersDataRes } from './data.response';
 
-export type TOrdersPagination = TPaginationRes<TOrdersDataSchema>;
-
-export class OrdersListRes implements TOrdersPagination {
+export class OrdersListRes implements TOrdersListSchema {
     @ApiProperty({ minimum: 0 })
     public total: number;
 
@@ -16,7 +14,8 @@ export class OrdersListRes implements TOrdersPagination {
     @Type(() => OrdersDataRes)
     public rows: OrdersDataRes[];
 
-    public static init(data: TOrdersPagination): OrdersListRes {
-        return plainToInstance(OrdersListRes, data);
+    public static init(model: OrdersListModel): OrdersListRes {
+        const schema = model.toSchema();
+        return plainToInstance(OrdersListRes, schema);
     }
 }

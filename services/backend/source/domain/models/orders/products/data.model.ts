@@ -1,15 +1,15 @@
 import { OrdersProductsEntity } from '@domain/database';
-import { TOrdersProductsSchema, TProductsImageSchema } from '@domain/schemas';
+import { TOrdersProductsDataSchema, TProductsImageSchema } from '@domain/schemas';
 
-export class OrdersProductsModel {
-    #schema: TOrdersProductsSchema;
+export class OrdersProductsDataModel {
+    #schema: TOrdersProductsDataSchema;
 
-    private constructor(schema: TOrdersProductsSchema) {
+    private constructor(schema: TOrdersProductsDataSchema) {
         this.#schema = schema;
     }
 
     public static fromEntity(entity: OrdersProductsEntity) {
-        return new OrdersProductsModel({
+        return new OrdersProductsDataModel({
             product_id: entity.product_id,
             name: entity.product.name,
             description: entity.product.description,
@@ -32,7 +32,7 @@ export class OrdersProductsModel {
         });
     }
 
-    public toSchema(): TOrdersProductsSchema {
+    public toSchema(): TOrdersProductsDataSchema {
         return this.#schema;
     }
 }

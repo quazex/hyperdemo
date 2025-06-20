@@ -27,8 +27,7 @@ export class CategoriesInfoRepository {
         });
 
         if (row) {
-            const model = CategoriesDataModel.fromStatistic(row);
-            return model.toSchema();
+            return CategoriesDataModel.fromStatistic(row);
         }
 
         return null;

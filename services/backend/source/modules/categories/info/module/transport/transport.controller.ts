@@ -30,9 +30,9 @@ export class CategoriesInfoController {
     public async getInfo(
         @Param() params: CategoriesPrimaryReq,
     ): Promise<CategoriesDataRes> {
-        const entity = await this.service.getInfo({
+        const model = await this.service.getInfo({
             category_id: params.category_id,
         });
-        return CategoriesDataRes.init(entity);
+        return CategoriesDataRes.init(model);
     }
 }

@@ -31,9 +31,9 @@ export class OrdersInfoController {
     public async getOne(
         @Param() query: OrdersPrimaryReq,
     ): Promise<OrdersDataRes> {
-        const doc = await this.service.getInfo({
+        const model = await this.service.getInfo({
             order_id: query.order_id,
         });
-        return OrdersDataRes.init(doc);
+        return OrdersDataRes.init(model);
     }
 }
