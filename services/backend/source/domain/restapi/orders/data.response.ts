@@ -1,3 +1,4 @@
+import { OrdersDataModel } from '@domain/models';
 import { TOrdersDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
@@ -23,7 +24,8 @@ export class OrdersDataRes implements TOrdersDataSchema {
     @ApiProperty({ example: '2024-07-01T12:34:56Z' })
     public updated_at: string;
 
-    public static init(data: TOrdersDataSchema): OrdersDataRes {
-        return plainToInstance(OrdersDataRes, data);
+    public static init(model: OrdersDataModel): OrdersDataRes {
+        const schema = model.toSchema();
+        return plainToInstance(OrdersDataRes, schema);
     }
 }

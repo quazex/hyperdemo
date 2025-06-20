@@ -11,7 +11,7 @@ import { CategoriesInfoController } from '../module/transport/transport.controll
 export class TestingUnitMock extends TestingApplication {
     public readonly entity = CategoriesStatisticsFactory.getOne();
 
-    public override async init() {
+    public override async init(): Promise<void> {
         const tRepository: ValueProvider = {
             provide: getRepositoryToken(CategoriesStatisticsEntity),
             useValue: {

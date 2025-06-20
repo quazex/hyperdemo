@@ -1,7 +1,6 @@
 import { ViewConfig } from '@config';
 import { BrandsStatisticsEntity } from '@domain/database';
 import { BrandsDataModel } from '@domain/models';
-import { TBrandsDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -15,12 +14,12 @@ export class BrandsListRepository {
         private readonly viewConfig: ViewConfig,
     ) {}
 
-    public async count() {
+    public async count(): Promise<number> {
         const result = await this.repository.count();
         return result;
     }
 
-    public async getList(filters: TBrandsListFilters) {
+    public async getList(filters: TBrandsListFilters): Promise<BrandsDataModel[]> {
         const rows = await this.repository.find({
             select: [
                 'brand_id',
@@ -34,15 +33,11 @@ export class BrandsListRepository {
                 feedbacks: 'DESC',
                 brand_id: 'ASC',
             },
-            take: this.viewConfig.itemsPerPage,
-            skip: this.viewConfig.itemsPerPage * (filters.page - 1),
+            take: this.viewConfig.items_per_page,
+            skip: this.viewConfig.items_per_page * (filters.page - 1),
         });
 
-        const schemas = rows.map<TBrandsDataSchema>((row) => {
-            const model = BrandsDataModel.fromStatistic(row);
-            return model.toSchema();
-        });
-
-        return schemas;
+        const models = rows.map((row) => BrandsDataModel.fromStatistic(row));
+        return models;
     }
 }

@@ -1,6 +1,5 @@
 import { ProductsAnalyticsEntity } from '@domain/database';
 import { ProductsAnalyticsModel } from '@domain/models';
-import { TProductsAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
@@ -13,7 +12,7 @@ export class ProductsAnalyticsRepository {
         private readonly repository: Repository<ProductsAnalyticsEntity>,
     ) {}
 
-    public async getList(filters: TProductsAnalyticsFilters) {
+    public async getList(filters: TProductsAnalyticsFilters): Promise<ProductsAnalyticsModel[]> {
         const dateFrom = filters.date_from.toSQL({ includeOffset: false });
         const dateTo = filters.date_to.toSQL({ includeOffset: false });
 
@@ -31,11 +30,7 @@ export class ProductsAnalyticsRepository {
             },
         });
 
-        const schemas = rows.map<TProductsAnalyticsSchema>((row) => {
-            const model = ProductsAnalyticsModel.fromEntity(row);
-            return model.toSchema();
-        });
-
-        return schemas;
+        const models = rows.map((row) => ProductsAnalyticsModel.fromEntity(row));
+        return models;
     }
 }

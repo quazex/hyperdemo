@@ -1,6 +1,5 @@
 import { ProductsDataEntity } from '@domain/database';
 import { ProductsDataModel } from '@domain/models';
-import { TProductsDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -13,7 +12,7 @@ export class ProductsInfoRepository {
         private readonly repository: Repository<ProductsDataEntity>,
     ) {}
 
-    public async getInfo(filters: TProductsInfoFilters): Promise<TProductsDataSchema | null> {
+    public async getInfo(filters: TProductsInfoFilters): Promise<ProductsDataModel | null> {
         const row = await this.repository.findOne({
             select: [
                 'product_id',
@@ -36,8 +35,7 @@ export class ProductsInfoRepository {
         });
 
         if (row) {
-            const model = ProductsDataModel.fromEntity(row);
-            return model.toSchema();
+            return ProductsDataModel.fromEntity(row);
         }
 
         return null;

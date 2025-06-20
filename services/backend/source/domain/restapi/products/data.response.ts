@@ -1,3 +1,4 @@
+import { ProductsDataModel } from '@domain/models';
 import { TProductsDataSchema } from '@domain/schemas';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance, Type } from 'class-transformer';
@@ -28,7 +29,8 @@ export class ProductsDataRes implements TProductsDataSchema {
     @ApiProperty({ minimum: 0 })
     public feedbacks: number;
 
-    public static init(data: TProductsDataSchema): ProductsDataRes {
-        return plainToInstance(ProductsDataRes, data);
+    public static init(model: ProductsDataModel): ProductsDataRes {
+        const schema = model.toSchema();
+        return plainToInstance(ProductsDataRes, schema);
     }
 }

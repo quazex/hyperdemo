@@ -30,9 +30,9 @@ export class ProductsListController {
     public async getProducts(
         @Query() query: PaginationReq,
     ): Promise<ProductsListRes> {
-        const entities = await this.service.getList({
+        const model = await this.service.getList({
             page: query.page,
         });
-        return ProductsListRes.init(entities);
+        return ProductsListRes.init(model);
     }
 }

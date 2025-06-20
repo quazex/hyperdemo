@@ -30,9 +30,9 @@ export class BrandsInfoController {
     public async getInfo(
         @Param() params: BrandsPrimaryReq,
     ): Promise<BrandsDataRes> {
-        const entity = await this.service.getInfo({
+        const model = await this.service.getInfo({
             brand_id: params.brand_id,
         });
-        return BrandsDataRes.init(entity);
+        return BrandsDataRes.init(model);
     }
 }

@@ -1,7 +1,6 @@
 import { ViewConfig } from '@config';
 import { OrdersProductsEntity } from '@domain/database';
-import { OrdersProductsModel } from '@domain/models';
-import { TOrdersProductsSchema } from '@domain/schemas';
+import { OrdersProductsDataModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -15,16 +14,16 @@ export class OrdersProductsRepository {
         private readonly viewConfig: ViewConfig,
     ) {}
 
-    public async count(filters: TOrdersProductsFilters) {
+    public async count(orderId: string): Promise<number> {
         const result = await this.repository.count({
             where: {
-                order_id: filters.order_id,
+                order_id: orderId,
             },
         });
         return result;
     }
 
-    public async getProducts(filters: TOrdersProductsFilters) {
+    public async getList(filters: TOrdersProductsFilters): Promise<OrdersProductsDataModel[]> {
         const rows = await this.repository.find({
             where: {
                 order_id: filters.order_id,
@@ -39,15 +38,11 @@ export class OrdersProductsRepository {
                 'product.category',
                 'product.images',
             ],
-            take: this.viewConfig.itemsPerPage,
-            skip: this.viewConfig.itemsPerPage * (filters.page - 1),
+            take: this.viewConfig.items_per_page,
+            skip: this.viewConfig.items_per_page * (filters.page - 1),
         });
 
-        const schemas = rows.map<TOrdersProductsSchema>((row) => {
-            const model = OrdersProductsModel.fromEntity(row);
-            return model.toSchema();
-        });
-
-        return schemas;
+        const models = rows.map((row) => OrdersProductsDataModel.fromEntity(row));
+        return models;
     }
 }

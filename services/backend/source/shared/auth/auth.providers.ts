@@ -39,7 +39,7 @@ export class AuthProviders {
         const clientToken = AuthTokens.getClient();
         return {
             provide: clientToken,
-            useFactory: (config: ClerkOptions) => {
+            useFactory: (config: ClerkOptions): ClerkClient => {
                 const client = createClerkClient(config);
                 return client;
             },

@@ -9,7 +9,7 @@ export class UsersDataModel {
         this.#schema = schema;
     }
 
-    public static fromEntity(entity: User) {
+    public static fromEntity(entity: User): UsersDataModel {
         return new UsersDataModel({
             user_id: entity.id,
             image_url: entity.imageUrl,

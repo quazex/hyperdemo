@@ -3,10 +3,10 @@ import {
     CreateDateColumn,
     DataSource,
     PrimaryColumn,
-    SelectQueryBuilder,
     UpdateDateColumn,
     ViewEntity,
 } from 'typeorm';
+import { TNestedBuilder } from '../types/nested.types';
 import { OrdersDataEntity } from './data.entity';
 import { OrdersProductsEntity } from './orders.entity';
 
@@ -14,7 +14,7 @@ import { OrdersProductsEntity } from './orders.entity';
     name: 'orders_statistics',
     materialized: true,
     expression: (dataSource: DataSource) => {
-        const nested = (qb: SelectQueryBuilder<OrdersProductsEntity>) => qb
+        const nested: TNestedBuilder<OrdersProductsEntity> = (qb) => qb
             .select([
                 'op.order_id AS order_id',
                 'COUNT(op.product_id)::integer AS products',

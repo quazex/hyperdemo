@@ -32,11 +32,11 @@ export class CategoriesAnalyticsController {
         @Param() params: CategoriesPrimaryReq,
         @Query() query: CategoriesAnalyticsReq,
     ): Promise<CategoriesAnalyticsRes[]> {
-        const entities = await this.service.getList({
+        const models = await this.service.getList({
             category_id: params.category_id,
             date_from: query.date_from,
             date_to: query.date_to,
         });
-        return CategoriesAnalyticsRes.init(entities);
+        return CategoriesAnalyticsRes.init(models);
     }
 }

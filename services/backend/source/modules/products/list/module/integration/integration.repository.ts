@@ -1,7 +1,6 @@
 import { ViewConfig } from '@config';
 import { ProductsDataEntity } from '@domain/database';
 import { ProductsDataModel } from '@domain/models';
-import { TProductsDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -15,12 +14,12 @@ export class ProductsListRepository {
         private readonly viewConfig: ViewConfig,
     ) {}
 
-    public async count() {
+    public async count(): Promise<number> {
         const result = await this.repository.count();
         return result;
     }
 
-    public async getProducts(filters: TProductsListFilters): Promise<TProductsDataSchema[]> {
+    public async getList(filters: TProductsListFilters): Promise<ProductsDataModel[]> {
         const rows = await this.repository.find({
             select: [
                 'product_id',
@@ -41,15 +40,11 @@ export class ProductsListRepository {
                 'brand',
                 'category',
             ],
-            take: this.viewConfig.itemsPerPage,
-            skip: this.viewConfig.itemsPerPage * (filters.page - 1),
+            take: this.viewConfig.items_per_page,
+            skip: this.viewConfig.items_per_page * (filters.page - 1),
         });
 
-        const schemas = rows.map<TProductsDataSchema>((row) => {
-            const model = ProductsDataModel.fromEntity(row);
-            return model.toSchema();
-        });
-
-        return schemas;
+        const models = rows.map((row) => ProductsDataModel.fromEntity(row));
+        return models;
     }
 }

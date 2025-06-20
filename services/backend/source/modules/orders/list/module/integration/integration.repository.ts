@@ -1,7 +1,6 @@
 import { ViewConfig } from '@config';
 import { OrdersStatisticsEntity } from '@domain/database';
 import { OrdersDataModel } from '@domain/models';
-import { TOrdersDataSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -15,12 +14,12 @@ export class OrdersListRepository {
         private readonly viewConfig: ViewConfig,
     ) {}
 
-    public async count() {
+    public async count(): Promise<number> {
         const result = await this.repository.count();
         return result;
     }
 
-    public async getOrders(filters: TOrdersListFilters): Promise<TOrdersDataSchema[]> {
+    public async getList(filters: TOrdersListFilters): Promise<OrdersDataModel[]> {
         const rows = await this.repository.find({
             select: [
                 'order_id',
@@ -34,15 +33,11 @@ export class OrdersListRepository {
             order: {
                 created_at: 'DESC',
             },
-            take: this.viewConfig.itemsPerPage,
-            skip: this.viewConfig.itemsPerPage * (filters.page - 1),
+            take: this.viewConfig.items_per_page,
+            skip: this.viewConfig.items_per_page * (filters.page - 1),
         });
 
-        const schemas = rows.map<TOrdersDataSchema>((row) => {
-            const model = OrdersDataModel.fromStatistic(row);
-            return model.toSchema();
-        });
-
-        return schemas;
+        const models = rows.map((row) => OrdersDataModel.fromStatistic(row));
+        return models;
     }
 }

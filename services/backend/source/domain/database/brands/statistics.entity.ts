@@ -3,18 +3,18 @@ import {
     CreateDateColumn,
     DataSource,
     PrimaryColumn,
-    SelectQueryBuilder,
     UpdateDateColumn,
     ViewEntity,
 } from 'typeorm';
 import { ProductsDataEntity } from '../products/data.entity';
+import { TNestedBuilder } from '../types/nested.types';
 import { BrandsDataEntity } from './data.entity';
 
 @ViewEntity({
     name: 'brands_statistics',
     materialized: true,
     expression: (dataSource: DataSource) => {
-        const nested = (qb: SelectQueryBuilder<ProductsDataEntity>) => qb
+        const nested: TNestedBuilder<ProductsDataEntity> = (qb) => qb
             .select([
                 'p.brand_id AS brand_id',
                 'COUNT(p.product_id) AS products',

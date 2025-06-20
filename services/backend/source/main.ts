@@ -71,7 +71,7 @@ const bootstrap = async(): Promise<void> => {
     useContainer(appModule, { fallbackOnErrors: true });
 
 
-    if (docsConfig.isEnabled) {
+    if (docsConfig.is_enabled) {
         const api = swagger.getAPI();
         const document = SwaggerModule.createDocument(app, api);
         SwaggerModule.setup('docs', app, document);

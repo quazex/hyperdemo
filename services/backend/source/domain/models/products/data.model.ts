@@ -8,7 +8,7 @@ export class ProductsDataModel {
         this.#schema = schema;
     }
 
-    public static fromEntity(entity: ProductsDataEntity) {
+    public static fromEntity(entity: ProductsDataEntity): ProductsDataModel {
         return new ProductsDataModel({
             product_id: entity.product_id,
             name: entity.name,

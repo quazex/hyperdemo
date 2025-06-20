@@ -3,9 +3,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DocsConfig {
-    public readonly isEnabled: boolean;
+    public readonly is_enabled: boolean;
 
     constructor(@InjectDotenv() env: Dotenv) {
-        this.isEnabled = env.get('DOCS_IS_ENABLED').default('false').asBoolStrict();
+        this.is_enabled = env.get('DOCS_IS_ENABLED').default('false').asBoolStrict();
     }
 }

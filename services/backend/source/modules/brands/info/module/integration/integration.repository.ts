@@ -12,7 +12,7 @@ export class BrandsInfoRepository {
         private readonly repository: Repository<BrandsStatisticsEntity>,
     ) {}
 
-    public async getInfo(filters: TBrandsInfoFilters) {
+    public async getInfo(filters: TBrandsInfoFilters): Promise<BrandsDataModel | null> {
         const row = await this.repository.findOne({
             select: [
                 'brand_id',
@@ -27,8 +27,7 @@ export class BrandsInfoRepository {
         });
 
         if (row) {
-            const model = BrandsDataModel.fromStatistic(row);
-            return model.toSchema();
+            return BrandsDataModel.fromStatistic(row);
         }
 
         return null;

@@ -8,7 +8,7 @@ export class BrandsAnalyticsModel {
         this.#schema = schema;
     }
 
-    public static fromEntity(entity: BrandsAnalyticsEntity) {
+    public static fromEntity(entity: BrandsAnalyticsEntity): BrandsAnalyticsModel {
         return new BrandsAnalyticsModel({
             revenue: entity.revenue,
             date: entity.date,

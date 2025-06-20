@@ -8,7 +8,7 @@ export class CategoriesDataModel {
         this.#schema = schema;
     }
 
-    public static fromStatistic(entity: CategoriesStatisticsEntity) {
+    public static fromStatistic(entity: CategoriesStatisticsEntity): CategoriesDataModel {
         return new CategoriesDataModel({
             category_id: entity.category_id,
             name: entity.name,

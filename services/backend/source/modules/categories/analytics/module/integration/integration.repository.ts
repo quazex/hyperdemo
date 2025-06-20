@@ -1,6 +1,5 @@
 import { CategoriesAnalyticsEntity } from '@domain/database';
 import { CategoriesAnalyticsModel } from '@domain/models';
-import { TCategoriesAnalyticsSchema } from '@domain/schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
@@ -13,7 +12,7 @@ export class CategoriesAnalyticsRepository {
         private readonly repository: Repository<CategoriesAnalyticsEntity>,
     ) {}
 
-    public async getList(filters: TCategoriesAnalyticsFilters) {
+    public async getList(filters: TCategoriesAnalyticsFilters): Promise<CategoriesAnalyticsModel[]> {
         const dateFrom = filters.date_from.toSQL({ includeOffset: false });
         const dateTo = filters.date_to.toSQL({ includeOffset: false });
 
@@ -31,11 +30,7 @@ export class CategoriesAnalyticsRepository {
             },
         });
 
-        const schemas = rows.map<TCategoriesAnalyticsSchema>((row) => {
-            const model = CategoriesAnalyticsModel.fromEntity(row);
-            return model.toSchema();
-        });
-
-        return schemas;
+        const models = rows.map((row) => CategoriesAnalyticsModel.fromEntity(row));
+        return models;
     }
 }

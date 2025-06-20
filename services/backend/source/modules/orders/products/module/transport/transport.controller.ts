@@ -1,5 +1,5 @@
 import { AuthGuard } from '@auth';
-import { PaginationReq, OrdersProductsList, OrdersPrimaryReq } from '@domain/restapi';
+import { PaginationReq, OrdersProductsListRes, OrdersPrimaryReq } from '@domain/restapi';
 import {
     Controller,
     Get,
@@ -22,7 +22,7 @@ export class OrdersProductsController {
 
     @ApiResponse({
         status: HttpStatus.OK,
-        type: OrdersProductsList,
+        type: OrdersProductsListRes,
         isArray: false,
     })
     @HttpCode(HttpStatus.OK)
@@ -31,11 +31,11 @@ export class OrdersProductsController {
     public async getProducts(
         @Param() param: OrdersPrimaryReq,
         @Query() query: PaginationReq,
-    ): Promise<OrdersProductsList> {
-        const entities = await this.service.getList({
+    ): Promise<OrdersProductsListRes> {
+        const model = await this.service.getList({
             order_id: param.order_id,
             page: query.page,
         });
-        return OrdersProductsList.init(entities);
+        return OrdersProductsListRes.init(model);
     }
 }
