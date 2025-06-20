@@ -11,10 +11,10 @@ module.exports = {
         '.eslintrc.*',
     ],
     rules: {
-        '@typescript-eslint/explicit-function-return-type': ['off'],
-        '@typescript-eslint/no-explicit-any': ['off'],
-        '@typescript-eslint/no-unsafe-member-access': ['off'],
-        '@typescript-eslint/no-unsafe-call': ['off'],
+        '@typescript-eslint/explicit-function-return-type': ['error', {
+            allowExpressions: true,
+            allowTypedFunctionExpressions: true,
+        }],
         '@typescript-eslint/naming-convention': ['error', {
             selector: ['interface', 'typeAlias'],
             format: ['PascalCase'],
@@ -22,6 +22,28 @@ module.exports = {
                 regex: '^T[A-Z]',
                 match: true,
             },
+        }, {
+            selector: 'class',
+            format: ['PascalCase'],
+        }, {
+            selector: ['classMethod'],
+            format: ['camelCase'],
+        }, {
+            selector: 'classProperty',
+            format: ['snake_case'],
+        }, {
+            selector: 'enum',
+            format: ['PascalCase'],
+        }, {
+            selector: 'enumMember',
+            format: ['camelCase'],
+        }, {
+            selector: ['variable'],
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+        }, {
+            selector: ['objectLiteralProperty', 'classProperty'],
+            format: ['camelCase', 'snake_case'],
+            leadingUnderscore: 'allow',
         }],
     },
 }

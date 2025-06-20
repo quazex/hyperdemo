@@ -15,7 +15,7 @@ export class OrdersListService {
         const model = OrdersListModel.init();
 
         const total = await this.repository.count();
-        const pages = Math.ceil(model.total / this.viewConfig.itemsPerPage);
+        const pages = Math.ceil(model.total / this.viewConfig.items_per_page);
 
         model.total = total;
         model.pages = pages;

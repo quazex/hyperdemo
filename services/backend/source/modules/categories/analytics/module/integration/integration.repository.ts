@@ -12,7 +12,7 @@ export class CategoriesAnalyticsRepository {
         private readonly repository: Repository<CategoriesAnalyticsEntity>,
     ) {}
 
-    public async getList(filters: TCategoriesAnalyticsFilters) {
+    public async getList(filters: TCategoriesAnalyticsFilters): Promise<CategoriesAnalyticsModel[]> {
         const dateFrom = filters.date_from.toSQL({ includeOffset: false });
         const dateTo = filters.date_to.toSQL({ includeOffset: false });
 

@@ -14,7 +14,7 @@ export class OrdersProductsRepository {
         private readonly viewConfig: ViewConfig,
     ) {}
 
-    public async count(orderId: string) {
+    public async count(orderId: string): Promise<number> {
         const result = await this.repository.count({
             where: {
                 order_id: orderId,
@@ -38,8 +38,8 @@ export class OrdersProductsRepository {
                 'product.category',
                 'product.images',
             ],
-            take: this.viewConfig.itemsPerPage,
-            skip: this.viewConfig.itemsPerPage * (filters.page - 1),
+            take: this.viewConfig.items_per_page,
+            skip: this.viewConfig.items_per_page * (filters.page - 1),
         });
 
         const models = rows.map((row) => OrdersProductsDataModel.fromEntity(row));

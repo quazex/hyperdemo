@@ -13,7 +13,7 @@ export class OrdersListModel {
         this.#pages = 0;
     }
 
-    public static init() {
+    public static init(): OrdersListModel {
         return new OrdersListModel();
     }
 

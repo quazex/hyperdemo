@@ -13,7 +13,7 @@ export class ProductsListModel {
         this.#pages = 0;
     }
 
-    public static init() {
+    public static init(): ProductsListModel {
         return new ProductsListModel();
     }
 

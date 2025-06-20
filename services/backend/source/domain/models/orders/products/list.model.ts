@@ -12,7 +12,7 @@ export class OrdersProductsListModel {
         this.#pages = 0;
     }
 
-    public static init() {
+    public static init(): OrdersProductsListModel {
         return new OrdersProductsListModel();
     }
 

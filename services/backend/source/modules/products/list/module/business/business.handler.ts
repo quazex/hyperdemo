@@ -11,11 +11,11 @@ export class ProductsListService {
         private readonly repository: ProductsListRepository,
     ) {}
 
-    public async getList(filters: TProductsListFilters) {
+    public async getList(filters: TProductsListFilters): Promise<ProductsListModel> {
         const model = ProductsListModel.init();
 
         const total = await this.repository.count();
-        const pages = Math.ceil(model.total / this.viewConfig.itemsPerPage);
+        const pages = Math.ceil(model.total / this.viewConfig.items_per_page);
 
         model.total = total;
         model.pages = pages;

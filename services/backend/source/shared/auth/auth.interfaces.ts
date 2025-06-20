@@ -8,5 +8,6 @@ export interface TAuthOptionsFactory {
 export interface TAuthAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
     inject?: Array<InjectionToken | OptionalFactoryDependency>;
     useExisting?: Type<TAuthOptionsFactory>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useFactory?: (...args: any[]) => Promise<ClerkOptions> | ClerkOptions;
 }

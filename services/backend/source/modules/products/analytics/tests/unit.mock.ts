@@ -12,7 +12,7 @@ export class TestingUnitMock extends TestingApplication {
     public readonly product = ProductsDataFactory.getOne();
     public readonly rows = ProductsAnalyticsFactory.getMany();
 
-    public override async init() {
+    public override async init(): Promise<void> {
         const rows = this.rows.map((row) => ({
             ...row,
             product_id: this.product.product_id,

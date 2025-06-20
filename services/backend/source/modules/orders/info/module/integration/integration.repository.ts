@@ -12,7 +12,7 @@ export class OrdersInfoRepository {
         private readonly repository: Repository<OrdersStatisticsEntity>,
     ) {}
 
-    public async getOne(filters: TOrdersInfoFilters) {
+    public async getOne(filters: TOrdersInfoFilters): Promise<OrdersDataModel | null> {
         const row = await this.repository.findOne({
             select: [
                 'order_id',

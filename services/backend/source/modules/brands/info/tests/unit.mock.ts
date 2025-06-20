@@ -11,7 +11,7 @@ import { BrandsInfoController } from '../module/transport/transport.controller';
 export class TestingUnitMock extends TestingApplication {
     public readonly entity = BrandsStatisticsFactory.getOne();
 
-    public override async init() {
+    public override async init(): Promise<void> {
         const tRepository: ValueProvider = {
             provide: getRepositoryToken(BrandsStatisticsEntity),
             useValue: {

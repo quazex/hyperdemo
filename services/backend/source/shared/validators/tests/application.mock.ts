@@ -5,7 +5,7 @@ import { InjectOptions, LightMyRequestResponse } from 'fastify';
 import { TestsValidatorsController } from './controller.mock';
 
 export class TestingApplication {
-    private tApp: NestFastifyApplication;
+    private app: NestFastifyApplication;
 
     public async init(): Promise<void> {
         const fastifyAdapter = new FastifyAdapter();
@@ -24,19 +24,19 @@ export class TestingApplication {
 
         const tModule = await tBuilder.compile();
 
-        this.tApp = tModule.createNestApplication(fastifyAdapter);
+        this.app = tModule.createNestApplication(fastifyAdapter);
 
-        this.tApp.useGlobalPipes(globalPipe);
-        this.tApp.enableShutdownHooks();
+        this.app.useGlobalPipes(globalPipe);
+        this.app.enableShutdownHooks();
 
-        await this.tApp.init();
+        await this.app.init();
     }
 
     public inject(opts: InjectOptions): Promise<LightMyRequestResponse> {
-        return this.tApp.inject(opts);
+        return this.app.inject(opts);
     }
 
     public async close(): Promise<void> {
-        await this.tApp.close();
+        await this.app.close();
     }
 }

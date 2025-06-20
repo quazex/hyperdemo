@@ -12,7 +12,7 @@ export class ProductsAnalyticsRepository {
         private readonly repository: Repository<ProductsAnalyticsEntity>,
     ) {}
 
-    public async getList(filters: TProductsAnalyticsFilters) {
+    public async getList(filters: TProductsAnalyticsFilters): Promise<ProductsAnalyticsModel[]> {
         const dateFrom = filters.date_from.toSQL({ includeOffset: false });
         const dateTo = filters.date_to.toSQL({ includeOffset: false });
 
@@ -30,7 +30,7 @@ export class ProductsAnalyticsRepository {
             },
         });
 
-        const schemas = rows.map((row) => ProductsAnalyticsModel.fromEntity(row));
-        return schemas;
+        const models = rows.map((row) => ProductsAnalyticsModel.fromEntity(row));
+        return models;
     }
 }

@@ -8,7 +8,7 @@ export class OrdersDataModel {
         this.#schema = schema;
     }
 
-    public static fromStatistic(entity: OrdersStatisticsEntity) {
+    public static fromStatistic(entity: OrdersStatisticsEntity): OrdersDataModel {
         return new OrdersDataModel({
             order_id: entity.order_id,
             user_id: entity.user_id,

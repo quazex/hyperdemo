@@ -12,7 +12,7 @@ export class CategoriesInfoRepository {
         private readonly repository: Repository<CategoriesStatisticsEntity>,
     ) {}
 
-    public async getInfo(filters: TCategoriesInfoFilters) {
+    public async getInfo(filters: TCategoriesInfoFilters): Promise<CategoriesDataModel | null> {
         const row = await this.repository.findOne({
             select: [
                 'category_id',

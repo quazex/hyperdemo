@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { AppConfig } from '@config';
 import { Injectable } from '@nestjs/common';
-import { HealthIndicatorService } from '@nestjs/terminus';
+import { HealthIndicatorResult, HealthIndicatorService } from '@nestjs/terminus';
 import { PackageJson } from 'type-fest';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class UptimeHealthIndicator {
         this.package = JSON.parse(content);
     }
 
-    public async isHealthy(key: string) {
+    public async isHealthy(key: string): Promise<HealthIndicatorResult> {
         const indicator = this.service.check(key);
 
         const uptime = process.uptime();

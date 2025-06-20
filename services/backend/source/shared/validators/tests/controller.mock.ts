@@ -5,7 +5,7 @@ import { TestsValidatorsDto } from './validators.mock';
 export class TestsValidatorsController {
     @HttpCode(HttpStatus.OK)
     @Post('/')
-    public check(@Body() body: TestsValidatorsDto) {
+    public check(@Body() body: TestsValidatorsDto): TestsValidatorsDto {
         return body;
     }
 }

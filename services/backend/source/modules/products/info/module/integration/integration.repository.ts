@@ -12,7 +12,7 @@ export class ProductsInfoRepository {
         private readonly repository: Repository<ProductsDataEntity>,
     ) {}
 
-    public async getInfo(filters: TProductsInfoFilters) {
+    public async getInfo(filters: TProductsInfoFilters): Promise<ProductsDataModel | null> {
         const row = await this.repository.findOne({
             select: [
                 'product_id',

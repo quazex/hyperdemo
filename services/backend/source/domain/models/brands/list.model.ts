@@ -13,7 +13,7 @@ export class BrandsListModel {
         this.#pages = 0;
     }
 
-    public static init() {
+    public static init(): BrandsListModel {
         return new BrandsListModel();
     }
 
