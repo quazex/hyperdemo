@@ -9,22 +9,27 @@ import { TOrdersProductsFilters } from '../../types/filters.types';
 @Injectable()
 export class OrdersProductsRepository {
     constructor(
-        @InjectRepository(OrdersProductsEntity)
-        private readonly repository: Repository<OrdersProductsEntity>,
         private readonly viewConfig: ViewConfig,
+        @InjectRepository(OrdersProductsEntity) private readonly productsRepository: Repository<OrdersProductsEntity>,
+        @InjectRepository(OrdersProductsEntity) private readonly ordersRepository: Repository<OrdersProductsEntity>,
     ) {}
 
+    public async isOrderExists(orderId: string): Promise<boolean> {
+        const count = await this.ordersRepository.countBy({
+            order_id: orderId,
+        });
+        return count > 0;
+    }
+
     public async count(orderId: string): Promise<number> {
-        const result = await this.repository.count({
-            where: {
-                order_id: orderId,
-            },
+        const result = await this.productsRepository.countBy({
+            order_id: orderId,
         });
         return result;
     }
 
     public async getList(filters: TOrdersProductsFilters): Promise<OrdersProductsDataModel[]> {
-        const rows = await this.repository.find({
+        const rows = await this.productsRepository.find({
             where: {
                 order_id: filters.order_id,
             },

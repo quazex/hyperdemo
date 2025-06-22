@@ -15,12 +15,12 @@ export class ProductsListService {
         const model = ProductsListModel.init();
 
         const total = await this.repository.count();
-        const pages = Math.ceil(model.total / this.viewConfig.items_per_page);
+        const pages = Math.ceil(total / this.viewConfig.items_per_page);
 
         model.total = total;
         model.pages = pages;
 
-        if (filters.page <= model.pages) {
+        if (filters.page <= pages) {
             model.list = await this.repository.getList(filters);
         }
 

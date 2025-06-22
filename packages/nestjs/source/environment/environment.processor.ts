@@ -10,19 +10,12 @@ export class EnvironmentProcessor {
     public parse<TSchema extends Extensions>(props?: DotenvParams) {
         const files: string[] = [];
 
-        const env = { ...process.env } as never;
-        const arg = process.argv.find((a) => a.startsWith('-e='));
-        const val = arg?.split('=').at(1);
-
-        if (typeof val === 'string') {
-            files.push(val);
-        }
-        else if (Array.isArray(props?.files)) {
+        if (Array.isArray(props?.files)) {
             files.push(...props.files);
         }
 
-
-        for (const filename of files) {
+        const env = { ...process.env } as never;
+        for (const filename of files.reverse()) {
             const root = process.cwd();
             const path = resolve(root, filename);
 

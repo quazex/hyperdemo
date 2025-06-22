@@ -12,8 +12,9 @@ import { ViewConfig } from './view.config';
     imports: [
         EnvironmentModule.forDotenv({
             files: [
-                '.env',
+                '.env.e2e',
                 '.env.local',
+                '.env',
             ],
         }),
     ],

@@ -1,0 +1,21 @@
+{
+    "maxWorkers": 1,
+    "testTimeout": 60000,
+    "moduleFileExtensions": ["ts", "js"],
+    "testMatch": [
+        "<rootDir>/**/unit.spec.ts"
+    ],
+    "transform": {
+        "^.+\\.ts$": "ts-jest"
+    },
+    "roots": [
+        "source"
+    ],
+    "moduleNameMapper": {
+        "@config": "<rootDir>/source/config",
+        "@domain/(.*)": "<rootDir>/source/domain/$1",
+        "@auth": "<rootDir>/source/shared/auth",
+        "@validators": "<rootDir>/source/shared/validators",
+        "@testing": "<rootDir>/source/shared/testing"
+    }
+}

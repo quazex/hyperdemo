@@ -11,7 +11,7 @@
             "@logs": ["shared/logs"],
             "@validators": ["shared/validators"],
             "@testing": ["shared/testing"],
-        }
+        },
     },
     "exclude": [
         "node_modules",
