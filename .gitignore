@@ -11,10 +11,7 @@ services/**/migration*
 */tunnel/.telegram
 
 # Mac files
-.DS_Store
-
-# Scripts
-**/.scripts
+**/.DS_Store
 
 # Migrations
 .migrations
@@ -153,6 +150,3 @@ dist
 
 # Turbo Repo
 .turbo
-
-# Scripts
-.scripts

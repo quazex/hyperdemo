@@ -59,6 +59,7 @@
         "dev:watch": "tsc --project tsconfig.json --watch --noEmit",
         "migration:generate": "typeorm-ts-node-commonjs migration:generate ./source/models/migrations/migration -d orm-config.ts --pretty=true",
         "migration:run": "typeorm-ts-node-commonjs migration:run -d orm-config.ts",
+        "postinstall": "node ./.scripts/links.js",
         "test:e2e": "jest --config jest.e2e.json",
         "test:unit": "jest --config jest.unit.json"
     }
