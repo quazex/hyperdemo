@@ -1,6 +1,7 @@
 import {
     BrandsDataEntity,
     CategoriesDataEntity,
+    OrdersDataEntity,
     OrdersProductsEntity,
     ProductsDataEntity,
     ProductsImagesEntity,
@@ -15,11 +16,12 @@ import { OrdersProductsController } from './module/transport/transport.controlle
 @Module({
     imports: [
         TypeOrmModule.forFeature([
-            BrandsDataEntity,
-            CategoriesDataEntity,
+            OrdersDataEntity,
             OrdersProductsEntity,
             ProductsDataEntity,
             ProductsImagesEntity,
+            CategoriesDataEntity,
+            BrandsDataEntity,
         ]),
     ],
     providers: [

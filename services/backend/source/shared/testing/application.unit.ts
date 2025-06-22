@@ -1,12 +1,12 @@
 import { AuthGuard } from '@auth';
-import { jest } from '@jest/globals';
 import { ModuleMetadata, ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { Test } from '@nestjs/testing';
 import { InjectOptions, LightMyRequestResponse } from 'fastify';
+import { TestingGuard } from './mocks.guard';
 
 export class TestingApplication {
-    private application: NestFastifyApplication;
+    #application: NestFastifyApplication;
 
     public async init(metadata: ModuleMetadata): Promise<void> {
         const fastifyAdapter = new FastifyAdapter();
@@ -19,24 +19,22 @@ export class TestingApplication {
 
         const tBuilder = Test
             .createTestingModule(metadata)
-            .overrideGuard(AuthGuard).useValue({
-                canActivate: jest.fn<never>().mockResolvedValue(true),
-            });
+            .overrideGuard(AuthGuard).useClass(TestingGuard);
 
         const tModule = await tBuilder.compile();
-        this.application = tModule.createNestApplication(fastifyAdapter);
+        this.#application = tModule.createNestApplication(fastifyAdapter);
 
-        this.application.useGlobalPipes(globalPipe);
-        this.application.enableShutdownHooks();
+        this.#application.useGlobalPipes(globalPipe);
+        this.#application.enableShutdownHooks();
 
-        await this.application.init();
+        await this.#application.init();
     }
 
     public inject(opts: InjectOptions): Promise<LightMyRequestResponse> {
-        return this.application.inject(opts);
+        return this.#application.inject(opts);
     }
 
     public async close(): Promise<void> {
-        await this.application.close();
+        await this.#application.close();
     }
 }

@@ -1,5 +1,5 @@
 import { ViewConfig } from '@config';
-import { OrdersProductsEntity } from '@domain/database';
+import { OrdersDataEntity, OrdersProductsEntity } from '@domain/database';
 import { OrdersProductsFactory, OrdersStatisticsFactory } from '@domain/mocks';
 import { jest } from '@jest/globals';
 import { ValueProvider } from '@nestjs/common';
@@ -19,10 +19,17 @@ export class TestingUnitMock extends TestingApplication {
             order_id: this.order.order_id,
         }));
 
-        const tRepository: ValueProvider = {
+        const tOrdersRepository: ValueProvider = {
+            provide: getRepositoryToken(OrdersDataEntity),
+            useValue: {
+                countBy: jest.fn().mockReturnValue(1),
+            },
+        };
+
+        const tProductsRepository: ValueProvider = {
             provide: getRepositoryToken(OrdersProductsEntity),
             useValue: {
-                count: jest.fn().mockReturnValue(products.length),
+                countBy: jest.fn().mockReturnValue(products.length),
                 find: jest.fn().mockReturnValue(products),
             },
         };
@@ -30,7 +37,8 @@ export class TestingUnitMock extends TestingApplication {
         await super.init({
             providers: [
                 ViewConfig,
-                tRepository,
+                tOrdersRepository,
+                tProductsRepository,
                 OrdersProductsRepository,
                 OrdersProductsService,
             ],

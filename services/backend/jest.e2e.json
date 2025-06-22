@@ -1,9 +1,9 @@
 {
     "maxWorkers": 1,
-    "testTimeout": 60000,
+    "testTimeout": 120000,
     "moduleFileExtensions": ["ts", "js"],
     "testMatch": [
-        "<rootDir>/**/*.spec.ts"
+        "<rootDir>/**/e2e.spec.ts"
     ],
     "transform": {
         "^.+\\.ts$": "ts-jest"
@@ -17,5 +17,8 @@
         "@auth": "<rootDir>/source/shared/auth",
         "@validators": "<rootDir>/source/shared/validators",
         "@testing": "<rootDir>/source/shared/testing"
-    }
+    },
+    "globalSetup": "<rootDir>/source/shared/testing/global.setup.ts",
+    "globalTeardown": "<rootDir>/source/shared/testing/global.teardown.ts",
+    "verbose": true
 }

@@ -9,6 +9,7 @@ module.exports = {
     ignorePatterns: [
         'dist',
         '.eslintrc.*',
+        '*.d.ts',
     ],
     rules: {
         '@typescript-eslint/explicit-function-return-type': ['error', {
