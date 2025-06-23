@@ -37,10 +37,10 @@ jobs:
         uses: cloudposse/github-action-docker-image-exists@main
         with:
           registry: ${{ env.IMAGE_REGISTRY }}
-          organization: "${{ github.repository }}"
-          repository: "${{ steps.parse.outputs.service }}"
-          login: "${{ github.actor }}"
-          password: "${{ env.GITHUB_TOKEN }}"
+          organization: ${{ github.repository }}
+          repository: ${{ steps.parse.outputs.service }}
+          login: ${{ github.actor }}
+          password: ${{ env.GITHUB_TOKEN }}
           tag: ${{ steps.parse.outputs.version }}
 
       - name: Deploy ${{ steps.parse.outputs.service }}
