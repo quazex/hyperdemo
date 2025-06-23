@@ -41,7 +41,7 @@ jobs:
           repository: "${{ steps.parse.outputs.service }}"
           login: "${{ github.actor }}"
           password: "${{ env.GITHUB_TOKEN }}"
-          tag: ${{ steps.parse.outputs.tags_semver }}
+          tag: ${{ steps.parse.outputs.version }}
 
       - name: Deploy ${{ steps.parse.outputs.service }}
         run: |
