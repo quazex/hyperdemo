@@ -81,10 +81,16 @@ jobs:
         service: ["backend"]
 
     steps:
-      - name: Deploy to ${{ matrix.environments }}
-        uses: northflank/deploy-to-northflank@v1
-        with:
-          northflank-api-key: ${{ secrets.NORTHFLANK_API_KEY }}
-          project-id: ${{ secrets.NORTHFLANK_PROJECT_ID }}
-          service-id: ${{ matrix.service }}
-          image-path: ${{ needs.build.outputs.tags_semver }}
+      - name: Deploy ${{ matrix.service }}
+        run: |
+          curl --location 'https://api.northflank.com/v1/projects/${{ env.NF_PROJECT_ID }}/services/${{ matrix.service }}/deployment' \
+            -H "Authorization: Bearer ${{ secrets.NORTHFLANK_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "external": {
+                "imagePath": "ghcr.io/quazex/hyperdemo/backend:v1.0.1",
+                "credentials": "github"
+              }
+            }'
+
+
