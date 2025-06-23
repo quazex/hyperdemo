@@ -1,3 +1,19 @@
 {
-    "indent": "    "
+    "indent": "    ",
+    "sortFirst": [
+        "name",
+        "description",
+        "version",
+        "author",
+        "main",
+        "types",
+        "files",
+        "engines"
+    ],
+    "semverGroups": [{
+        "range": "",
+        "dependencyTypes": ["prod", "dev", "peer"],
+        "dependencies": ["**"],
+        "packages": ["**"]
+    }]
 }

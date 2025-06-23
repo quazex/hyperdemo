@@ -4,7 +4,7 @@
     "tasks": {
         "bundle:compile": {
             "dependsOn": ["^bundle:compile"],
-            "outputs": ["modules/**", "build/**"],
+            "outputs": ["lib/**", "build/**"],
             "outputLogs": "errors-only"
         },
         "dev:check": {

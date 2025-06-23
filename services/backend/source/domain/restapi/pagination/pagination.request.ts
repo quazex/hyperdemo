@@ -1,4 +1,4 @@
-import { IsNumber } from '@validators';
+import { IsNumber } from '@hyperdemo/validators';
 
 export class PaginationReq {
     @IsNumber({ minimum: 1, example: 1 })

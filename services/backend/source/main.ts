@@ -1,4 +1,4 @@
-import { HttpExceptionFilter } from '@hyperdemo/nestjs/modules/exception';
+import { HttpExceptionFilter } from '@hyperdemo/exceptions';
 import {
     ClassSerializerInterceptor,
     ConsoleLogger,

@@ -14,8 +14,6 @@
     "moduleNameMapper": {
         "@config": "<rootDir>/source/config",
         "@domain/(.*)": "<rootDir>/source/domain/$1",
-        "@auth": "<rootDir>/source/shared/auth",
-        "@validators": "<rootDir>/source/shared/validators",
-        "@testing": "<rootDir>/source/shared/testing"
+        "@testing": "<rootDir>/source/testing"
     }
 }

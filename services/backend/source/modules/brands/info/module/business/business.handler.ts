@@ -1,5 +1,5 @@
 import { BrandsDataModel } from '@domain/models';
-import { Exception } from '@hyperdemo/nestjs/modules/exception';
+import { Exception } from '@hyperdemo/exceptions';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { TBrandsInfoFilters } from '../../types/filter.types';
 import { BrandsInfoRepository } from '../integration/integration.repository';

@@ -1,6 +1,6 @@
-import { AuthModule } from '@auth';
-import { ConfigModule, AuthConfig, PostgresConfig } from '@config';
-import { LogsRequestsInterceptor } from '@logs';
+import { ConfigModule, ClerkConfig, PostgresConfig } from '@config';
+import { ClerkModule } from '@hyperdemo/clerk';
+import { LogsRequestsInterceptor } from '@hyperdemo/logging';
 import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -18,9 +18,9 @@ import { ProductsModule } from './modules/products/products.module';
             imports: [ConfigModule],
             useExisting: PostgresConfig,
         }),
-        AuthModule.forRootAsync({
+        ClerkModule.forRootAsync({
             imports: [ConfigModule],
-            useExisting: AuthConfig,
+            useExisting: ClerkConfig,
         }),
         HealthModule,
         UsersModule,

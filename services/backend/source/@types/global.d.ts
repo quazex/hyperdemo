@@ -1,5 +1,5 @@
 import { StartedPostgreSqlContainer } from '@testcontainers/postgresql';
-import { TestingApplication } from '../shared/testing/application.e2e';
+import { TestingApplication } from '../testing/application.e2e';
 
 declare global {
     interface JestTesting {
