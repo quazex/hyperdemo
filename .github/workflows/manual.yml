@@ -1,0 +1,51 @@
+name: Manual deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release tag (e.g. backend-v1.0.0)"
+        required: true
+
+env:
+  IMAGE_REGISTRY: ghcr.io
+  NF_PROJECT_ID: hyperdemo
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - name: Parse tag (service + version)
+        id: parse
+        env:
+          GIT_TAG: ${{ github.ref_name }}
+          GIT_REPO: ${{ github.repository }}
+        run: |
+          SERVICE=$(echo "$GIT_TAG" | sed -E 's/-v[0-9]+\.[0-9]+\.[0-9]+$//')
+          VERSION=$(echo "$GIT_TAG" | sed -E 's/^.+-//')
+          TAG=$IMAGE_REGISTRY/$GIT_REPO/$SERVICE
+          echo "service=$SERVICE" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tags_semver=$TAG:$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Deploy ${{ steps.parse.outputs.service }}
+        run: |
+          curl --location 'https://api.northflank.com/v1/projects/${{ env.NF_PROJECT_ID }}/services/${{ steps.parse.outputs.service }}/deployment' \
+            -H "Authorization: Bearer ${{ secrets.NORTHFLANK_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "external": {
+                "imagePath": "${{ steps.parse.outputs.tags_semver }}",
+                "credentials": "github"
+              }
+            }'
+
+
