@@ -1,4 +1,5 @@
 import { ConfigModule, ClerkConfig, PostgresConfig } from '@config';
+import { ContextInterceptor, ContextModule } from '@context';
 import { ClerkModule } from '@hyperdemo/clerk';
 import { LogsRequestsInterceptor } from '@hyperdemo/logging';
 import { Module } from '@nestjs/common';
@@ -22,6 +23,7 @@ import { ProductsModule } from './modules/products/products.module';
             imports: [ConfigModule],
             useExisting: ClerkConfig,
         }),
+        ContextModule.forRoot(),
         HealthModule,
         UsersModule,
         BrandsModule,
@@ -32,6 +34,9 @@ import { ProductsModule } from './modules/products/products.module';
     providers: [{
         provide: APP_INTERCEPTOR,
         useClass: LogsRequestsInterceptor,
+    }, {
+        provide: APP_INTERCEPTOR,
+        useClass: ContextInterceptor,
     }],
 })
 export class AppModule {}

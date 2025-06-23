@@ -9,10 +9,12 @@ export class UsersDataModel {
         this.#schema = schema;
     }
 
-    public static fromEntity(entity: User): UsersDataModel {
+    public static init(entity: User): UsersDataModel {
         return new UsersDataModel({
             user_id: entity.id,
             image_url: entity.imageUrl,
+            plan: 'free',
+            features: [],
             created_at: DateTime.fromMillis(entity.createdAt).toISO(),
         });
     }

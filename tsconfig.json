@@ -23,7 +23,7 @@
     },
     "exclude": [
         "**/node_modules",
-        "packages/**/modules",
+        "packages/**/lib",
         "services/**/build",
         "**/*.js"
     ]
