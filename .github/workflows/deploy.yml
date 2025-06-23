@@ -7,13 +7,20 @@ on:
 env:
   HUSKY: 0
   IMAGE_REGISTRY: ghcr.io
+  NF_PROJECT_ID: hyperdemo
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build-and-deploy:
-    name: Release
+  build:
+    name: Build image
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
+    outputs:
+      service: ${{ steps.parse.outputs.service }}
+      version: ${{ steps.parse.outputs.version }}
+      tags_semver: ${{ steps.parse.outputs.tags_semver }}
+      tags_latest: ${{ steps.parse.outputs.tags_latest }}
 
     permissions:
       packages: write
@@ -58,3 +65,26 @@ jobs:
             ${{ steps.parse.outputs.tags_latest }}
           build-args: |
             APP_VERSION=${{ steps.parse.outputs.version }}
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 10
+
+    permissions:
+      packages: write
+      contents: read
+
+    strategy:
+      matrix:
+        service: ["backend"]
+
+    steps:
+      - name: Deploy to ${{ matrix.environments }}
+        uses: northflank/deploy-to-northflank@v1
+        with:
+          northflank-api-key: ${{ secrets.NORTHFLANK_API_KEY }}
+          project-id: ${{ secrets.NORTHFLANK_PROJECT_ID }}
+          service-id: ${{ matrix.service }}
+          image-path: ${{ needs.build.outputs.tags_semver }}
