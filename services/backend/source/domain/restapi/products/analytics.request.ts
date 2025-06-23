@@ -1,4 +1,4 @@
-import { IsDateTime } from '@validators';
+import { IsDateTime } from '@hyperdemo/validators';
 import { DateTime } from 'luxon';
 
 export class ProductsAnalyticsReq {

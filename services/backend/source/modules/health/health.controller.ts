@@ -1,4 +1,4 @@
-import { LogsMetadata } from '@logs';
+import { LogsMetadata } from '@hyperdemo/logging';
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import {
     HealthCheck,

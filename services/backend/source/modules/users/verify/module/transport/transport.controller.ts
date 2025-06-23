@@ -1,6 +1,6 @@
-import { AuthGuard, Session } from '@auth';
 import { JwtPayload } from '@clerk/types';
 import { UsersDataRes } from '@domain/restapi';
+import { ClerkGuard, Token } from '@hyperdemo/clerk';
 import {
     Controller,
     Get,
@@ -14,7 +14,7 @@ import { UsersVerifyService } from '../business/business.handler';
 
 @ApiTags('Users')
 @ApiBearerAuth()
-@UseGuards(AuthGuard)
+@UseGuards(ClerkGuard)
 @Controller()
 export class UsersVerifyController {
     constructor(private readonly service: UsersVerifyService) {}
@@ -28,7 +28,7 @@ export class UsersVerifyController {
     @Version('1')
     @Get('users/verify')
     public async verify(
-        @Session() token: NonNullable<JwtPayload>,
+        @Token() token: NonNullable<JwtPayload>,
     ): Promise<UsersDataRes> {
         const model = await this.service.verify(token.sub);
         return UsersDataRes.init(model);

@@ -1,4 +1,4 @@
-import { IsUUID } from '@validators';
+import { IsUUID } from '@hyperdemo/validators';
 
 export class CategoriesPrimaryReq {
     @IsUUID()

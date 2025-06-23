@@ -1,5 +1,5 @@
 export * from './app.config';
-export * from './auth.config';
+export * from './clerk.config';
 export * from './config.module';
 export * from './docs.config';
 export * from './fastify.config';

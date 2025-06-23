@@ -1,0 +1,19 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "lib",
+
+        "noUnusedLocals": false,
+        "noUnusedParameters": false
+    },
+    "include": [
+        "source"
+    ],
+    "exclude": [
+        "node_modules",
+        "lib",
+        "**/tests",
+        "**/spec",
+        "*.spec.ts"
+    ]
+}

@@ -13,7 +13,7 @@ import {
     ProductsDataEntity,
     ProductsImagesEntity,
 } from '@domain/database';
-import { EnvironmentModule, Dotenv, InjectDotenv } from '@hyperdemo/nestjs/modules/environment';
+import { EnvironmentModule, Dotenv, InjectDotenv } from '@hyperdemo/environment';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';

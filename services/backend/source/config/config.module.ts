@@ -1,7 +1,7 @@
-import { EnvironmentModule } from '@hyperdemo/nestjs/modules/environment';
+import { EnvironmentModule } from '@hyperdemo/environment';
 import { Global, Module } from '@nestjs/common';
 import { AppConfig } from './app.config';
-import { AuthConfig } from './auth.config';
+import { ClerkConfig } from './clerk.config';
 import { DocsConfig } from './docs.config';
 import { PostgresConfig } from './postgres.config';
 import { SwaggerConfig } from './swagger.config';
@@ -20,7 +20,7 @@ import { ViewConfig } from './view.config';
     ],
     providers: [
         AppConfig,
-        AuthConfig,
+        ClerkConfig,
         DocsConfig,
         PostgresConfig,
         SwaggerConfig,
@@ -28,7 +28,7 @@ import { ViewConfig } from './view.config';
     ],
     exports: [
         AppConfig,
-        AuthConfig,
+        ClerkConfig,
         DocsConfig,
         PostgresConfig,
         SwaggerConfig,

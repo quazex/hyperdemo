@@ -1,4 +1,4 @@
-import { Dotenv, InjectDotenv } from '@hyperdemo/nestjs/modules/environment';
+import { Dotenv, InjectDotenv } from '@hyperdemo/environment';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

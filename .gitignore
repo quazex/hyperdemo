@@ -1,7 +1,7 @@
 # Services
 external
 
-packages/**/modules
+packages/**/lib
 services/**/build
 services/**/migration*
 

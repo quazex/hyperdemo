@@ -1,6 +1,6 @@
 import { ViewConfig } from '@config';
 import { OrdersProductsListModel } from '@domain/models';
-import { Exception } from '@hyperdemo/nestjs/modules/exception';
+import { Exception } from '@hyperdemo/exceptions';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { TOrdersProductsFilters } from '../../types/filters.types';
 import { OrdersProductsRepository } from '../integration/integration.repository';
