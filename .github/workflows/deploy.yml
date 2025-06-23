@@ -1,0 +1,60 @@
+name: Build & Deploy on Release
+
+on:
+  release:
+    types: [published]
+
+env:
+  HUSKY: 0
+  IMAGE_REGISTRY: ghcr.io
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build-and-deploy:
+    name: Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Parse tag (service + version)
+        id: parse
+        env:
+          GIT_TAG: ${{ github.ref_name }}
+          GIT_REPO: ${{ github.repository }}
+        run: |
+          SERVICE=$(echo "$GIT_TAG" | sed -E 's/-v[0-9]+\.[0-9]+\.[0-9]+$//')
+          VERSION=$(echo "$GIT_TAG" | sed -E 's/^.+-//')
+          TAG=$IMAGE_REGISTRY/$GIT_REPO/$SERVICE
+          echo "service=$SERVICE" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tags_semver=$TAG:$VERSION" >> $GITHUB_OUTPUT
+          echo "tags_latest=$TAG:latest" >> $GITHUB_OUTPUT
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.IMAGE_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ env.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          file: services/${{ steps.parse.outputs.service }}/dockerfile
+          context: .
+          platforms: linux/amd64
+          tags: |
+            ${{ steps.parse.outputs.tags_semver }}
+            ${{ steps.parse.outputs.tags_latest }}
+          build-args: |
+            APP_VERSION=${{ steps.parse.outputs.version }}
