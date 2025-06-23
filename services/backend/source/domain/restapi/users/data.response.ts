@@ -10,6 +10,12 @@ export class UsersDataRes implements TUsersDataSchema {
     @ApiProperty()
     public image_url: string;
 
+    @ApiProperty()
+    public plan: string;
+
+    @ApiProperty()
+    public features: string[];
+
     @ApiProperty({ example: '2024-07-01T12:34:56Z' })
     public created_at: string;
 

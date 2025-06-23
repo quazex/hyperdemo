@@ -1,6 +1,5 @@
-import { JwtPayload } from '@clerk/types';
 import { UsersDataRes } from '@domain/restapi';
-import { ClerkGuard, Token } from '@hyperdemo/clerk';
+import { ClerkGuard } from '@hyperdemo/clerk';
 import {
     Controller,
     Get,
@@ -27,10 +26,8 @@ export class UsersVerifyController {
     @HttpCode(HttpStatus.OK)
     @Version('1')
     @Get('users/verify')
-    public async verify(
-        @Token() token: NonNullable<JwtPayload>,
-    ): Promise<UsersDataRes> {
-        const model = await this.service.verify(token.sub);
+    public async verify(): Promise<UsersDataRes> {
+        const model = await this.service.getUser();
         return UsersDataRes.init(model);
     }
 }
