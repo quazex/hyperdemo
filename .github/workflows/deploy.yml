@@ -79,14 +79,15 @@ jobs:
     strategy:
       matrix:
         deployments: [
-          { name: "backend", service: "backend" },
+          { name: "backend", service_id: "backend" },
+          { name: "frontend", service_id: "frontend" },
         ]
 
     steps:
       - name: Deploy ${{ needs.build.outputs.service }}
         if: matrix.deployments.name == needs.build.outputs.service
         run: |
-          curl --location 'https://api.northflank.com/v1/projects/${{ env.NF_PROJECT_ID }}/services/${{ matrix.deployments.stage }}/deployment' \
+          curl --fail --location 'https://api.northflank.com/v1/projects/${{ env.NF_PROJECT_ID }}/services/${{ matrix.deployments.service_id }}/deployment' \
             -H "Authorization: Bearer ${{ secrets.NORTHFLANK_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d '{
