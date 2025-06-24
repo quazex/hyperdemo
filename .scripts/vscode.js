@@ -7,18 +7,36 @@
  * Такой поведение расширения запускает тесты из корня монорепы, хотя требуется запуск из корня сервиса.
  * В качестве временнего решения можно создавать ссылку на корневой `jest/bin/jest.js` в папке сервиса для корректной работы расширения.
  */
+const fs = require('fs');
+const path = require('path');
+const glob = require('fast-glob');
+
 const BIN_PATH = 'node_modules/jest/bin';
 const BIN_NAME = 'jest.js';
 
-const fs = require('fs');
-const path = require('path');
+const rootPath = process.cwd();
+const monorepoBin = path.resolve(rootPath, BIN_PATH, BIN_NAME);
 
-const monorepoPath = path.resolve(__dirname, '../../../', BIN_PATH, BIN_NAME);
-const backendPath = path.resolve(__dirname, '../', BIN_PATH);
-const backendFile = path.resolve(backendPath, BIN_NAME);
+const packageRaw = fs.readFileSync('package.json', 'utf8');
+const packageJSON = JSON.parse(packageRaw);
 
-const isLinkExisted = fs.existsSync(backendPath);
-if (!isLinkExisted) {
-    fs.mkdirSync(backendPath, { recursive: true });
-    fs.symlinkSync(monorepoPath, backendFile);
+if (Array.isArray(packageJSON.workspaces)) {
+    for (const wsGlob of packageJSON.workspaces) {
+        const wsPath = path.resolve(rootPath, wsGlob);
+
+        const wsNested = glob.sync(wsPath, {
+            deep: 1,
+            onlyDirectories: true,
+        });
+        for (const projectPath of wsNested) {
+            const projectDir = path.resolve(projectPath, BIN_PATH);
+            const projectBin = path.resolve(projectDir, BIN_NAME);
+
+            const isLinkExisted = fs.existsSync(projectDir);
+            if (!isLinkExisted) {
+                fs.mkdirSync(projectDir, { recursive: true });
+                fs.symlinkSync(monorepoBin, projectBin);
+            }
+        }
+    }
 }

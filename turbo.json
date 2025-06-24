@@ -19,10 +19,6 @@
             "dependsOn": ["^bundle:compile"],
             "outputLogs": "full"
         },
-        "dev:test": {
-            "dependsOn": ["^bundle:compile"],
-            "outputLogs": "new-only"
-        },
         "dev:lint": {
             "dependsOn": ["^bundle:compile"],
             "outputLogs": "errors-only"
@@ -31,6 +27,14 @@
             "dependsOn": ["^bundle:compile"],
             "outputLogs": "errors-only"
         },
-        "dev:upgrade": {}
+        "dev:upgrade": {},
+        "test:e2e": {
+            "dependsOn": ["^bundle:compile"],
+            "outputLogs": "new-only"
+        },
+        "test:unit": {
+            "dependsOn": ["^bundle:compile"],
+            "outputLogs": "new-only"
+        }
     }
 }
