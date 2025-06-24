@@ -58,7 +58,6 @@
         "dev:lint": "eslint ./source --ext .ts",
         "dev:live": "nest start --watch -p ./tsconfig.json",
         "dev:upgrade": "npm install $(npm outdated | cut -d' ' -f 1 | sed '1d' | xargs -I '$' echo '$@latest' | xargs echo)",
-        "dev:vscode": "node ./.scripts/vscode.js",
         "dev:watch": "tsc --project tsconfig.json --watch --noEmit",
         "migration:generate": "typeorm-ts-node-commonjs migration:generate ./source/models/migrations/migration -d orm-config.ts --pretty=true",
         "migration:run": "typeorm-ts-node-commonjs migration:run -d orm-config.ts",

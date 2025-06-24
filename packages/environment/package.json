@@ -36,8 +36,8 @@
         "dev:format": "npm run dev:lint -- --fix",
         "dev:lint": "eslint ./source --ext .ts",
         "dev:live": "nest start --watch",
-        "dev:test": "jest",
         "dev:upgrade": "npm install $(npm outdated | cut -d' ' -f 1 | sed '1d' | xargs -I '$' echo '$@latest' | xargs echo)",
-        "dev:watch": "tsc --project tsconfig.json --watch"
+        "dev:watch": "tsc --project tsconfig.json --watch",
+        "test:unit": "jest"
     }
 }

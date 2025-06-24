@@ -1,4 +1,4 @@
 npm run pack:lint
 npm run dev:check
 npm run dev:lint
-npm run dev:test
+npm run test:unit
