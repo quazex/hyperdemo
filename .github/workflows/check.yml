@@ -39,8 +39,20 @@ jobs:
         with:
           node-version: 22.4.x
 
-      - run: npm ci
-      - run: npm run pack:lint
-      - run: npm run dev:check
-      - run: npm run dev:lint
-      - run: npm run dev:test
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Linter check for package
+        run: npm run pack:lint
+
+      - name: TypeScript check
+        run: npm run dev:check
+
+      - name: ESLint check
+        run: npm run dev:lint
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run e2e tests
+        run: npm run test:e2e

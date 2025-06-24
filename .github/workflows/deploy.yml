@@ -76,10 +76,17 @@ jobs:
       packages: write
       contents: read
 
+    strategy:
+      matrix:
+        deployments: [
+          { name: "backend", service: "backend" },
+        ]
+
     steps:
       - name: Deploy ${{ needs.build.outputs.service }}
+        if: matrix.deployments.name == needs.build.outputs.service
         run: |
-          curl --location 'https://api.northflank.com/v1/projects/${{ env.NF_PROJECT_ID }}/services/${{ needs.build.outputs.service }}/deployment' \
+          curl --location 'https://api.northflank.com/v1/projects/${{ env.NF_PROJECT_ID }}/services/${{ matrix.deployments.stage }}/deployment' \
             -H "Authorization: Bearer ${{ secrets.NORTHFLANK_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d '{
