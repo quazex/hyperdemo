@@ -1,5 +1,4 @@
-import { TPaginationRes } from '@domain/restapi';
-import { TProductsDataSchema } from '@domain/schemas';
+import { TProductsListSchema } from '@domain/schemas';
 import { ProductsDataModel } from './data.model';
 
 export class ProductsListModel {
@@ -29,7 +28,7 @@ export class ProductsListModel {
         this.#list = values;
     }
 
-    public toSchema(): TPaginationRes<TProductsDataSchema> {
+    public toSchema(): TProductsListSchema {
         return {
             rows: this.#list.map((m) => m.toSchema()),
             total: this.#total,

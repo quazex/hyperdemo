@@ -15,6 +15,7 @@
     ],
     "moduleNameMapper": {
         "@config": "<rootDir>/source/config",
+        "@context": "<rootDir>/source/context",
         "@domain/(.*)": "<rootDir>/source/domain/$1",
         "@testing": "<rootDir>/source/testing"
     },
