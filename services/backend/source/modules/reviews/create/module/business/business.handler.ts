@@ -1,7 +1,8 @@
 import { ContextProvider } from '@context';
 import { ReviewsDataModel } from '@domain/models';
-import { Injectable } from '@nestjs/common';
-import { TReviewsCreateFilters } from '../../types/filters.types';
+import { Exception } from '@hyperdemo/exceptions';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { TReviewsCreateParams } from '../../types/params.types';
 import { ReviewsCreateRepository } from '../integration/integration.repository';
 
 @Injectable()
@@ -11,7 +12,16 @@ export class ReviewsCreateService {
         private readonly repository: ReviewsCreateRepository,
     ) {}
 
-    public async create(params: TReviewsCreateFilters): Promise<ReviewsDataModel> {
+    public async create(params: TReviewsCreateParams): Promise<ReviewsDataModel> {
+        const isProductExists = await this.repository.isProductExists(params.product_id);
+        if (!isProductExists) {
+            throw new Exception({
+                status: HttpStatus.NOT_FOUND,
+                message: 'Cannot find product',
+                context: params,
+            });
+        }
+
         const context = this.contextProvider.getStore();
         const model = ReviewsDataModel.init({
             user_id: context.user.sub,

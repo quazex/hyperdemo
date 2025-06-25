@@ -17,7 +17,7 @@ export class ReviewsDataFactory {
         return entity;
     }
 
-    public static getMany(count = 1): ReviewsDataEntity[] {
+    public static getMany(count?: number): ReviewsDataEntity[] {
         const list: ReviewsDataEntity[] = [];
 
         const product = faker.string.uuid();

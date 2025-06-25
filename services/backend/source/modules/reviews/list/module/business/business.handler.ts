@@ -1,6 +1,7 @@
 import { ViewConfig } from '@config';
 import { ReviewsListModel } from '@domain/models';
-import { Injectable } from '@nestjs/common';
+import { Exception } from '@hyperdemo/exceptions';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { TReviewsListFilters } from '../../types/filters.types';
 import { ReviewsListRepository } from '../integration/integration.repository';
 
@@ -12,6 +13,15 @@ export class ReviewsListService {
     ) {}
 
     public async getList(filters: TReviewsListFilters): Promise<ReviewsListModel> {
+        const isProductExists = await this.repository.isProductExists(filters.product_id);
+        if (!isProductExists) {
+            throw new Exception({
+                status: HttpStatus.NOT_FOUND,
+                message: 'Cannot find product',
+                context: filters,
+            });
+        }
+
         const model = ReviewsListModel.init();
 
         const total = await this.repository.count();

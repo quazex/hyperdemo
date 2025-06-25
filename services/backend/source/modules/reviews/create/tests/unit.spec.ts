@@ -10,9 +10,11 @@ describe('Reviews Create Unit', () => {
     afterAll(testingApp.close.bind(testingApp));
 
     test('Success with correct body', async() => {
+        const productId = faker.string.uuid();
+
         const response = await testingApp.inject({
             method: 'POST',
-            url: `/reviews/${testingApp.entity.product_id}/create`,
+            url: `/reviews/${productId}/create`,
             payload: {
                 text: faker.lorem.sentence(),
                 rating: faker.number.int({ min: 1, max: 5 }),

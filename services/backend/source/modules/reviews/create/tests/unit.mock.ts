@@ -1,6 +1,5 @@
 import { ContextProvider } from '@context';
-import { ReviewsDataEntity } from '@domain/database';
-import { ReviewsDataFactory } from '@domain/mocks';
+import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database';
 import { jest } from '@jest/globals';
 import { ValueProvider } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -10,21 +9,27 @@ import { ReviewsCreateRepository } from '../module/integration/integration.repos
 import { ReviewsCreateController } from '../module/transport/transport.controller';
 
 export class TestingUnitMock extends TestingApplication {
-    public readonly entity = ReviewsDataFactory.getOne();
-
     public override async init(): Promise<void> {
-        const tRepository: ValueProvider = {
+        const tProductsRepository: ValueProvider = {
+            provide: getRepositoryToken(ProductsDataEntity),
+            useValue: {
+                countBy: jest.fn().mockReturnValue(1),
+            },
+        };
+
+        const tReviewsRepository: ValueProvider = {
             provide: getRepositoryToken(ReviewsDataEntity),
             useValue: {
-                create: jest.fn().mockReturnValue(this.entity),
-                save: jest.fn().mockReturnValue(this.entity),
+                create: jest.fn(),
+                save: jest.fn(),
             },
         };
 
         await super.init({
             providers: [
                 ContextProvider,
-                tRepository,
+                tProductsRepository,
+                tReviewsRepository,
                 ReviewsCreateRepository,
                 ReviewsCreateService,
             ],

@@ -1,4 +1,4 @@
-import { ReviewsDataEntity } from '@domain/database';
+import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReviewsCreateService } from './module/business/business.handler';
@@ -8,6 +8,7 @@ import { ReviewsCreateController } from './module/transport/transport.controller
 @Module({
     imports: [
         TypeOrmModule.forFeature([
+            ProductsDataEntity,
             ReviewsDataEntity,
         ]),
     ],

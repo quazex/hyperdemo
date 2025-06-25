@@ -1,5 +1,5 @@
 import { ViewConfig } from '@config';
-import { ReviewsDataEntity } from '@domain/database';
+import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database';
 import { ReviewsDataModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,18 +9,25 @@ import { TReviewsListFilters } from '../../types/filters.types';
 @Injectable()
 export class ReviewsListRepository {
     constructor(
-        @InjectRepository(ReviewsDataEntity)
-        private readonly repository: Repository<ReviewsDataEntity>,
         private readonly viewConfig: ViewConfig,
+        @InjectRepository(ProductsDataEntity) private readonly productsRepository: Repository<ProductsDataEntity>,
+        @InjectRepository(ReviewsDataEntity) private readonly reviewsRepository: Repository<ReviewsDataEntity>,
     ) {}
 
+    public async isProductExists(productId: string): Promise<boolean> {
+        const count = await this.productsRepository.countBy({
+            product_id: productId,
+        });
+        return count > 0;
+    }
+
     public async count(): Promise<number> {
-        const result = await this.repository.count();
+        const result = await this.reviewsRepository.count();
         return result;
     }
 
     public async getList(filters: TReviewsListFilters): Promise<ReviewsDataModel[]> {
-        const rows = await this.repository.find({
+        const rows = await this.reviewsRepository.find({
             where: {
                 product_id: filters.product_id,
             },

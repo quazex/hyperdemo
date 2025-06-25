@@ -1,5 +1,5 @@
 import { ViewConfig } from '@config';
-import { ReviewsDataEntity } from '@domain/database';
+import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database';
 import { ReviewsDataFactory } from '@domain/mocks';
 import { jest } from '@jest/globals';
 import { ValueProvider } from '@nestjs/common';
@@ -10,10 +10,17 @@ import { ReviewsListRepository } from '../module/integration/integration.reposit
 import { ReviewsListController } from '../module/transport/transport.controller';
 
 export class TestingUnitMock extends TestingApplication {
-    public readonly entities = ReviewsDataFactory.getMany(3);
+    public readonly entities = ReviewsDataFactory.getMany();
 
     public override async init(): Promise<void> {
-        const tRepository: ValueProvider = {
+        const tProductsRepository: ValueProvider = {
+            provide: getRepositoryToken(ProductsDataEntity),
+            useValue: {
+                countBy: jest.fn().mockReturnValue(1),
+            },
+        };
+
+        const tReviewsRepository: ValueProvider = {
             provide: getRepositoryToken(ReviewsDataEntity),
             useValue: {
                 count: jest.fn().mockReturnValue(this.entities.length),
@@ -24,7 +31,8 @@ export class TestingUnitMock extends TestingApplication {
         await super.init({
             providers: [
                 ViewConfig,
-                tRepository,
+                tProductsRepository,
+                tReviewsRepository,
                 ReviewsListRepository,
                 ReviewsListService,
             ],

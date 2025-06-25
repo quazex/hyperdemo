@@ -60,10 +60,16 @@ export class TestingApplication {
 
     public async inject<TData>(opts: InjectOptions): Promise<TTestingResponse<TData>> {
         const response = await this.#application.inject(opts);
-        return {
+
+        const result: TTestingResponse<TData> = {
             statusCode: response.statusCode,
-            body: response.json(),
+            body: {} as TData,
         };
+        if (response.payload) {
+            result.body = response.json();
+        }
+
+        return result;
     }
 
     public async close(): Promise<void> {
