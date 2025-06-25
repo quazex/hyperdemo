@@ -1,4 +1,3 @@
-import { join } from 'path';
 import {
     BrandsAnalyticsEntity,
     BrandsDataEntity,
@@ -12,11 +11,11 @@ import {
     ProductsAnalyticsEntity,
     ProductsDataEntity,
     ProductsImagesEntity,
+    ReviewsDataEntity,
 } from '@domain/database';
-import { EnvironmentModule, Dotenv, InjectDotenv } from '@hyperdemo/environment';
+import { Dotenv, InjectDotenv } from '@hyperdemo/environment';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { DataSource, DataSourceOptions } from 'typeorm';
 
 @Injectable()
 export class PostgresConfig implements TypeOrmOptionsFactory {
@@ -46,6 +45,7 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
                 ProductsDataEntity,
                 ProductsImagesEntity,
                 OrdersProductsEntity,
+                ReviewsDataEntity,
             ],
             useUTC: true,
             migrationsRun: false,
@@ -54,22 +54,5 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
             retryDelay: connectTimeout,
             verboseRetryLog: false,
         };
-    }
-
-    public static init(): DataSource {
-        const environment = EnvironmentModule.parse();
-        const factory = new PostgresConfig(environment);
-        const options = factory.createTypeOrmOptions() as DataSourceOptions;
-
-        const root = process.cwd();
-        const migrations = join(root, 'source/database/migrations/*-migration.ts');
-
-        return new DataSource({
-            ...options,
-            migrationsRun: true,
-            migrations: [
-                migrations,
-            ],
-        });
     }
 }

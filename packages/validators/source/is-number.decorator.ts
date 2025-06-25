@@ -12,8 +12,6 @@ import {
 } from 'class-validator';
 
 export const IsNumber = (options?: ApiPropertyOptions): PropertyDecorator => {
-    const minValue = options?.minimum ?? 0;
-
     const validationOptions: ValidationOptions = {
         each: options?.isArray,
     };
@@ -39,12 +37,12 @@ export const IsNumber = (options?: ApiPropertyOptions): PropertyDecorator => {
 
     if (typeof options?.minimum === 'number') {
         decorators.push(
-            Min(minValue, validationOptions),
+            Min(options.minimum, validationOptions),
         );
     }
     if (typeof options?.maximum === 'number') {
         decorators.push(
-            Max(minValue, validationOptions),
+            Max(options.maximum, validationOptions),
         );
     }
 

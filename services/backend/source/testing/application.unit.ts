@@ -1,8 +1,10 @@
+import { ContextProvider } from '@context';
 import { ClerkGuard } from '@hyperdemo/clerk';
 import { ModuleMetadata, ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { Test } from '@nestjs/testing';
 import { InjectOptions, LightMyRequestResponse } from 'fastify';
+import { TestingContext } from './mocks.context';
 import { TestingGuard } from './mocks.guard';
 
 export class TestingApplication {
@@ -19,7 +21,10 @@ export class TestingApplication {
 
         const tBuilder = Test
             .createTestingModule(metadata)
-            .overrideGuard(ClerkGuard).useClass(TestingGuard);
+            .overrideGuard(ClerkGuard)
+            .useClass(TestingGuard)
+            .overrideProvider(ContextProvider)
+            .useClass(TestingContext);
 
         const tModule = await tBuilder.compile();
         this.#application = tModule.createNestApplication(fastifyAdapter);

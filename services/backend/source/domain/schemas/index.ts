@@ -17,4 +17,7 @@ export * from './products/data.types';
 export * from './products/list.types';
 export * from './products/images.types';
 
+export * from './reviews/data.types';
+export * from './reviews/list.types';
+
 export * from './users/data.types';

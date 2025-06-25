@@ -63,6 +63,16 @@ CREATE TABLE orders_products (
     CONSTRAINT "PK_9579b145349c996722bde05dee0" PRIMARY KEY ("order_id", "product_id")
 );
 
+CREATE TABLE "reviews_data" (
+    "id" uuid NOT NULL,
+    "user_id" uuid NOT NULL,
+    "product_id" uuid NOT NULL,
+    "text" text NOT NULL,
+    "rating" smallint NOT NULL,
+    "created_at" TIMESTAMP NOT NULL DEFAULT now(),
+    CONSTRAINT "PK_1b669d77326c93d8cf9fe562e62" PRIMARY KEY ("id")
+);
+
 ALTER TABLE "products_data"
 ADD CONSTRAINT "FK_89ca2708ad1ac90f17e3c50cf37" FOREIGN KEY ("brand_id") REFERENCES "brands_data"("brand_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 

@@ -11,3 +11,7 @@ export * from './orders/statistics.factory';
 
 export * from './products/analytics.factory';
 export * from './products/data.factory';
+
+export * from './reviews/data.factory';
+
+export * from './users/token.factory';
