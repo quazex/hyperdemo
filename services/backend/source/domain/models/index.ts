@@ -15,4 +15,7 @@ export * from './products/analytics.model';
 export * from './products/data.model';
 export * from './products/list.model';
 
+export * from './reviews/data.model';
+export * from './reviews/list.model';
+
 export * from './users/data.model';

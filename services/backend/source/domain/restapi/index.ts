@@ -27,4 +27,9 @@ export * from './products/data.response';
 export * from './products/list.response';
 export * from './products/primary.request';
 
+export * from './reviews/create.request';
+export * from './reviews/data.response';
+export * from './reviews/list.response';
+export * from './reviews/primary.request';
+
 export * from './users/data.response';

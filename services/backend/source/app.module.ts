@@ -11,6 +11,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { HealthModule } from './modules/health/health.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { ProductsModule } from './modules/products/products.module';
+import { ReviewsModule } from './modules/reviews/reviews.module';
 
 @Module({
     imports: [
@@ -30,6 +31,7 @@ import { ProductsModule } from './modules/products/products.module';
         CategoriesModule,
         OrdersModule,
         ProductsModule,
+        ReviewsModule,
     ],
     providers: [{
         provide: APP_INTERCEPTOR,

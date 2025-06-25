@@ -1,3 +1,4 @@
+import { ContextProvider } from '@context';
 import { ClerkGuard } from '@hyperdemo/clerk';
 import { HttpExceptionFilter } from '@hyperdemo/exceptions';
 import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
@@ -6,6 +7,8 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
 import { Test } from '@nestjs/testing';
 import { InjectOptions } from 'fastify';
 import { AppModule } from '../app.module';
+import { TestingContext } from './mocks.context';
+import { TestingGuard } from './mocks.guard';
 import { TTestingResponse } from './tests.types';
 
 export class TestingApplication {
@@ -18,9 +21,10 @@ export class TestingApplication {
             .createTestingModule({
                 imports: [AppModule],
             })
-            .overrideGuard(ClerkGuard).useValue({
-                canActivate: () => true,
-            });
+            .overrideGuard(ClerkGuard)
+            .useClass(TestingGuard)
+            .overrideProvider(ContextProvider)
+            .useClass(TestingContext);
 
         const tModule = await tBuilder.compile();
         this.#application = tModule.createNestApplication(fastifyAdapter, {
@@ -56,10 +60,16 @@ export class TestingApplication {
 
     public async inject<TData>(opts: InjectOptions): Promise<TTestingResponse<TData>> {
         const response = await this.#application.inject(opts);
-        return {
+
+        const result: TTestingResponse<TData> = {
             statusCode: response.statusCode,
-            body: response.json(),
+            body: {} as TData,
         };
+        if (response.payload) {
+            result.body = response.json();
+        }
+
+        return result;
     }
 
     public async close(): Promise<void> {
