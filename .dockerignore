@@ -1,5 +1,5 @@
 # Services
-packages/**/modules
+packages/**/lib
 services/**/build
 
 # Tests
