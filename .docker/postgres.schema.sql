@@ -85,6 +85,9 @@ ADD CONSTRAINT "FK_30215ea8a4c709381a1a0877afe" FOREIGN KEY ("order_id") REFEREN
 ALTER TABLE "orders_products"
 ADD CONSTRAINT "FK_a9005ad241cb5716eef6ccb6fe9" FOREIGN KEY ("product_id") REFERENCES "products_data"("product_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+ALTER TABLE "reviews_data"
+ADD CONSTRAINT "FK_2ce3fce093188e7e4ace77dea1b" FOREIGN KEY ("product_id") REFERENCES "products_data"("product_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 CREATE MATERIALIZED VIEW "brands_analytics" AS
 SELECT "p"."brand_id" AS brand_id,
     COALESCE(SUM("op"."quantity" * "op"."price"), 0)::numeric(10, 2) AS revenue,

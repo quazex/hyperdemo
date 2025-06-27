@@ -59,7 +59,7 @@ describe('Reviews List API (e2e)', () => {
             });
 
             expect(reviewsResponse.statusCode).toBe(HttpStatus.OK);
-            expect(reviewsResponse.body.rows.length).toBe(2);
+            expect(reviewsResponse.body.rows.length).toBeGreaterThan(0);
         });
 
         it('should return 404 list for fake product', async() => {

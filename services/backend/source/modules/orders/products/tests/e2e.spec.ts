@@ -1,6 +1,7 @@
 import { TOrdersDataSchema, TOrdersListSchema, TOrdersProductsListSchema } from '@domain/schemas';
 import { faker } from '@faker-js/faker';
 import { describe, expect, it } from '@jest/globals';
+import { HttpStatus } from '@nestjs/common';
 
 describe('Orders API (e2e)', () => {
     describe('GET /api/v1/orders/:order_id/products', () => {
@@ -9,6 +10,9 @@ describe('Orders API (e2e)', () => {
                 method: 'GET',
                 url: '/api/v1/orders/list?page=1',
             });
+
+            expect(listResponse.statusCode).toBe(HttpStatus.OK);
+            expect(listResponse.body.rows.length).toBeGreaterThan(0);
 
             const randomOrder = faker.helpers.arrayElement(listResponse.body.rows);
 
@@ -22,7 +26,8 @@ describe('Orders API (e2e)', () => {
                 },
             });
 
-            expect(response.statusCode).toBe(200);
+            expect(response.statusCode).toBe(HttpStatus.OK);
+            expect(response.body.rows.length).toBeGreaterThan(0);
 
             const firstRow = response.body.rows.at(0);
 
