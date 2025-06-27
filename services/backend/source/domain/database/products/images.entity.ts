@@ -11,7 +11,7 @@ export class ProductsImagesEntity {
     @ManyToOne(() => ProductsDataEntity, (e) => e.images)
     @Index('products_images_product_index')
     @JoinColumn({ name: 'product_id' })
-    product: ProductsImagesEntity[];
+    product: ProductsImagesEntity;
 
     @Column({ type: 'text' })
     small: string;

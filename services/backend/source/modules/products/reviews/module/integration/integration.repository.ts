@@ -1,15 +1,12 @@
 import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database';
-import { ReviewsCreatedEvent } from '@domain/events';
-import { ReviewsDataModel } from '@domain/models';
 import { Injectable } from '@nestjs/common';
-import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { TProductsReviewsUpdate } from '../../types/update.types';
 
 @Injectable()
-export class ReviewsCreateRepository {
+export class ProductsReviewsRepository {
     constructor(
-        private readonly eventEmitter: EventEmitter2,
         @InjectRepository(ProductsDataEntity) private readonly productsRepository: Repository<ProductsDataEntity>,
         @InjectRepository(ReviewsDataEntity) private readonly reviewsRepository: Repository<ReviewsDataEntity>,
     ) {}
@@ -21,20 +18,21 @@ export class ReviewsCreateRepository {
         return count > 0;
     }
 
-    public async create(model: ReviewsDataModel): Promise<void> {
-        const entity = model.toEntity();
-        await this.reviewsRepository.save(entity);
+    public async countReviews(productId: string): Promise<number> {
+        const count = await this.reviewsRepository.countBy({
+            product: {
+                product_id: productId,
+            },
+        });
+        return count;
     }
 
-    public emit(productId: string): void {
-        const event = new ReviewsCreatedEvent({
-            product_id: productId,
+    public async updateProduct(params: TProductsReviewsUpdate): Promise<number> {
+        const result = await this.productsRepository.update({
+            product_id: params.product_id,
+        }, {
+            feedbacks: params.feedbacks,
         });
-        if (event) {
-            this.eventEmitter.emit(
-                ReviewsCreatedEvent.event,
-                event,
-            );
-        }
+        return result.affected ?? 0;
     }
 }

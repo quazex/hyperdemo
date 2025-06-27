@@ -35,6 +35,10 @@ export class TestingApplication {
         await this.#application.init();
     }
 
+    public get app(): NestFastifyApplication {
+        return this.#application;
+    }
+
     public inject(opts: InjectOptions): Promise<LightMyRequestResponse> {
         return this.#application.inject(opts);
     }

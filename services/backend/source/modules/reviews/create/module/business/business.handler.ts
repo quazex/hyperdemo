@@ -13,6 +13,11 @@ export class ReviewsCreateService {
     ) {}
 
     public async create(params: TReviewsCreateParams): Promise<ReviewsDataModel> {
+        const context = this.contextProvider.getStore();
+
+        //
+        // Проверка существования товара
+        //
         const isProductExists = await this.repository.isProductExists(params.product_id);
         if (!isProductExists) {
             throw new Exception({
@@ -22,7 +27,9 @@ export class ReviewsCreateService {
             });
         }
 
-        const context = this.contextProvider.getStore();
+        //
+        // Создаем отзыв
+        //
         const model = ReviewsDataModel.init({
             user_id: context.user.sub,
             product_id: params.product_id,
@@ -30,6 +37,12 @@ export class ReviewsCreateService {
             rating: params.rating,
         });
         await this.repository.create(model);
+
+        //
+        // Отправляем событие для других модулей
+        //
+        this.repository.emit(params.product_id);
+
         return model;
     }
 }
