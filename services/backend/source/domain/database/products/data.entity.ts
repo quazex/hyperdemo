@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { BrandsDataEntity } from '../brands/data.entity';
 import { CategoriesDataEntity } from '../categories/data.entity';
+import { ReviewsDataEntity } from '../reviews/data.entity';
 import { ProductsImagesEntity } from './images.entity';
 
 @Entity({
@@ -38,6 +39,9 @@ export class ProductsDataEntity {
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     price: number;
+
+    @OneToMany(() => ReviewsDataEntity, (e) => e.product)
+    reviews: ReviewsDataEntity[];
 
     @Column({ type: 'int4' })
     feedbacks: number;

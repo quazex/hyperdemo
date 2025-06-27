@@ -16,6 +16,7 @@ export class ProductsDataFactory {
             images: [],
             price: faker.number.float({ min: 10, max: 120, fractionDigits: 2 }),
             feedbacks: faker.number.int({ min: 10, max: 1_000 }),
+            reviews: [],
             created_at: date,
             updated_at: date,
         };
@@ -28,6 +29,19 @@ export class ProductsDataFactory {
                 small: faker.image.urlPicsumPhotos({ width: 120 }),
                 regular: faker.image.urlPicsumPhotos({ width: 360 }),
                 large: faker.image.urlPicsumPhotos({ width: 640 }),
+                created_at: date,
+            });
+        }
+
+        const reviewsQty = faker.number.int({ min: 4, max: 8 });
+        for (let index = 0; index < reviewsQty; index += 1) {
+            entity.reviews.push({
+                id: faker.string.uuid(),
+                user_id: faker.string.uuid(),
+                product_id: entity.product_id,
+                product: {} as never,
+                text: faker.lorem.sentence(),
+                rating: faker.number.int({ min: 1, max: 5 }),
                 created_at: date,
             });
         }
