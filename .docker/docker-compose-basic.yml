@@ -16,7 +16,7 @@ services:
     volumes:
       - hyperdemo_volume:/var/lib/postgresql/data
       - ./postgres.schema.sql:/docker-entrypoint-initdb.d/postgres.schema.sql
-      - ./postgres.seeds.sql:/docker-entrypoint-initdb.d/postgres.seeds.sql
+      - ./postgres.seeds.sql.gz:/docker-entrypoint-initdb.d/postgres.seeds.sql.gz
     networks:
       - hyperdemo_network
     ports:

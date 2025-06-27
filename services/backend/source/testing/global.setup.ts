@@ -22,8 +22,8 @@ export default async function globalSetup(): Promise<void> {
                 target: '/docker-entrypoint-initdb.d/01-schema.sql',
             },
             {
-                source: join(monorepoRoot, '.docker/postgres.seeds.sql'),
-                target: '/docker-entrypoint-initdb.d/02-seeds.sql',
+                source: join(monorepoRoot, '.docker/postgres.seeds.sql.gz'),
+                target: '/docker-entrypoint-initdb.d/02-seeds.sql.gz',
             },
         ])
         .withExposedPorts({
