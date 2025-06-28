@@ -1,0 +1,22 @@
+{
+    "maxWorkers": 1,
+    "testTimeout": 60000,
+    "moduleFileExtensions": ["ts", "js"],
+    "testMatch": [
+        "<rootDir>/**/unit.spec.ts"
+    ],
+    "transform": {
+        "^.+\\.ts$": "ts-jest"
+    },
+    "roots": [
+        "source"
+    ],
+    "moduleNameMapper": {
+        "@domain/(.*)": "<rootDir>/source/domain/$1",
+        "@features/(.*)": "<rootDir>/source/features/$1",
+        "@overall/(.*)": "<rootDir>/source/overall/$1",
+        "@pages": "<rootDir>/source/pages",
+        "@ui/(.*)": "<rootDir>/source/ui/$1",
+        "@utilities": "<rootDir>/source/utilities"
+    }
+}

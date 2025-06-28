@@ -1,0 +1,32 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "jsx": "preserve",
+
+        "baseUrl": "./source",
+        "paths": {
+            "@domain/*": ["domain/*"],
+            "@features/*": ["features/*"],
+            "@overall/*": ["overall/*"],
+            "@pages": ["pages"],
+            "@theme": ["theme"],
+            "@ui/*": ["ui/*"],
+            "@utilities": ["utilities"]
+        },
+
+        "plugins": [{
+            "name": "next"
+        }]
+    },
+    "ts-node": {
+        "require": [
+            "tsconfig-paths/register"
+        ]
+    },
+    "include": [
+        "next-env.d.ts",
+        ".next/types/**/*.ts",
+        "**/*.ts",
+        "**/*.tsx"
+    ]
+}

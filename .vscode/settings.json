@@ -10,6 +10,7 @@
         "smirnov",
         "streamable",
         "syncpack",
+        "tabler",
         "timestamptz"
     ],
     "jestrunner.configPath": {
