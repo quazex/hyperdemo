@@ -2,16 +2,13 @@
 FROM node:22.3.0-alpine AS base
 RUN npm i -g turbo
 
-ARG APP_VERSION
-ENV APP_VERSION=${APP_VERSION}
-
 
 # PRUNER
 FROM base AS pruner
 WORKDIR /app
 COPY . .
 
-RUN turbo prune @hyperdemo/backend --docker
+RUN turbo prune @hyperdemo/frontend --docker
 
 
 # INSTALLER
@@ -34,15 +31,20 @@ COPY --from=pruner /app/out/full/ .
 COPY --from=pruner /app/tsconfig*.json .
 COPY --from=installer /app/ .
 
+RUN mv /app/services/frontend/.env.build /app/services/frontend/.env
+
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV TURBO_TELEMETRY_DISABLED=1
 ENV DO_NOT_TRACK=1
 
-RUN turbo bundle:compile --filter @hyperdemo/backend
+RUN turbo bundle:compile --filter @hyperdemo/frontend
 
 
 # RUNNER
 FROM builder AS runner
-WORKDIR /app/services/backend
+WORKDIR /app/services/frontend
 
-EXPOSE 10000/tcp
+ENTRYPOINT ["/app/services/frontend/.docker/entrypoint/start.sh"]
+
+EXPOSE 3000/tcp
 CMD ["npm", "run", "bundle:run"]

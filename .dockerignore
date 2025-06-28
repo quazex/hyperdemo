@@ -19,8 +19,9 @@ services/**/build
 .eslintignore
 
 # Environment
-**/.env*
-**/config*.json
+.env*
+!.env.build
+*.pem
 
 # Markdown
 *.md

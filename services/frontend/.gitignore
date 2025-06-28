@@ -1,27 +1,11 @@
 # Services
-external
-
-packages/**/lib
-services/**/build
-services/**/migration*
+build
 
 # Docker
 .docker/volumes
-*/tunnel/.telegram
 
 # Mac files
-**/.DS_Store
-
-# Migrations
-.migrations
-
-# Environment (ignore only specific files)
-.env.*
-!.env.build
-
-# Keys
-*.key
-*.pem
+.DS_Store
 
 # Logs
 *.log
@@ -61,8 +45,6 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
-**/*.bin
-**/*.ubj
 
 # Dependency directories
 node_modules/
@@ -147,6 +129,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# Turbo Repo
-.turbo
