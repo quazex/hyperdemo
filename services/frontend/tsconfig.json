@@ -13,10 +13,7 @@
             "@ui/*": ["ui/*"],
             "@utilities": ["utilities"]
         },
-        "noEmit": true,
-        "incremental": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
+
         "plugins": [{
             "name": "next"
         }]
