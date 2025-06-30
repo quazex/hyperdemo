@@ -1,0 +1,42 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "jsx": "preserve",
+
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+
+        "noEmit": false,
+        "incremental": false,
+
+        "baseUrl": "./source",
+        "paths": {
+            "@domain/*": ["domain/*"],
+            "@features/*": ["features/*"],
+            "@overall/*": ["overall/*"],
+            "@pages": ["pages"],
+            "@theme": ["theme"],
+            "@ui/*": ["ui/*"],
+            "@utilities": ["utilities"]
+        },
+
+        "plugins": [{
+            "name": "next"
+        }]
+    },
+    "ts-node": {
+        "require": [
+            "tsconfig-paths/register"
+        ]
+    },
+    "include": [
+        "app",
+        "source",
+        ".next/types/**/*.ts",
+        "middleware.ts",
+        "next-env.d.ts",
+    ],
+    "exclude": [
+        ".next"
+    ]
+}
