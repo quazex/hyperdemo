@@ -7,9 +7,13 @@ const nextConfig = {
     publicRuntimeConfig: {
         backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL,
         googleTag: process.env.NEXT_PUBLIC_GOOGLE_TAG,
+        testingToken: process.env.NEXT_PUBLIC_TESTING_TOKEN,
     },
     experimental: {
-        optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+        optimizePackageImports: [
+            '@mantine/core',
+            '@mantine/hooks',
+        ],
     },
 };
 

@@ -1,16 +1,19 @@
-import { Fragment, JSX, PropsWithChildren } from 'react';
+'use client';
+
+import { JSX, PropsWithChildren } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { styles } from './styles.css';
 
 export default function DashboardLayout(props: PropsWithChildren): JSX.Element {
+    const queryClient = new QueryClient();
     return (
-        <Fragment>
+        <QueryClientProvider client={queryClient}>
             <main className={styles.Main}>
-                navigation
                 {props.children}
             </main>
             <footer>
                 footer
             </footer>
-        </Fragment>
+        </QueryClientProvider>
     );
 }

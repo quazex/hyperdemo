@@ -3,6 +3,12 @@
     "compilerOptions": {
         "jsx": "preserve",
 
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+
+        "noEmit": false,
+        "incremental": false,
+
         "baseUrl": "./source",
         "paths": {
             "@domain/*": ["domain/*"],
@@ -24,9 +30,13 @@
         ]
     },
     "include": [
-        "next-env.d.ts",
+        "app",
+        "source",
         ".next/types/**/*.ts",
-        "**/*.ts",
-        "**/*.tsx"
+        "middleware.ts",
+        "next-env.d.ts",
+    ],
+    "exclude": [
+        ".next"
     ]
 }

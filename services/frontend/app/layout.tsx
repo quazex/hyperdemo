@@ -4,14 +4,15 @@ import './global.css';
 
 import { JSX, PropsWithChildren } from 'react';
 import { MantineProvider } from '@mantine/core';
+import { LocaleMessages, LocaleProvider } from '@overall/locale';
 import { resolver, theme } from '@theme';
 import { Nunito_Sans } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Hyperdemo - Аналитика продаж',
-    description: 'Сервис аналитики продаж: находите тренды и увеличивайте продажи',
-    keywords: 'товары в тренде, аналитика продаж, успешные ниши',
+    title: LocaleMessages.meta_title,
+    description: LocaleMessages.meta_description,
+    keywords: LocaleMessages.meta_keywords,
     robots: 'noindex',
 };
 
@@ -28,15 +29,17 @@ const FontNunitoSans = Nunito_Sans({
 
 export default function RootLayout(props: PropsWithChildren): JSX.Element {
     return (
-        <html lang="ru" className={FontNunitoSans.className}>
+        <html className={FontNunitoSans.className}>
             <body>
-                <MantineProvider
-                    defaultColorScheme="light"
-                    cssVariablesResolver={resolver}
-                    theme={theme}
-                >
-                    {props.children}
-                </MantineProvider>
+                <LocaleProvider>
+                    <MantineProvider
+                        defaultColorScheme="light"
+                        cssVariablesResolver={resolver}
+                        theme={theme}
+                    >
+                        {props.children}
+                    </MantineProvider>
+                </LocaleProvider>
             </body>
         </html>
     );

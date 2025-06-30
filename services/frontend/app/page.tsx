@@ -1,15 +1,23 @@
+'use client';
+
 import { JSX } from 'react';
-import { Title } from '@mantine/core';
-import getConfig from 'next/config';
+import { useIntl } from 'react-intl';
+import { Anchor, Stack, Title } from '@mantine/core';
+import Link from 'next/link';
 
 export default function Page(): JSX.Element {
-    const { publicRuntimeConfig: config } = getConfig();
-    const pairs = Object.entries(config).map((r) => r.join('=')).join('\n');
+    const intl = useIntl();
+
+    const dashboardTitle = intl.formatMessage({
+        id: 'dashboard_title',
+    });
 
     return (
-        <div>
+        <Stack>
             <Title order={1}>Root</Title>
-            {pairs}
-        </div>
+            <Anchor href="/dashboard" component={Link}>
+                {dashboardTitle}
+            </Anchor>
+        </Stack>
     );
 }
