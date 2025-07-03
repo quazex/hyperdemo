@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+
+        "jsx": "react-jsx",
+        "jsxImportSource": "preact",
+
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+
+        "noEmit": false,
+        "incremental": false,
+
+        "baseUrl": "./source",
+        "paths": {
+            "@domain/*": ["domain/*"],
+            "@features/*": ["features/*"],
+            "@overall/*": ["overall/*"],
+            "@pages": ["pages"],
+            "@theme": ["theme"],
+            "@ui/*": ["ui/*"],
+            "@utilities": ["utilities"]
+        },
+    },
+    "ts-node": {
+        "require": [
+            "tsconfig-paths/register"
+        ]
+    },
+    "include": [
+        "source"
+    ]
+}

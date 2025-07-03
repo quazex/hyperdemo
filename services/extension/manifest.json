@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Hyperdemo Google Meet Extension",
+    "version": "0.1.0",
+    "description": "Addon for Google Meet for play with counter",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "host_permissions": ["https://meet.google.com/*"],
+    "content_scripts": [{
+        "matches": ["https://meet.google.com/*"],
+        "js": ["dist/content.js"],
+        "css": ["dist/content.css"]
+    }],
+    "icons": {
+        "128": "public/icon.png"
+    }
+}
