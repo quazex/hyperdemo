@@ -2,7 +2,6 @@ import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database'
 import { ProductsDataFactory } from '@domain/mocks'
 import { jest } from '@jest/globals'
 import { ValueProvider } from '@nestjs/common'
-import { EventEmitter2, EventEmitterModule } from '@nestjs/event-emitter'
 import { getRepositoryToken } from '@nestjs/typeorm'
 import { TestingApplicationUnit } from '@shared/testing'
 import { ProductsReviewsHandler } from '../module/business/business.handler'
@@ -11,10 +10,6 @@ import { ProductsReviewsController } from '../module/transport/transport.control
 
 export class TestingUnitMock extends TestingApplicationUnit {
   public readonly product = ProductsDataFactory.getOne()
-
-  public get emitter(): EventEmitter2 {
-    return this.app.get(EventEmitter2)
-  }
 
   public override async init(): Promise<void> {
     const tProductsRepository: ValueProvider = {
@@ -33,11 +28,6 @@ export class TestingUnitMock extends TestingApplicationUnit {
     }
 
     await super.init({
-      imports: [
-        EventEmitterModule.forRoot({
-          global: true,
-        }),
-      ],
       providers: [
         tProductsRepository,
         tReviewsRepository,

@@ -39,16 +39,11 @@ export default async function globalSetup(): Promise<void> {
   // Environments
   //
   const env: Record<string, string> = {
-    APP_HOST: 'hyperdemo.backend',
-    APP_PORT: '10000',
-    APP_PRODUCTION: 'true',
+    PORT: '10000',
+    NODE_ENV: 'production',
     APP_TIMEZONE: 'UTC',
-    DOCS_IS_ENABLED: 'false',
-    POSTGRES_HOST: postgresContainer.getHost(),
-    POSTGRES_PORT: postgresContainer.getFirstMappedPort().toString(),
-    POSTGRES_USERNAME: 'test',
-    POSTGRES_PASSWORD: 'test',
-    POSTGRES_DATABASE: 'test',
+    DOCS_ENABLED: 'false',
+    POSTGRES_URI: postgresContainer.getConnectionUri(),
   }
 
   const envContent = Object.entries(env).map((row) => row.join('=')).join('\n')

@@ -1,20 +1,20 @@
 {
-    "maxWorkers": 1,
-    "testTimeout": 60000,
-    "moduleFileExtensions": ["ts", "js"],
-    "testMatch": [
-        "<rootDir>/**/unit.spec.ts"
-    ],
-    "transform": {
-        "^.+\\.ts$": "ts-jest"
-    },
-    "roots": [
-        "source"
-    ],
-    "moduleNameMapper": {
-        "@config": "<rootDir>/source/config",
-        "@context": "<rootDir>/source/context",
-        "@domain/(.*)": "<rootDir>/source/domain/$1",
-        "@shared/testing": "<rootDir>/source/testing"
-    }
+  "maxWorkers": 1,
+  "testTimeout": 60000,
+  "moduleFileExtensions": ["ts", "js"],
+  "testMatch": [
+    "<rootDir>/**/unit.spec.ts"
+  ],
+  "transform": {
+    "^.+\\.ts$": "ts-jest"
+  },
+  "roots": [
+    "source"
+  ],
+  "moduleNameMapper": {
+    "@config": "<rootDir>/source/config",
+    "@context": "<rootDir>/source/context",
+    "@domain/(.*)": "<rootDir>/source/domain/$1",
+    "@shared/testing": "<rootDir>/source/testing"
+  }
 }

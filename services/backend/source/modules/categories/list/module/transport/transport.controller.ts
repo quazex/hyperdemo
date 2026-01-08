@@ -1,5 +1,4 @@
 import { CategoriesListRes, PaginationReq } from '@domain/restapi'
-import { ClerkGuard } from '@hyperdemo/clerk'
 import {
   Controller,
   Get,
@@ -10,6 +9,7 @@ import {
   Version,
 } from '@nestjs/common'
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ClerkGuard } from '@shared/clerk'
 import { CategoriesListService } from '../business/business.handler'
 
 @ApiTags('Categories')

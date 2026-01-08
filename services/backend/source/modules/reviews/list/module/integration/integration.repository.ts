@@ -1,15 +1,14 @@
-import { ViewConfig } from '@config'
 import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database'
 import { ReviewsDataModel } from '@domain/models'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { Environment } from 'environment'
 import { Repository } from 'typeorm'
 import { TReviewsListFilters } from '../../types/filters.types'
 
 @Injectable()
 export class ReviewsListRepository {
   constructor(
-    private readonly viewConfig: ViewConfig,
     @InjectRepository(ProductsDataEntity) private readonly productsRepository: Repository<ProductsDataEntity>,
     @InjectRepository(ReviewsDataEntity) private readonly reviewsRepository: Repository<ReviewsDataEntity>,
   ) {}
@@ -34,8 +33,8 @@ export class ReviewsListRepository {
       order: {
         created_at: 'DESC',
       },
-      take: this.viewConfig.items_per_page,
-      skip: this.viewConfig.items_per_page * (filters.page - 1),
+      take: Environment.View.Size,
+      skip: Environment.View.Size * (filters.page - 1),
     })
 
     return rows.map((row) => ReviewsDataModel.fromEntity(row))

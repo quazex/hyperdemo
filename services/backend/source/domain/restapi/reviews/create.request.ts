@@ -1,9 +1,9 @@
-import { IsNumber, IsString } from '@hyperdemo/validators'
+import { ValidateNumber, ValidateString } from '@hyperdemo/decorators'
 
 export class ReviewsCreateReq {
-  @IsString({ example: 'Feedback text' })
+  @ValidateString({ example: 'Feedback text' })
   public text: string
 
-  @IsNumber({ minimum: 1, maximum: 5, example: 3 })
+  @ValidateNumber({ minimum: 1, maximum: 5, example: 3 })
   public rating: number
 }

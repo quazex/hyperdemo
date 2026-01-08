@@ -1,6 +1,6 @@
 import { BrandsDataModel } from '@domain/models'
-import { Exception } from '@hyperdemo/exceptions'
 import { HttpStatus, Injectable } from '@nestjs/common'
+import { AppError } from '@shared/errors'
 import { TBrandsInfoFilters } from '../../types/filter.types'
 import { BrandsInfoRepository } from '../integration/integration.repository'
 
@@ -11,7 +11,7 @@ export class BrandsInfoService {
   public async getInfo(filters: TBrandsInfoFilters): Promise<BrandsDataModel> {
     const model = await this.repository.getInfo(filters)
     if (!model) {
-      throw new Exception({
+      throw new AppError({
         message: 'Cannot find brand',
         status: HttpStatus.NOT_FOUND,
         context: filters,

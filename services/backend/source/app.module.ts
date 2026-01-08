@@ -1,11 +1,9 @@
-import { ConfigModule, ClerkConfig, PostgresConfig } from '@config'
-import { ContextInterceptor, ContextModule } from '@shared/context'
-import { ClerkModule } from '@hyperdemo/clerk'
-import { LogsRequestsInterceptor } from '@hyperdemo/logging'
+import { ClerkConfig, PostgresConfig, EnvironmentModule } from '@config'
 import { Module } from '@nestjs/common'
 import { APP_INTERCEPTOR } from '@nestjs/core'
-import { EventEmitterModule } from '@nestjs/event-emitter'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { ClerkModule } from '@shared/clerk'
+import { ContextInterceptor, ContextModule } from '@shared/context'
 import { BrandsModule } from './modules/brands/brands.module'
 import { CategoriesModule } from './modules/categories/categories.module'
 import { HealthModule } from './modules/health/health.module'
@@ -16,18 +14,12 @@ import { UsersModule } from './modules/users/users.module'
 
 @Module({
   imports: [
-    ConfigModule,
+    EnvironmentModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
       useExisting: PostgresConfig,
     }),
     ClerkModule.forRootAsync({
-      imports: [ConfigModule],
       useExisting: ClerkConfig,
-    }),
-    EventEmitterModule.forRoot({
-      global: true,
-      ignoreErrors: true,
     }),
     ContextModule.forRoot(),
     HealthModule,
@@ -39,9 +31,6 @@ import { UsersModule } from './modules/users/users.module'
     ReviewsModule,
   ],
   providers: [{
-    provide: APP_INTERCEPTOR,
-    useClass: LogsRequestsInterceptor,
-  }, {
     provide: APP_INTERCEPTOR,
     useClass: ContextInterceptor,
   }],

@@ -1,8 +1,8 @@
-import { ViewConfig } from '@config'
 import { ProductsDataEntity } from '@domain/database'
 import { ProductsDataModel } from '@domain/models'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { Environment } from 'environment'
 import { Repository } from 'typeorm'
 import { TProductsListFilters } from '../../types/filters.types'
 
@@ -11,7 +11,6 @@ export class ProductsListRepository {
   constructor(
     @InjectRepository(ProductsDataEntity)
     private readonly repository: Repository<ProductsDataEntity>,
-    private readonly viewConfig: ViewConfig,
   ) {}
 
   public async count(): Promise<number> {
@@ -40,8 +39,8 @@ export class ProductsListRepository {
         'brand',
         'category',
       ],
-      take: this.viewConfig.items_per_page,
-      skip: this.viewConfig.items_per_page * (filters.page - 1),
+      take: Environment.View.Size,
+      skip: Environment.View.Size * (filters.page - 1),
     })
 
     const models = rows.map((row) => ProductsDataModel.fromEntity(row))

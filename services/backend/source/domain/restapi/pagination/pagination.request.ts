@@ -1,6 +1,6 @@
-import { IsNumber } from '@hyperdemo/validators'
+import { ValidateNumber } from '@hyperdemo/decorators'
 
 export class PaginationReq {
-  @IsNumber({ minimum: 1, example: 1 })
+  @ValidateNumber({ minimum: 1, example: 1 })
   public page: number
 }

@@ -1,4 +1,3 @@
-import { ViewConfig } from '@config'
 import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database'
 import { ReviewsDataFactory } from '@domain/mocks'
 import { jest } from '@jest/globals'
@@ -30,7 +29,6 @@ export class TestingUnitMock extends TestingApplicationUnit {
 
     await super.init({
       providers: [
-        ViewConfig,
         tProductsRepository,
         tReviewsRepository,
         ReviewsListRepository,

@@ -1,18 +1,16 @@
 import { existsSync, readFileSync } from 'fs'
 import { resolve } from 'path'
 import { ClerkOptions } from '@clerk/backend'
-import { TClerkOptionsFactory } from '@hyperdemo/clerk'
-import { Dotenv, InjectDotenv } from '@hyperdemo/environment'
 import { Injectable } from '@nestjs/common'
+import { TClerkOptionsFactory } from '@shared/clerk'
+import { Environment } from 'environment'
 
 @Injectable()
 export class ClerkConfig implements TClerkOptionsFactory {
-  constructor(@InjectDotenv() private readonly env: Dotenv) {}
-
   public createClerkOptions(): ClerkOptions {
     const options: ClerkOptions = {
-      publishableKey: this.env.get('CLERK_PUBLISHABLE_KEY').required().asString(),
-      secretKey: this.env.get('CLERK_SECRET_KEY').required().asString(),
+      publishableKey: Environment.Clerk.publishableKey,
+      secretKey: Environment.Clerk.secretKey,
       jwtKey: undefined,
     }
 

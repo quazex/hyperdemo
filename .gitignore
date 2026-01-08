@@ -2,6 +2,7 @@
 external
 
 packages/**/lib
+packages/**/build
 services/**/build
 services/**/migration*
 

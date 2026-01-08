@@ -1,4 +1,5 @@
-import { Injectable, Logger } from '@nestjs/common'
+import { HttpStatus, Injectable, Logger } from '@nestjs/common'
+import { AppError } from '@shared/errors'
 import { TProductsReviewsParams } from '../../types/params.types'
 import { ProductsReviewsRepository } from '../integration/integration.repository'
 
@@ -12,7 +13,11 @@ export class ProductsReviewsHandler {
     try {
       const isProductExists = await this.repository.isProductExists(params.product_id)
       if (!isProductExists) {
-        throw new Error(`Cannot find product=${params.product_id}`)
+        throw new AppError({
+          message: 'Cannot find product',
+          status: HttpStatus.NOT_FOUND,
+          context: params,
+        })
       }
 
       const reviews = await this.repository.countReviews(params.product_id)

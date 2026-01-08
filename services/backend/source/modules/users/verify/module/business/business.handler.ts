@@ -1,9 +1,9 @@
 import { ClerkClient } from '@clerk/backend'
-import { ContextProvider } from '@shared/context'
 import { UsersDataModel } from '@domain/models'
-import { InjectClerkClient } from '@hyperdemo/clerk'
-import { Exception } from '@hyperdemo/exceptions'
 import { HttpStatus, Injectable } from '@nestjs/common'
+import { InjectClerkClient } from '@shared/clerk'
+import { ContextProvider } from '@shared/context'
+import { AppError } from '@shared/errors'
 
 @Injectable()
 export class UsersVerifyService {
@@ -19,7 +19,7 @@ export class UsersVerifyService {
 
       return UsersDataModel.init(user)
     } catch (error) {
-      throw new Exception({
+      throw new AppError({
         message: 'Unauthorized',
         status: HttpStatus.UNAUTHORIZED,
         context: error,

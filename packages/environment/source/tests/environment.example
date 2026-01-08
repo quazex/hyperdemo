@@ -1,4 +1,0 @@
-PORT=10
-IS_FLAG=true
-HOST=https://external.host.com
-BROKERS=["some.host:8000","another.host:9000"]

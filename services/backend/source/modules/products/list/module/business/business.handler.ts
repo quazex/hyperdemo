@@ -1,13 +1,12 @@
-import { ViewConfig } from '@config'
 import { ProductsListModel } from '@domain/models'
 import { Injectable } from '@nestjs/common'
+import { Environment } from 'environment'
 import { TProductsListFilters } from '../../types/filters.types'
 import { ProductsListRepository } from '../integration/integration.repository'
 
 @Injectable()
 export class ProductsListService {
   constructor(
-    private readonly viewConfig: ViewConfig,
     private readonly repository: ProductsListRepository,
   ) {}
 
@@ -15,7 +14,7 @@ export class ProductsListService {
     const model = ProductsListModel.init()
 
     const total = await this.repository.count()
-    const pages = Math.ceil(total / this.viewConfig.items_per_page)
+    const pages = Math.ceil(total / Environment.View.Size)
 
     model.total = total
     model.pages = pages

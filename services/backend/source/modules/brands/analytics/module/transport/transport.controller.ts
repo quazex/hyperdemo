@@ -1,5 +1,4 @@
 import { BrandsAnalyticsReq, BrandsAnalyticsRes, BrandsPrimaryReq } from '@domain/restapi'
-import { ClerkGuard } from '@hyperdemo/clerk'
 import {
   Controller,
   Get,
@@ -11,6 +10,7 @@ import {
   Version,
 } from '@nestjs/common'
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ClerkGuard } from '@shared/clerk'
 import { BrandsAnalyticsService } from '../business/business.handler'
 
 @ApiTags('Brands')

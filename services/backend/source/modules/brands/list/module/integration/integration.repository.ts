@@ -1,8 +1,8 @@
-import { ViewConfig } from '@config'
 import { BrandsStatisticsEntity } from '@domain/database'
 import { BrandsDataModel } from '@domain/models'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { Environment } from 'environment'
 import { Repository } from 'typeorm'
 import { TBrandsListFilters } from '../../types/filters.types'
 
@@ -11,7 +11,6 @@ export class BrandsListRepository {
   constructor(
     @InjectRepository(BrandsStatisticsEntity)
     private readonly repository: Repository<BrandsStatisticsEntity>,
-    private readonly viewConfig: ViewConfig,
   ) {}
 
   public async count(): Promise<number> {
@@ -33,8 +32,8 @@ export class BrandsListRepository {
         feedbacks: 'DESC',
         brand_id: 'ASC',
       },
-      take: this.viewConfig.items_per_page,
-      skip: this.viewConfig.items_per_page * (filters.page - 1),
+      take: Environment.View.Size,
+      skip: Environment.View.Size * (filters.page - 1),
     })
 
     const models = rows.map((row) => BrandsDataModel.fromStatistic(row))

@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+
+    "target": "ES2021",
+    "lib": [
+      "ES2022",
+    ],
+
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    "allowJs": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "pretty": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+
+    "baseUrl": "./source",
+    "paths": {
+      "@/*": ["*"],
+    },
+  },
+  "exclude": [
+    "build",
+    "node_modules",
+  ],
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  }
+}

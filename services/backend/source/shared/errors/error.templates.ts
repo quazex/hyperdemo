@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { HttpStatus } from '@nestjs/common'
 import { AppError } from './error.application'
 import { ErrorCode } from './error.codes'

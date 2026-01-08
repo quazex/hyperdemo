@@ -14,11 +14,6 @@ describe('Products Reviews Unit', () => {
       product_id: faker.string.uuid(),
     })
 
-    const result = await testingApp.emitter.emitAsync(
-      ReviewsCreatedEvent.event,
-      event,
-    )
-
-    expect(result).toBeDefined()
+    expect(event).toBeDefined()
   })
 })

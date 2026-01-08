@@ -1,0 +1,2 @@
+export const LOOPER_METADATA_KEY = Symbol('LOOPER_METADATA_KEY')
+export const LOOPER_OPTIONS_KEY = Symbol('LOOPER_OPTIONS_KEY')

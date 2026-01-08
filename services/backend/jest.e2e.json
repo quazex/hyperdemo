@@ -1,25 +1,25 @@
 {
-    "maxWorkers": 1,
-    "testTimeout": 120000,
-    "moduleFileExtensions": ["ts", "js"],
-    "testMatch": [
-        "<rootDir>/**/e2e.spec.ts"
-    ],
-    "transform": {
-        "^.+\\.ts$": ["ts-jest", {
-            "tsconfig": "<rootDir>/tsconfig.build.json"
-        }]
-    },
-    "roots": [
-        "source"
-    ],
-    "moduleNameMapper": {
-        "@config": "<rootDir>/source/config",
-        "@context": "<rootDir>/source/context",
-        "@domain/(.*)": "<rootDir>/source/domain/$1",
-        "@shared/testing": "<rootDir>/source/testing"
-    },
-    "globalSetup": "<rootDir>/source/testing/global.setup.ts",
-    "globalTeardown": "<rootDir>/source/testing/global.teardown.ts",
-    "verbose": true
+  "maxWorkers": 1,
+  "testTimeout": 120000,
+  "moduleFileExtensions": ["ts", "js"],
+  "testMatch": [
+    "<rootDir>/**/e2e.spec.ts"
+  ],
+  "transform": {
+    "^.+\\.ts$": ["ts-jest", {
+      "tsconfig": "<rootDir>/tsconfig.build.json"
+    }]
+  },
+  "roots": [
+    "source"
+  ],
+  "moduleNameMapper": {
+    "@config": "<rootDir>/source/config",
+    "@context": "<rootDir>/source/context",
+    "@domain/(.*)": "<rootDir>/source/domain/$1",
+    "@shared/testing": "<rootDir>/source/testing"
+  },
+  "globalSetup": "<rootDir>/source/testing/global.setup.ts",
+  "globalTeardown": "<rootDir>/source/testing/global.teardown.ts",
+  "verbose": true
 }

@@ -1,7 +1,7 @@
-import { ClerkGuard } from '@hyperdemo/clerk'
 import { ModuleMetadata, ValidationPipe } from '@nestjs/common'
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
 import { Test } from '@nestjs/testing'
+import { ClerkGuard } from '@shared/clerk'
 import { ContextProvider } from '@shared/context'
 import { InjectOptions, LightMyRequestResponse } from 'fastify'
 import { TestingContext } from './mocks.context'

@@ -42,11 +42,6 @@ export class UptimeHealthIndicator {
       probe.version = hash
     }
 
-    const appVersion = this.appConfig.version
-    if (typeof appVersion === 'string') {
-      probe.version = appVersion
-    }
-
     if (probe.uptime === 0) {
       return indicator.down(probe)
     }

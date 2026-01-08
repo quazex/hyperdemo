@@ -1,7 +1,7 @@
-import { ContextProvider } from '@shared/context'
 import { ReviewsDataModel } from '@domain/models'
-import { Exception } from '@hyperdemo/exceptions'
 import { HttpStatus, Injectable } from '@nestjs/common'
+import { ContextProvider } from '@shared/context'
+import { AppError } from '@shared/errors'
 import { TReviewsCreateParams } from '../../types/params.types'
 import { ReviewsCreateRepository } from '../integration/integration.repository'
 
@@ -20,7 +20,7 @@ export class ReviewsCreateService {
     //
     const isProductExists = await this.repository.isProductExists(params.product_id)
     if (!isProductExists) {
-      throw new Exception({
+      throw new AppError({
         status: HttpStatus.NOT_FOUND,
         message: 'Cannot find product',
         context: params,
@@ -41,7 +41,7 @@ export class ReviewsCreateService {
     //
     // Отправляем событие для других модулей
     //
-    this.repository.emit(params.product_id)
+    await this.repository.emit(params.product_id)
 
     return model
   }

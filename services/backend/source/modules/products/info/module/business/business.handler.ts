@@ -1,6 +1,6 @@
 import { ProductsDataModel } from '@domain/models'
-import { Exception } from '@hyperdemo/exceptions'
 import { HttpStatus, Injectable } from '@nestjs/common'
+import { AppError } from '@shared/errors'
 import { TProductsInfoFilters } from '../../types/filter.types'
 import { ProductsInfoRepository } from '../integration/integration.repository'
 
@@ -11,7 +11,7 @@ export class ProductsInfoService {
   public async getInfo(filters: TProductsInfoFilters): Promise<ProductsDataModel> {
     const model = await this.repository.getInfo(filters)
     if (!model) {
-      throw new Exception({
+      throw new AppError({
         message: 'Cannot find product',
         status: HttpStatus.NOT_FOUND,
         context: filters,

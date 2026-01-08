@@ -1,0 +1,17 @@
+.husky
+.vscode
+
+tsconfig*
+eslintrc*
+jest*json
+nest*json
+*.md
+.turbo
+
+.git
+.github
+.gitignore
+
+source
+spec
+tests

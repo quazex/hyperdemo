@@ -25,13 +25,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a **TypeScript monorepo** using **Turbo** for build orchestration and **npm workspaces**. The project follows a **trunk-based development** approach with feature flags.
 
 ### Structure:
-- **`packages/`** - Shared libraries used across services:
-  - `@hyperdemo/clerk` - Clerk.dev authentication integration
-  - `@hyperdemo/environment` - Environment configuration management
-  - `@hyperdemo/validators` - Custom validation decorators
-  - `@hyperdemo/exceptions` - Exception handling utilities
-  - `@hyperdemo/logging` - Logging utilities
-
 - **`services/backend/`** - NestJS API service with:
   - **Fastify** as HTTP adapter
   - **TypeORM** for database operations

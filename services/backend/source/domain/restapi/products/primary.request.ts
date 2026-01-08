@@ -1,6 +1,6 @@
-import { IsUUID } from '@hyperdemo/validators'
+import { ValidateUUID } from '@hyperdemo/decorators'
 
 export class ProductsPrimaryReq {
-  @IsUUID()
+  @ValidateUUID()
   public product_id: string
 }

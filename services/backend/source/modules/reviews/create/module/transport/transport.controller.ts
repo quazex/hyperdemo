@@ -1,5 +1,4 @@
 import { ReviewsCreateReq, ReviewsDataRes, ReviewsPrimaryReq } from '@domain/restapi'
-import { ClerkGuard } from '@hyperdemo/clerk'
 import {
   Body,
   Controller,
@@ -11,6 +10,7 @@ import {
   Version,
 } from '@nestjs/common'
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ClerkGuard } from '@shared/clerk'
 import { ReviewsCreateService } from '../business/business.handler'
 
 @ApiTags('Reviews')

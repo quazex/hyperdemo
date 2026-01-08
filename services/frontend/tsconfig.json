@@ -1,37 +1,34 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-        "jsx": "preserve",
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
 
-        "resolveJsonModule": true,
-        "isolatedModules": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
 
-        "noEmit": false,
-        "incremental": false,
+    "noEmit": false,
+    "incremental": false,
 
-        "plugins": [
-        {
-            "name": "next"
-        }
-        ],
-        "paths": {
-            "@/*": ["./src/*"]
-        }
-    },
-    "ts-node": {
-        "require": [
-            "tsconfig-paths/register"
-        ]
-    },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        ".next/types/**/*.ts",
-        ".next/dev/types/**/*.ts",
-        "**/*.mts"
-    ],
-    "exclude": [
-        "node_modules"
+    "plugins": [{
+      "name": "next"
+    }],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
     ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

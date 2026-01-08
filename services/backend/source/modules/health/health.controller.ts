@@ -1,4 +1,3 @@
-import { LogsMetadata } from '@hyperdemo/logging'
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common'
 import {
   HealthCheck,
@@ -8,9 +7,6 @@ import {
 } from '@nestjs/terminus'
 import { UptimeHealthIndicator } from './health.indicator'
 
-@LogsMetadata({
-  skip: true,
-})
 @Controller()
 export class HealthController {
   constructor(

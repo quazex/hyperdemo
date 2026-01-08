@@ -1,9 +1,8 @@
-import { ContextProvider } from '@shared/context'
 import { ProductsDataEntity, ReviewsDataEntity } from '@domain/database'
 import { jest } from '@jest/globals'
 import { ValueProvider } from '@nestjs/common'
-import { EventEmitter2 } from '@nestjs/event-emitter'
 import { getRepositoryToken } from '@nestjs/typeorm'
+import { ContextProvider } from '@shared/context'
 import { TestingApplicationUnit } from '@shared/testing'
 import { ReviewsCreateService } from '../module/business/business.handler'
 import { ReviewsCreateRepository } from '../module/integration/integration.repository'
@@ -11,13 +10,6 @@ import { ReviewsCreateController } from '../module/transport/transport.controlle
 
 export class TestingUnitMock extends TestingApplicationUnit {
   public override async init(): Promise<void> {
-    const tEmitterProvider: ValueProvider = {
-      provide: EventEmitter2,
-      useValue: {
-        emit: jest.fn(),
-      },
-    }
-
     const tProductsRepository: ValueProvider = {
       provide: getRepositoryToken(ProductsDataEntity),
       useValue: {
@@ -35,7 +27,6 @@ export class TestingUnitMock extends TestingApplicationUnit {
 
     await super.init({
       providers: [
-        tEmitterProvider,
         tProductsRepository,
         tReviewsRepository,
         ContextProvider,

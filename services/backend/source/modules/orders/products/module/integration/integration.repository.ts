@@ -1,15 +1,14 @@
-import { ViewConfig } from '@config'
 import { OrdersProductsEntity } from '@domain/database'
 import { OrdersProductsDataModel } from '@domain/models'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { Environment } from 'environment'
 import { Repository } from 'typeorm'
 import { TOrdersProductsFilters } from '../../types/filters.types'
 
 @Injectable()
 export class OrdersProductsRepository {
   constructor(
-    private readonly viewConfig: ViewConfig,
     @InjectRepository(OrdersProductsEntity) private readonly productsRepository: Repository<OrdersProductsEntity>,
     @InjectRepository(OrdersProductsEntity) private readonly ordersRepository: Repository<OrdersProductsEntity>,
   ) {}
@@ -43,8 +42,8 @@ export class OrdersProductsRepository {
         'product.category',
         'product.images',
       ],
-      take: this.viewConfig.items_per_page,
-      skip: this.viewConfig.items_per_page * (filters.page - 1),
+      take: Environment.View.Size,
+      skip: Environment.View.Size * (filters.page - 1),
     })
 
     const models = rows.map((row) => OrdersProductsDataModel.fromEntity(row))

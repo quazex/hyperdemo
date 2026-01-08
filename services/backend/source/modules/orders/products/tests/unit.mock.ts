@@ -1,4 +1,3 @@
-import { ViewConfig } from '@config'
 import { OrdersDataEntity, OrdersProductsEntity } from '@domain/database'
 import { OrdersProductsFactory, OrdersStatisticsFactory } from '@domain/mocks'
 import { jest } from '@jest/globals'
@@ -36,7 +35,6 @@ export class TestingUnitMock extends TestingApplicationUnit {
 
     await super.init({
       providers: [
-        ViewConfig,
         tOrdersRepository,
         tProductsRepository,
         OrdersProductsRepository,
