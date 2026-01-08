@@ -1,0 +1,4 @@
+.features_grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+}

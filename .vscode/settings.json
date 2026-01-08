@@ -5,6 +5,7 @@
         "growthbook",
         "hyperdemo",
         "luxon",
+        "nuqs",
         "quazex",
         "radash",
         "restapi",
@@ -12,7 +13,8 @@
         "streamable",
         "syncpack",
         "tabler",
-        "timestamptz"
+        "timestamptz",
+        "turbopack"
     ],
     "jestrunner.configPath": {
         "**/services/backend/source/**/e2e.spec.ts": "./services/backend/jest.e2e.json",

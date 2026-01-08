@@ -9,20 +9,14 @@
         "noEmit": false,
         "incremental": false,
 
-        "baseUrl": "./source",
-        "paths": {
-            "@domain/*": ["domain/*"],
-            "@features/*": ["features/*"],
-            "@overall/*": ["overall/*"],
-            "@pages": ["pages"],
-            "@theme": ["theme"],
-            "@ui/*": ["ui/*"],
-            "@utilities": ["utilities"]
-        },
-
-        "plugins": [{
+        "plugins": [
+        {
             "name": "next"
-        }]
+        }
+        ],
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
     "ts-node": {
         "require": [
@@ -30,13 +24,14 @@
         ]
     },
     "include": [
-        "app",
-        "source",
-        ".next/types/**/*.ts",
-        "middleware.ts",
         "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        ".next/dev/types/**/*.ts",
+        "**/*.mts"
     ],
     "exclude": [
-        ".next"
+        "node_modules"
     ]
 }

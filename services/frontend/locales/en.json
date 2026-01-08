@@ -1,0 +1,52 @@
+{
+  "Metadata": {
+    "title": "Quazex market",
+    "description": "Free shipping on millions of items. Enjoy low prices and great deals on the largest selection of everyday essentials and other products, including fashion, home, beauty, electronics, sporting goods, toys, automotive, pets, baby, books, video games, musical instruments, office supplies, and more."
+  },
+  "NotFound": {
+    "title": "Not found",
+    "text": "Requested page doesn't exists",
+    "links": {
+      "main": "Main page",
+      "back": "Go back"
+    }
+  },
+  "Header": {
+    "search": {
+      "placeholder": "Search on Quazex",
+      "clear": "Clear input",
+      "submit": "Search"
+    },
+    "links": {
+      "cart": "Shopping Cart",
+      "login": "Login",
+      "profile": "Profile"
+    }
+  },
+  "Footer": {
+    "market": "Market",
+    "information": "Information",
+    "company": "Company",
+    "shirts": "Shirts",
+    "dresses": "Dresses",
+    "glasses": "Glasses",
+    "warranty": "Warranty",
+    "shipping": "Shipping",
+    "returning": "Returning",
+    "legal": "Legal",
+    "jobs": "Jobs",
+    "contacts": "Contacts"
+  },
+  "Products": {
+    "title": "Products",
+    "total": "{count, plural, =0 {No products} =1 {# product} other {# products}}",
+    "features": "Features",
+    "related": "Related",
+    "brand": "Brand",
+    "category": "Category",
+    "warranty": "Warranty",
+    "shipping": "Shipping",
+    "availability": "Availability",
+    "returning": "Returning"
+  }
+}

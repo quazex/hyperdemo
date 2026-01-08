@@ -1,0 +1,9 @@
+.price_original {
+  color: var(--mantine-color-black);
+  font-weight: 700;
+}
+
+.price_discount {
+  color: var(--mantine-color-gray-filled);
+  text-decoration: line-through;
+}

@@ -1,0 +1,14 @@
+volumes:
+  api_proxy_volume:
+
+services:
+
+  api-proxy:
+    image: nginx:1.27.0
+    container_name: quazex-proxy
+    ports:
+      - 3001:80
+    volumes:
+      - ./.docker/config/nginx.conf:/etc/nginx/nginx.conf
+      - api_proxy_volume:/var/cache/nginx
+    restart: always

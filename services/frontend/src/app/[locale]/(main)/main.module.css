@@ -1,0 +1,24 @@
+.main {
+  width: 100%;
+  max-width: var(--quazex-sizing-width);
+  padding: var(--mantine-spacing-xl) var(--mantine-spacing-md);
+  margin: 0 auto;
+}
+
+.header_wrapper {
+  background-color: var(--mantine-color-orange-filled);
+}
+
+.header_content {
+  max-width: var(--quazex-sizing-width);
+  margin: 0 auto;
+}
+
+.footer_wrapper {
+  background-color: var(--quazex-footer-bg);
+}
+
+.footer_content {
+  max-width: var(--quazex-sizing-width);
+  margin: 0 auto;
+}
