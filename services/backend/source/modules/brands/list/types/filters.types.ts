@@ -1,3 +1,3 @@
 export interface TBrandsListFilters {
-    page: number;
+  page: number
 }

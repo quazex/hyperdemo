@@ -1,3 +1,3 @@
 export interface TCategoriesInfoFilters {
-    category_id: string;
+  category_id: string
 }

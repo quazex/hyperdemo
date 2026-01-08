@@ -1,4 +1,4 @@
 export interface TBrandsAnalyticsSchema {
-    revenue: number;
-    date: string;
+  revenue: number
+  date: string
 }

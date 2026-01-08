@@ -1,3 +1,3 @@
 export interface TProductsReviewsParams {
-    product_id: string;
+  product_id: string
 }

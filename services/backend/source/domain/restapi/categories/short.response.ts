@@ -1,9 +1,9 @@
-import { TCategoriesShortSchema } from '@domain/schemas';
-import { ApiProperty } from '@nestjs/swagger';
+import { TCategoriesShortSchema } from '@domain/schemas'
+import { ApiProperty } from '@nestjs/swagger'
 
 export class CategoriesShortRes implements TCategoriesShortSchema {
-    @ApiProperty({ description: 'UUID v4' })
-    public id: string;
+  @ApiProperty({ description: 'UUID v4' })
+  public id: string
 
-    public name: string;
+  public name: string
 }

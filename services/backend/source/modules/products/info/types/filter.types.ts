@@ -1,3 +1,3 @@
 export interface TProductsInfoFilters {
-    product_id: string;
+  product_id: string
 }

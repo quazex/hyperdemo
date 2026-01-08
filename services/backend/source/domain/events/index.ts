@@ -1,1 +1,1 @@
-export * from './reviews/created.event';
+export * from './reviews/created.event'

@@ -1,4 +1,4 @@
 export interface TProductsAnalyticsSchema {
-    revenue: number;
-    date: string;
+  revenue: number
+  date: string
 }

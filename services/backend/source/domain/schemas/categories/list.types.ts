@@ -1,4 +1,4 @@
-import { TPaginationRes } from '@domain/restapi';
-import { TCategoriesDataSchema } from './data.types';
+import { TPaginationRes } from '@domain/restapi'
+import { TCategoriesDataSchema } from './data.types'
 
-export type TCategoriesListSchema = TPaginationRes<TCategoriesDataSchema>;
+export type TCategoriesListSchema = TPaginationRes<TCategoriesDataSchema>

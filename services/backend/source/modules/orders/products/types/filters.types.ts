@@ -1,4 +1,4 @@
 export interface TOrdersProductsFilters {
-    order_id: string;
-    page: number;
+  order_id: string
+  page: number
 }

@@ -1,4 +1,4 @@
 export interface TProductsReviewsUpdate {
-    product_id: string;
-    feedbacks: number;
+  product_id: string
+  feedbacks: number
 }

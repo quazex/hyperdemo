@@ -1,4 +1,4 @@
 export interface TCategoriesAnalyticsSchema {
-    revenue: number;
-    date: string;
+  revenue: number
+  date: string
 }

@@ -1,26 +1,26 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
-import { ProductsDataEntity } from '../products/data.entity';
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm'
+import { ProductsDataEntity } from '../products/data.entity'
 
 @Entity({
-    name: 'orders_products',
+  name: 'orders_products',
 })
 export class OrdersProductsEntity {
-    @PrimaryColumn({ type: 'uuid' })
-    order_id: string;
+  @PrimaryColumn({ type: 'uuid' })
+  public order_id: string
 
-    @PrimaryColumn({ type: 'uuid' })
-    product_id: string;
+  @PrimaryColumn({ type: 'uuid' })
+  public product_id: string
 
-    @Column({ type: 'int4' })
-    quantity: number;
+  @Column({ type: 'int4' })
+  public quantity: number
 
-    @Column({ type: 'decimal', precision: 10, scale: 2 })
-    price: number;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  public price: number
 
-    @OneToOne(() => ProductsDataEntity, (e) => e.product_id)
-    @JoinColumn({ name: 'product_id' })
-    product: ProductsDataEntity;
+  @OneToOne(() => ProductsDataEntity, (e) => e.product_id)
+  @JoinColumn({ name: 'product_id' })
+  public product: ProductsDataEntity
 
-    @CreateDateColumn({ type: 'timestamp' })
-    created_at: Date;
+  @CreateDateColumn({ type: 'timestamptz' })
+  public created_at: Date
 }

@@ -1,3 +1,3 @@
 export interface TOrdersListFilters {
-    page: number;
+  page: number
 }

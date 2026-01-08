@@ -1,3 +1,3 @@
 export interface TBrandsInfoFilters {
-    brand_id: string;
+  brand_id: string
 }

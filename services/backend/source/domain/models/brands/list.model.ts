@@ -1,38 +1,38 @@
-import { TBrandsListSchema } from '@domain/schemas';
-import { BrandsDataModel } from './data.model';
+import { TBrandsListSchema } from '@domain/schemas'
+import { BrandsDataModel } from './data.model'
 
 export class BrandsListModel {
-    #list: BrandsDataModel[];
-    #total: number;
-    #pages: number;
+  #list: BrandsDataModel[]
+  #total: number
+  #pages: number
 
-    private constructor() {
-        this.#list = [];
-        this.#total = 0;
-        this.#pages = 0;
-    }
+  constructor() {
+    this.#list = []
+    this.#total = 0
+    this.#pages = 0
+  }
 
-    public static init(): BrandsListModel {
-        return new BrandsListModel();
-    }
+  public static init(): BrandsListModel {
+    return new BrandsListModel()
+  }
 
-    public set total(value: number) {
-        this.#total = value;
-    }
+  public set total(value: number) {
+    this.#total = value
+  }
 
-    public set pages(value: number) {
-        this.#pages = value;
-    }
+  public set pages(value: number) {
+    this.#pages = value
+  }
 
-    public set list(values: BrandsDataModel[]) {
-        this.#list = values;
-    }
+  public set list(values: BrandsDataModel[]) {
+    this.#list = values
+  }
 
-    public toSchema(): TBrandsListSchema {
-        return {
-            rows: this.#list.map((m) => m.toSchema()),
-            total: this.#total,
-            pages: this.#pages,
-        };
+  public toSchema(): TBrandsListSchema {
+    return {
+      rows: this.#list.map((m) => m.toSchema()),
+      total: this.#total,
+      pages: this.#pages,
     }
+  }
 }

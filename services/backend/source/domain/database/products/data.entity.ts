@@ -1,54 +1,54 @@
 import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    JoinColumn,
-    ManyToOne,
-    OneToMany,
-    PrimaryColumn,
-    UpdateDateColumn,
-} from 'typeorm';
-import { BrandsDataEntity } from '../brands/data.entity';
-import { CategoriesDataEntity } from '../categories/data.entity';
-import { ReviewsDataEntity } from '../reviews/data.entity';
-import { ProductsImagesEntity } from './images.entity';
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm'
+import { BrandsDataEntity } from '../brands/data.entity'
+import { CategoriesDataEntity } from '../categories/data.entity'
+import { ReviewsDataEntity } from '../reviews/data.entity'
+import { ProductsImagesEntity } from './images.entity'
 
 @Entity({
-    name: 'products_data',
+  name: 'products_data',
 })
 export class ProductsDataEntity {
-    @PrimaryColumn({ type: 'uuid' })
-    product_id: string;
+  @PrimaryColumn({ type: 'uuid' })
+  public product_id: string
 
-    @Column({ type: 'text' })
-    name: string;
+  @Column({ type: 'text' })
+  public name: string
 
-    @Column({ type: 'text' })
-    description: string;
+  @Column({ type: 'text' })
+  public description: string
 
-    @OneToMany(() => ProductsImagesEntity, (e) => e.product)
-    images: ProductsImagesEntity[];
+  @OneToMany(() => ProductsImagesEntity, (e) => e.product)
+  public images: ProductsImagesEntity[]
 
-    @ManyToOne(() => BrandsDataEntity, (e) => e.brand_id, { nullable: false })
-    @JoinColumn({ name: 'brand_id' })
-    brand: BrandsDataEntity;
+  @ManyToOne(() => BrandsDataEntity, (e) => e.brand_id, { nullable: false })
+  @JoinColumn({ name: 'brand_id' })
+  public brand: BrandsDataEntity
 
-    @ManyToOne(() => CategoriesDataEntity, (e) => e.category_id, { nullable: false })
-    @JoinColumn({ name: 'category_id' })
-    category: CategoriesDataEntity;
+  @ManyToOne(() => CategoriesDataEntity, (e) => e.category_id, { nullable: false })
+  @JoinColumn({ name: 'category_id' })
+  public category: CategoriesDataEntity
 
-    @Column({ type: 'decimal', precision: 10, scale: 2 })
-    price: number;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  public price: number
 
-    @OneToMany(() => ReviewsDataEntity, (e) => e.product)
-    reviews: ReviewsDataEntity[];
+  @OneToMany(() => ReviewsDataEntity, (e) => e.product)
+  public reviews: ReviewsDataEntity[]
 
-    @Column({ type: 'int4' })
-    feedbacks: number;
+  @Column({ type: 'int4' })
+  public feedbacks: number
 
-    @CreateDateColumn({ type: 'timestamp' })
-    created_at: Date;
+  @CreateDateColumn({ type: 'timestamptz' })
+  public created_at: Date
 
-    @UpdateDateColumn({ type: 'timestamp' })
-    updated_at: Date;
+  @UpdateDateColumn({ type: 'timestamptz' })
+  public updated_at: Date
 }

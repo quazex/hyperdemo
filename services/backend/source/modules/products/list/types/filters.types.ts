@@ -1,3 +1,3 @@
 export interface TProductsListFilters {
-    page: number;
+  page: number
 }

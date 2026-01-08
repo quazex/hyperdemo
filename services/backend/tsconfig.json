@@ -6,9 +6,8 @@
         "baseUrl": "./source",
         "paths": {
             "@config": ["config"],
-            "@context": ["context"],
             "@domain/*": ["domain/*"],
-            "@testing": ["testing"],
+            "@shared/*": ["shared/*"],
         },
     },
     "exclude": [

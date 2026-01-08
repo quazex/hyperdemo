@@ -1,4 +1,4 @@
 export interface TTestingResponse<TData> {
-    statusCode: number;
-    body: TData;
+  statusCode: number
+  body: TData
 }

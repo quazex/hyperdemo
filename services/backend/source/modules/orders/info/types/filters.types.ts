@@ -1,3 +1,3 @@
 export interface TOrdersInfoFilters {
-    order_id: string;
+  order_id: string
 }

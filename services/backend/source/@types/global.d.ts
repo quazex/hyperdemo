@@ -1,10 +1,10 @@
 import { StartedPostgreSqlContainer } from '@testcontainers/postgresql';
-import { TestingApplication } from '../testing/application.e2e';
+import { TestingApplicationE2E } from '@shared/testing';
 
 declare global {
     interface JestTesting {
         container: StartedPostgreSqlContainer,
-        application: TestingApplication,
+        application: TestingApplicationE2E,
         env: string,
     }
 
